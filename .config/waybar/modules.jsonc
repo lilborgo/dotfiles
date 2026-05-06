@@ -32,7 +32,7 @@
     },
 
     "memory": {
-        "interval": 10,
+        "interval": 1,
         "format": "  {used:0.1f}G",
         "states": {
             "warning": 80,
@@ -41,7 +41,7 @@
     },
 
     "temperature": {
-        "interval": 10,
+        "interval": 1,
         "format": "{icon} {temperatureC}°",
         "critical-threshold": 90,
         "format-icons": ["","","","",""]	

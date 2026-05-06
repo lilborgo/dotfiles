@@ -216,3 +216,7 @@ trough highlight {
     background-color: @fg;
     background-image: none;
 }
+
+#cpu {
+    min-width: 50px;
+}
