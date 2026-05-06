@@ -1,0 +1,33 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin": "5 0",
+
+    "group/left" : {
+        "orientation": "horizontal",
+        "modules" : [
+            "hyprland/workspaces"
+        ]
+    },
+
+    "group/left-hidden-top" : {
+        "orientation": "horizontal",
+        "modules" : [ "custom/start", "battery", "cpu", "memory", "temperature"]
+    },
+
+    "group/right" : {
+        "orientation": "horizontal",
+        "modules" : [ "mpris", "bluetooth", "group/group-volume", "group/group-backlight", "network", "tray"
+        ]
+    },
+    "group/right-hidden-top" : {
+        "orientation": "horizontal",
+        "modules" : [ "custom/shutdown" ]
+    },
+
+    "modules-left"   : ["group/left-hidden-top", "group/left"],
+    "modules-center" : ["clock"],
+    "modules-right"  : [ "group/right",  "group/right-hidden-top"],
+
+    "include": [ "~/.config/waybar/modules.jsonc" ]
+}

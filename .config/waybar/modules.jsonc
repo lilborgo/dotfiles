@@ -1,0 +1,213 @@
+{
+    "hyprland/workspaces": {
+        "format": "{icon}",
+        "on-scroll-down": "hyprctl dispatch workspace e+1",
+        "on-scroll-up": "hyprctl dispatch workspace e-1",
+        "cursor" : true,
+        "format-icons": {
+            "active": "󰮯",
+            "persistent": "",
+            "empty": ""
+         }
+    },
+
+    "hyprland/window" : {
+        "max-length": 45
+    },
+
+    "cpu": {
+        "interval": 1,
+        "format":"  {usage}%",
+        "cursor": true,
+        "states": {
+            "warning": 80,
+            "critical": 90
+        }
+    },
+
+    "tray" : {
+        "icon-size": 13,
+        "spacing": 12,
+        "cursor": true
+    },
+
+    "memory": {
+        "interval": 10,
+        "format": "  {used:0.1f}G",
+        "states": {
+            "warning": 80,
+            "critical": 90
+        }
+    },
+
+    "temperature": {
+        "interval": 10,
+        "format": "{icon} {temperatureC}°",
+        "critical-threshold": 90,
+        "format-icons": ["","","","",""]	
+    },
+
+    "backlight": {
+        "scroll-step" : 5,
+        "format": "{icon}",
+        "tooltip-format" : "{percent}%",
+        "format-icons": [ "󰃞", "󰃝", "󰃟", "󰃠" ]
+    },
+
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-bluetooth": "{icon}",
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "hyprctl dispatch exec 'pavucontrol -t 4'",
+        "tooltip-format": "{volume}%",
+        "format-muted": "<span size='12pt'>󰝟</span>",
+        "scroll-step": 2,
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": [
+                "<span size='12pt'>󰕿</span>",
+                "<span size='12pt'>󰖀</span>",
+                "<span size='12pt'>󰕾</span>"
+            ]
+        }
+    },
+
+    "pulseaudio/slider": {
+        "min": 0,
+        "max": 100,
+        "cursor": true,
+        "on-click-right": "hyprctl dispatch exec 'pavucontrol -t 4'"
+    },
+
+    "backlight/slider": {
+        "min": 5,
+        "max": 100,
+        "cursor": true
+    },
+
+    "network": {
+        "interval": 10,
+        "format-disabled": "",
+        "format-disconnected": "",
+        "format-wifi": "",
+        "format-ethernet": "",
+        "tooltip-format": "{essid}\n\nFrequency: {frequency}GHz\nStrength: {signalStrength}%\n\n{bandwidthUpBytes}   {bandwidthDownBytes}",
+        "menu": "on-click-right",
+        "menu-file": "~/.config/waybar/context/network.xml",
+        "menu-actions": {
+  			"action-1": "nmcli radio wifi off",
+  			"action-2": "nmcli radio wifi on",
+            "action-3": "hyprctl dispatch exec '[float] alacritty -e nmtui'",
+            "action-4": "hyprctl dispatch exec nm-connection-editor"
+  		}
+    },
+
+    "custom/shutdown": {
+        "format": "⏼ ",
+        "menu": "on-click",
+        "menu-file": "~/.config/waybar/context/shutdown.xml",
+        "menu-actions": {
+  			"action-1": "shutdown -h 0",
+  			"action-2": "reboot"
+  		}
+    },
+
+    "bluetooth": {
+        "format": "{}",
+        "format-on": "󰂰",
+        "format-off": "󰂲",
+        "format-disabled": "󰂲",
+        "format-connected": "{device_alias}",
+        "format-connected-battery": "{device_alias}",
+        "tooltip-format": "{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}   {device_battery_percentage}%",
+        "on-click-right": "hyprctl dispatch exec blueman-manager"
+    },
+
+    "battery": {
+        "interval": 20,
+        "full-at": 100,
+        "tooltip": true,
+        "format-full": "",
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂂", "󰁹"],
+        "states": {
+            "warning": 30,
+            "critical": 15
+        }
+    },
+
+    "clock": {
+        "timezone": "Europe/Italy/Rome",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "format": "{:%H:%M %d %B %Y}",
+        "on-click-right": "hyprctl dispatch exec 'alacritty --class=peaclock -e peaclock'",
+        "calendar": {
+            "mode": "year",
+            "weeks-pos": "right",
+            "mode-mon-col": 3,
+            "format": {
+                "months": "<span color='#acb0d0'><b>{}</b></span>",
+                "days": "<span color='#acb0d0'><b>{}</b></span>",
+                "weeks": "<span color='#7aa2f7'><b>W{}</b></span>",
+                "weekdays": "<span color='#e0af68'><b>{}</b></span>",
+                "today": "<span color='#41a6b5'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    "mpris": {
+        "format": "▶ {title}",
+        "tooltip-format" : "{artist} - {album}",
+        "format-paused": " {title}",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl previous",
+        "on-scroll-down": "playerctl next",
+        "max-length": 45
+    },
+
+    "power-profiles-daemon": {
+        "format": "{icon}",
+        "tooltip-format": "Power profile: {profile}",
+        "format-icons": {
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+        }
+    },
+
+    "custom/start": {
+        "format": "nix",
+        "on-click": "~/.config/rofi/bin/drun &"
+    },
+
+
+    "group/group-volume": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 600,
+            "transition-left-to-right": true
+        },
+        "modules" : [
+            "pulseaudio", "pulseaudio/slider"
+        ]
+    },
+
+    "group/group-backlight": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 600,
+            "transition-left-to-right": true
+        },
+        "modules" : [
+            "backlight", "backlight/slider"
+        ]
+    }
+}
