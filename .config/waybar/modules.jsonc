@@ -44,7 +44,7 @@
         "interval": 1,
         "format": "{icon} {temperatureC}°",
         "critical-threshold": 90,
-        "format-icons": ["","","","",""]	
+        "format-icons": ["","","","",""]
     },
 
     "backlight": {
@@ -52,6 +52,11 @@
         "format": "{icon}",
         "tooltip-format" : "{percent}%",
         "format-icons": [ "󰃞", "󰃝", "󰃟", "󰃠" ]
+    },
+
+    "custom/notification": {
+        "format": "⩍ ",
+        "on-click": "hyprctl dispatch exec 'swaync-client  -t'"
     },
 
     "pulseaudio": {
@@ -108,8 +113,8 @@
     },
 
     "custom/shutdown": {
-        "format": "⏼ ",
-        "menu": "on-click",
+        "format": " ⏻ ",
+        "menu": "on-click-right",
         "menu-file": "~/.config/waybar/context/shutdown.xml",
         "menu-actions": {
   			"action-1": "shutdown -h 0",

@@ -22,7 +22,7 @@
     },
     "group/right-hidden-top" : {
         "orientation": "horizontal",
-        "modules" : [ "custom/shutdown" ]
+        "modules" : [ "custom/notification", "custom/shutdown" ]
     },
 
     "modules-left"   : ["group/left-hidden-top", "group/left"],
