@@ -169,45 +169,21 @@ in
     kdePackages.powerdevil
     kdePackages.qttools
 
-    # ── Bar itself ──────────────────────────────────────────────
-    waybar                    # the bar
-    networkmanager_dmenu
+    waybar
     pavucontrol
-    # ── Fonts (Nerd Fonts for icons) ────────────────────────────
-    nerd-fonts.jetbrains-mono # JetBrainsMono Nerd Font (icons + monospace)
-    nerd-fonts.symbols-only   # Symbols-only fallback
-
-    # ── Workspaces / Compositor ─────────────────────────────────
-    hyprland                  # Wayland compositor (provides hyprctl)
-
-    # ── App Launcher ────────────────────────────────────────────
-    rofi              # Application launcher + power menu
-
-    # ── Notifications ───────────────────────────────────────────
-    swaynotificationcenter    # swaync + swaync-client
-
-    # ── Network ─────────────────────────────────────────────────
-    networkmanager            # provides nm-connection-editor
-    networkmanagerapplet      # nm-applet tray icon
-    # Optional: nmtui (included in networkmanager)
-
-    # ── Bluetooth ───────────────────────────────────────────────
-    bluez                     # Bluetooth daemon
-    blueman                   # blueman-manager GUI
-
-    # ── Terminal (used by network right-click → nmtui) ──────────
-    kitty                     # or replace with your terminal
-
-    # ── Power stats (battery on-click) ──────────────────────────
-    gnome-power-manager       # gnome-power-statistics
-    # OR comment above and use: upower (CLI only)
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.symbols-only
+    hyprland
+    rofiswaynotificationcenter
+    networkmanager
+    networkmanagerappletbluez
+    blueman
+    kitty
+    gnome-power-manager
     upower
-
-    # ── Core utils (almost always present, listed for clarity) ──
-    iproute2                  # ip command (net_graph.sh)
-    procps                    # free command (ram_pie.sh)
-    bash                      # scripts require bash ≥4
-
+    iproute2
+    procps
+    bash
 
     libinput
     libwacom
