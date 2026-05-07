@@ -1,0 +1,77 @@
+/**
+ *
+ * Author:  CebeM1nt (github: @cebem1nt)
+ * 
+ **/
+
+@import "colors/colors.rasi"
+
+* {
+    font:               "CaskaydiaCove Nerd Font, bold 12";
+    margin:             0px;
+    padding:            0px;
+    spacing:            0px;
+    background-color:   transparent;
+}
+
+window {
+    location:           south;
+    width:              750px;
+    border-radius:      15px;
+    y-offset:           20px;
+    background-color:   @background;
+}
+
+mainbox {
+    padding:            12px;
+}
+
+inputbar {
+    background-color:   @background-alt;
+    spacing:            8px;
+    border-radius:      16px;
+    padding:            10px 15px;
+    children:           [entry];
+}
+
+entry {
+    placeholder:        "Search...";
+    placeholder-color:  @foreground;
+    text-color:         @foreground; 
+}
+
+textbox {
+    padding:            24px;
+}
+
+listview {
+    margin:             15px 0;
+    lines:              4;  
+    columns:            6;  
+    border-radius:      16px;
+    fixed-height:       true;
+    background-color:   @background-alt;
+}
+
+element {
+    padding:            0px 13px; 
+    border-radius:      16px;  
+    cursor:             pointer;
+    color:              @foreground;
+}
+
+element-text {
+    margin:             0 0 0 15px;
+    vertical-align:     0.5;
+    color:              inherit;
+}
+
+element-icon {
+    size:               5em;  
+    cursor:             pointer;
+}
+
+element selected normal,
+element selected active {
+    background-color:   @highlight;  
+}

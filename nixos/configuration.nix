@@ -174,9 +174,11 @@ in
     nerd-fonts.jetbrains-mono
     nerd-fonts.symbols-only
     hyprland
-    rofiswaynotificationcenter
+    rofi
+    swaynotificationcenter
     networkmanager
-    networkmanagerappletbluez
+    networkmanagerapplet
+    bluez
     blueman
     kitty
     gnome-power-manager
@@ -184,6 +186,8 @@ in
     iproute2
     procps
     bash
+    cliphist
+    wl-clipboard
 
     libinput
     libwacom

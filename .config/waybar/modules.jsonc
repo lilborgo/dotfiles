@@ -114,12 +114,7 @@
 
     "custom/shutdown": {
         "format": " ⏻ ",
-        "menu": "on-click-right",
-        "menu-file": "~/.config/waybar/context/shutdown.xml",
-        "menu-actions": {
-  			"action-1": "shutdown -h 0",
-  			"action-2": "reboot"
-  		}
+        "on-click": "bash ~/.config/rofi/bin/logout"
     },
 
     "bluetooth": {
@@ -190,7 +185,7 @@
 
     "custom/start": {
         "format": "nix",
-        "on-click": "~/.config/rofi/bin/drun &"
+        "on-click": "bash ~/.config/rofi/bin/drun"
     },
 
 

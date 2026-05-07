@@ -1,0 +1,99 @@
+/**
+ *
+ * Authors:  Aditya Shakya (github: @adi1090x),
+ *           CebeM1nt      (github: @cebem1nt)
+ * 
+ **/
+
+@import "colors/colors.rasi"
+
+configuration {
+    show-icons:                 false;
+}
+
+* {
+    font:                       "CaskaydiaCove Nerd Font, bold 11";
+}
+
+window {
+    transparency:               "real";
+    location:                   north;
+    anchor:                     north;
+    width:                      1920px;
+    enabled:                    true;
+    margin:                     5px;
+    border-radius:              15px;
+    y-offset:                   -37px;
+    background-color:           @background;
+}
+
+mainbox {
+    width:                      inherit;
+    spacing:                    5px;
+    padding:                    5px;
+    orientation:                horizontal;
+    background-color:           @background;
+    children:                   [ "prompt", "entry", "listview" ];
+}
+
+inputbar {
+    enabled:                    true;
+    spacing:                    0;
+    margin:                     0;
+    padding:                    0;
+    border-radius:              16px;
+    background-color:           @background-alt;
+    color:                      @foreground;
+    children:                   [ "entry" ];
+}
+
+prompt {
+    enabled:                    false;
+}
+
+entry {
+    expand:                     false;
+    padding:                    0;
+    horizontal-align:           0.5;
+    margin:                     0 10px;
+    border-radius:              15px;
+    width:                      230px;
+    placeholder:                "Search...";
+    background-color:           @background-alt;
+    color:                      @foreground;
+}
+
+listview {
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      horizontal;
+    fixed-height:                true;
+    fixed-columns:               true;
+    spacing:                     10px;
+    margin:                      0;
+    padding:                     0;
+    border-radius:               0;
+    background-color:            @background;
+    color:                       @foreground;
+}
+
+element {
+    spacing:                     10px;
+    margin:                      0;
+    padding:                     2px 15px;
+    border-radius:               15px;
+    background-color:            @background-alt;
+    color:                       @foreground;
+    cursor:                      pointer;
+}
+
+element selected.normal {
+    background-color:            @foreground;
+    text-color:                  @background;
+}
+
+element-text {
+    background-color:            transparent;
+    color:                       inherit;
+    cursor:                      inherit;
+}
