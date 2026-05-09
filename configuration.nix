@@ -8,7 +8,7 @@ in
 {
   imports =
   [
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
     (import "${home-manager-src}/nixos")
   ];
 
@@ -20,6 +20,8 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = ["kvm-amd" "kvm"];
+
+  qt.style = "kvantum";
 
   hardware.graphics = {
     enable = true;
@@ -188,6 +190,19 @@ in
     bash
     cliphist
     wl-clipboard
+    wev
+    alacritty
+    xfce.thunar
+    xfce.thunar-volman
+    xfce.thunar-vcs-plugin
+    xfce.thunar-archive-plugin
+    xfce.thunar-media-tags-plugin
+    papirus-icon-theme
+    gtk2
+    gtk3
+    gtk4
+    swaybg
+    flameshot
 
     libinput
     libwacom
