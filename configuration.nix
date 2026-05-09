@@ -89,6 +89,7 @@ in
   programs.virt-manager.enable = true;
   programs.steam.enable = true;
   programs.hyprland.enable = true;
+  programs.hyprlock.enable = true;
   programs = {
     zsh = {
       shellAliases = {
@@ -203,6 +204,10 @@ in
     gtk4
     swaybg
     flameshot
+    hypridle
+    libnotify
+    htop
+    brightnessctl
 
     libinput
     libwacom
