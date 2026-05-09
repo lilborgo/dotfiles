@@ -2,8 +2,6 @@
 
 let
   home-manager-src = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
-
-  #plasma-manager-src = builtins.fetchTarball "https://github.com/nix-community/plasma-manager/archive/trunk.tar.gz";
 in
 {
   imports =
@@ -59,7 +57,6 @@ in
   services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.enable = true;
   services.displayManager.ly.enable = true;
-  #services.desktopManager.plasma6.enable = true;
   services.printing.enable = true;
   services.libinput.enable = true;
   services.pulseaudio.enable = false;
@@ -68,6 +65,7 @@ in
   services.xserver.wacom.enable = true;
   services.blueman.enable = true;
   services.playerctld.enable = true;
+  services.gvfs.enable = true;
   services.xserver.xkb = {
     layout = "it";
     variant = "";
@@ -85,11 +83,18 @@ in
   users.defaultUserShell = pkgs.zsh;
 
   programs.gamemode.enable = true;
-  #programs.kdeconnect.enable = true;
   programs.virt-manager.enable = true;
   programs.steam.enable = true;
   programs.hyprland.enable = true;
   programs.hyprlock.enable = true;
+  programs.xfconf.enable = true;
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin # Requires an Archive manager like file-roller, ark, etc
+      thunar-volman
+    ];
+  };
   programs = {
     zsh = {
       shellAliases = {
@@ -147,40 +152,15 @@ in
     nerd-fonts.symbols-only
     font-awesome
     noto-fonts
+    cascadia-code
+    nerd-fonts.caskaydia-mono
   ];
 
   environment.systemPackages = with pkgs; [
-    #kdePackages.kcalc
-    #kdePackages.ark
-    #kdePackages.isoimagewriter
-    #kdePackages.okular
-    #kdePackages.kdenlive
-    #kdePackages.gwenview
-    #kdePackages.elisa
-    #kdePackages.kcolorchooser
-    #kdePackages.kate
-    #kdePackages.filelight
-    #kdePackages.kdeconnect-kde
-    
-    #kdePackages.partitionmanager
-    #kdePackages.sweeper
-    #kdePackages.spectacle
-    #kdePackages.krdc
-    #kdePackages.ktorrent
-    #kdePackages.skanpage
-    #kdePackages.kjournald
-    #kdePackages.kamoso
-    #kdePackages.krfb
-    #kdePackages.kget
-    #kdePackages.kalgebra
-    #kdePackages.knights
-    #kdePackages.ffmpegthumbs
-    #kdePackages.kdegraphics-thumbnailers
-    #kdePackages.powerdevil
-    #kdePackages.qttools
-
     waybar
     pavucontrol
+    zathura
+    imv
     hyprland
     rofi
     swaynotificationcenter
@@ -198,11 +178,6 @@ in
     wl-clipboard
     wev
     alacritty
-    xfce.thunar
-    xfce.thunar-volman
-    xfce.thunar-vcs-plugin
-    xfce.thunar-archive-plugin
-    xfce.thunar-media-tags-plugin
     papirus-icon-theme
     gtk2
     gtk3
@@ -214,6 +189,7 @@ in
     htop
     brightnessctl
     kdePackages.qtstyleplugin-kvantum
+    kdePackages.ark
     libinput
     libwacom
     busybox
@@ -262,47 +238,137 @@ in
     speedcrunch
   ];
 
-  #home-manager.sharedModules = [
-  #  (import "${plasma-manager-src}/modules")
-  #];
-
   home-manager.users.fede= { pkgs, ...}:
   {
     home.stateVersion = "23.11";
+
+    home.pointerCursor = {
+      gtk.enable = true;
+      hyprcursor.enable = true;
+      name = "Adwaita";
+      package = pkgs.adwaita-icon-theme;
+      size = 24;
+    };
+
+    programs.git = {
+      enable = true;
+
+      settings.user = {
+        email = "federico.borgo.03@gmail.com";
+        name = "Federico Borgo";
+      };
+    };
 
     xdg.userDirs = {
       enable = true;
       createDirectories = true;
     };
 
+    gtk = {
+      enable = true;
+      iconTheme = {
+        name = "Papirus-Dark";
+        package = pkgs.papirus-icon-theme;
+      };
+      theme = {
+        name = "Dracula";
+        package = pkgs.dracula-theme;
+      };
+      cursorTheme = {
+        name = "Adwaita";
+      };
+    };
 
-    #programs.plasma= {
+    #xdg.mimeApps = {
     #  enable = true;
+    #  defaultApplications = {
+    #    # Browser
+    #    "text/html"                          = "librewolf.desktop";
+    #    "x-scheme-handler/http"              = "librewolf.desktop";
+    #    "x-scheme-handler/https"             = "librewolf.desktop";
+    #    "x-scheme-handler/ftp"               = "librewolf.desktop";
+    #    "application/xhtml+xml"              = "librewolf.desktop";
+    #    "application/x-extension-htm"        = "librewolf.desktop";
+    #    "application/x-extension-html"       = "librewolf.desktop";
+    #    "application/x-extension-xhtml"      = "librewolf.desktop";
 #
-    #  hotkeys.commands."launch-librewolf" = {
-    #    name = "Launch librewolf";
-    #    key = "Meta+F";
-    #    command = "librewolf";
-    #  };
+    #    # File manager
+    #    "inode/directory"                    = "thunar.desktop";
 #
-    #  configFile = {
-    #    kwinrc.Desktops = {
-    #      Number = {
-    #        value = 8;
-    #        immutable = true;
-    #      };
-    #      Rows = {
-    #        value = 2;
-    #        immutable = true;
-    #        };
-    #    };
+    #    # PDF
+    #    "application/pdf"                    = "zathura.desktop";
+    #    "application/x-pdf"                  = "zathura.desktop";
+    #    "application/x-bzpdf"                = "zathura.desktop";
+    #    "application/x-gzpdf"                = "zathura.desktop";
 #
-    #    ksmserverrc.General = {
-    #      loginMode = {
-    #        value = "emptySession";
-    #        immutable = true;
-    #      };
-    #    };
+    #    # Images
+    #    "image/png"                          = "imv.desktop";
+    #    "image/jpeg"                         = "imv.desktop";
+    #    "image/jpg"                          = "imv.desktop";
+    #    "image/gif"                          = "imv.desktop";
+    #    "image/webp"                         = "imv.desktop";
+    #    "image/tiff"                         = "imv.desktop";
+    #    "image/bmp"                          = "imv.desktop";
+    #    "image/svg+xml"                      = "imv.desktop";
+    #    "image/x-portable-pixmap"            = "imv.desktop";
+    #    "image/avif"                         = "imv.desktop";
+    #    "image/heic"                         = "imv.desktop";
+#
+    #    # Video
+    #    "video/mp4"                          = "vlc.desktop";
+    #    "video/x-matroska"                   = "vlc.desktop";
+    #    "video/webm"                         = "vlc.desktop";
+    #    "video/avi"                          = "vlc.desktop";
+    #    "video/x-msvideo"                    = "vlc.desktop";
+    #    "video/quicktime"                    = "vlc.desktop";
+    #    "video/x-flv"                        = "vlc.desktop";
+    #    "video/mpeg"                         = "vlc.desktop";
+    #    "video/ogg"                          = "vlc.desktop";
+    #    "video/3gpp"                         = "vlc.desktop";
+    #    "video/x-ms-wmv"                     = "vlc.desktop";
+#
+    #    # Audio
+    #    "audio/mpeg"                         = "vlc.desktop";
+    #    "audio/ogg"                          = "vlc.desktop";
+    #    "audio/flac"                         = "vlc.desktop";
+    #    "audio/wav"                          = "vlc.desktop";
+    #    "audio/x-wav"                        = "vlc.desktop";
+    #    "audio/aac"                          = "vlc.desktop";
+    #    "audio/mp4"                          = "vlc.desktop";
+    #    "audio/x-m4a"                        = "vlc.desktop";
+    #    "audio/opus"                         = "vlc.desktop";
+    #    "audio/webm"                         = "vlc.desktop";
+#
+    #    # Text editor — using gedit, lightweight and clean
+    #    #"text/plain"                         = "org.gnome.gedit.desktop";
+    #    #"text/x-readme"                      = "org.gnome.gedit.desktop";
+    #    #"text/x-log"                         = "org.gnome.gedit.desktop";
+    #    #"text/x-makefile"                    = "org.gnome.gedit.desktop";
+    #    #"text/x-script"                      = "org.gnome.gedit.desktop";
+    #    #"application/x-shellscript"          = "org.gnome.gedit.desktop";
+    #    #"text/x-python"                      = "org.gnome.gedit.desktop";
+    #    #"text/x-csrc"                        = "org.gnome.gedit.desktop";
+    #    #"text/x-chdr"                        = "org.gnome.gedit.desktop";
+    #    #"text/xml"                           = "org.gnome.gedit.desktop";
+    #    #"text/css"                           = "org.gnome.gedit.desktop";
+    #    #"application/json"                   = "org.gnome.gedit.desktop";
+    #    #"application/x-yaml"                 = "org.gnome.gedit.desktop";
+#
+    #    # Archives — using thunar with archive plugin (you have it)
+    #    "application/zip"                    = "thunar.desktop";
+    #    "application/x-tar"                  = "thunar.desktop";
+    #    "application/x-compressed-tar"       = "thunar.desktop";
+    #    "application/x-bzip2-compressed-tar" = "thunar.desktop";
+    #    "application/x-xz-compressed-tar"    = "thunar.desktop";
+    #    "application/x-7z-compressed"        = "thunar.desktop";
+    #    "application/x-rar"                  = "thunar.desktop";
+    #    "application/x-rar-compressed"       = "thunar.desktop";
+#
+    #    # Torrents
+    #    "application/x-bittorrent"           = "vlc.desktop";
+#
+    #    # Email
+    #    "x-scheme-handler/mailto"            = "librewolf.desktop";
     #  };
     #};
   };
