@@ -10,7 +10,7 @@
 @define-color urgent                    @text-alt;
 
 * {
-	font-family: "CaskaydiaCove Nerd Font Propo";
+	font-family: "JetBrainsMono Nerd Font Propo";
 	font-weight: 700;
 	all: unset;
 
@@ -283,7 +283,7 @@
 }
 
 .widget-buttons-grid button > label {
-	font-family: "CaskaydiaCove Nerd Font Propo";
+	font-family: "JetBrainsMono Nerd Font Propo";
 	font-size: 16px;
 	color: @text;
 }

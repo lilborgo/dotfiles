@@ -3,7 +3,7 @@
 let
   home-manager-src = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
 
-  plasma-manager-src = builtins.fetchTarball "https://github.com/nix-community/plasma-manager/archive/trunk.tar.gz";
+  #plasma-manager-src = builtins.fetchTarball "https://github.com/nix-community/plasma-manager/archive/trunk.tar.gz";
 in
 {
   imports =
@@ -59,7 +59,7 @@ in
   services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.enable = true;
   services.displayManager.ly.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  #services.desktopManager.plasma6.enable = true;
   services.printing.enable = true;
   services.libinput.enable = true;
   services.pulseaudio.enable = false;
@@ -85,7 +85,7 @@ in
   users.defaultUserShell = pkgs.zsh;
 
   programs.gamemode.enable = true;
-  programs.kdeconnect.enable = true;
+  #programs.kdeconnect.enable = true;
   programs.virt-manager.enable = true;
   programs.steam.enable = true;
   programs.hyprland.enable = true;
@@ -142,40 +142,45 @@ in
   virtualisation.waydroid.enable = true;
   virtualisation.waydroid.package =  pkgs.waydroid-nftables;
 
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.symbols-only
+    font-awesome
+    noto-fonts
+  ];
+
   environment.systemPackages = with pkgs; [
-    kdePackages.kcalc
-    kdePackages.ark
-    kdePackages.isoimagewriter
-    kdePackages.okular
-    kdePackages.kdenlive
-    kdePackages.gwenview
-    kdePackages.elisa
-    kdePackages.kcolorchooser
-    kdePackages.kate
-    kdePackages.filelight
-    kdePackages.kdeconnect-kde
-    kdePackages.qtstyleplugin-kvantum
-    kdePackages.partitionmanager
-    kdePackages.sweeper
-    kdePackages.spectacle
-    kdePackages.krdc
-    kdePackages.ktorrent
-    kdePackages.skanpage
-    kdePackages.kjournald
-    kdePackages.kamoso
-    kdePackages.krfb
-    kdePackages.kget
-    kdePackages.kalgebra
-    kdePackages.knights
-    kdePackages.ffmpegthumbs
-    kdePackages.kdegraphics-thumbnailers
-    kdePackages.powerdevil
-    kdePackages.qttools
+    #kdePackages.kcalc
+    #kdePackages.ark
+    #kdePackages.isoimagewriter
+    #kdePackages.okular
+    #kdePackages.kdenlive
+    #kdePackages.gwenview
+    #kdePackages.elisa
+    #kdePackages.kcolorchooser
+    #kdePackages.kate
+    #kdePackages.filelight
+    #kdePackages.kdeconnect-kde
+    
+    #kdePackages.partitionmanager
+    #kdePackages.sweeper
+    #kdePackages.spectacle
+    #kdePackages.krdc
+    #kdePackages.ktorrent
+    #kdePackages.skanpage
+    #kdePackages.kjournald
+    #kdePackages.kamoso
+    #kdePackages.krfb
+    #kdePackages.kget
+    #kdePackages.kalgebra
+    #kdePackages.knights
+    #kdePackages.ffmpegthumbs
+    #kdePackages.kdegraphics-thumbnailers
+    #kdePackages.powerdevil
+    #kdePackages.qttools
 
     waybar
     pavucontrol
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.symbols-only
     hyprland
     rofi
     swaynotificationcenter
@@ -208,7 +213,7 @@ in
     libnotify
     htop
     brightnessctl
-
+    kdePackages.qtstyleplugin-kvantum
     libinput
     libwacom
     busybox
@@ -255,14 +260,11 @@ in
     btop
     libqalculate
     speedcrunch
-    candy-icons
-    sweet
-    sweet-nova
   ];
 
-  home-manager.sharedModules = [
-    (import "${plasma-manager-src}/modules")
-  ];
+  #home-manager.sharedModules = [
+  #  (import "${plasma-manager-src}/modules")
+  #];
 
   home-manager.users.fede= { pkgs, ...}:
   {
@@ -274,35 +276,35 @@ in
     };
 
 
-    programs.plasma= {
-      enable = true;
-
-      hotkeys.commands."launch-librewolf" = {
-        name = "Launch librewolf";
-        key = "Meta+F";
-        command = "librewolf";
-      };
-
-      configFile = {
-        kwinrc.Desktops = {
-          Number = {
-            value = 8;
-            immutable = true;
-          };
-          Rows = {
-            value = 2;
-            immutable = true;
-            };
-        };
-
-        ksmserverrc.General = {
-          loginMode = {
-            value = "emptySession";
-            immutable = true;
-          };
-        };
-      };
-    };
+    #programs.plasma= {
+    #  enable = true;
+#
+    #  hotkeys.commands."launch-librewolf" = {
+    #    name = "Launch librewolf";
+    #    key = "Meta+F";
+    #    command = "librewolf";
+    #  };
+#
+    #  configFile = {
+    #    kwinrc.Desktops = {
+    #      Number = {
+    #        value = 8;
+    #        immutable = true;
+    #      };
+    #      Rows = {
+    #        value = 2;
+    #        immutable = true;
+    #        };
+    #    };
+#
+    #    ksmserverrc.General = {
+    #      loginMode = {
+    #        value = "emptySession";
+    #        immutable = true;
+    #      };
+    #    };
+    #  };
+    #};
   };
 
   system.autoUpgrade = {
