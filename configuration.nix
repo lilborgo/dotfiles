@@ -156,11 +156,21 @@ in
     nerd-fonts.caskaydia-mono
   ];
 
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
   environment.systemPackages = with pkgs; [
     waybar
     pavucontrol
-    zathura
-    imv
+    kdePackages.okular
+    kdePackages.gwenview
+    kdePackages.kate
+    kdePackages.qtstyleplugin-kvantum
+    kdePackages.ark
+    kdePackages.filelight
+    gparted
+    libreoffice-qt
     hyprland
     rofi
     swaynotificationcenter
@@ -188,8 +198,6 @@ in
     libnotify
     htop
     brightnessctl
-    kdePackages.qtstyleplugin-kvantum
-    kdePackages.ark
     libinput
     libwacom
     busybox
@@ -279,98 +287,97 @@ in
       };
     };
 
-    #xdg.mimeApps = {
-    #  enable = true;
-    #  defaultApplications = {
-    #    # Browser
-    #    "text/html"                          = "librewolf.desktop";
-    #    "x-scheme-handler/http"              = "librewolf.desktop";
-    #    "x-scheme-handler/https"             = "librewolf.desktop";
-    #    "x-scheme-handler/ftp"               = "librewolf.desktop";
-    #    "application/xhtml+xml"              = "librewolf.desktop";
-    #    "application/x-extension-htm"        = "librewolf.desktop";
-    #    "application/x-extension-html"       = "librewolf.desktop";
-    #    "application/x-extension-xhtml"      = "librewolf.desktop";
-#
-    #    # File manager
-    #    "inode/directory"                    = "thunar.desktop";
-#
-    #    # PDF
-    #    "application/pdf"                    = "zathura.desktop";
-    #    "application/x-pdf"                  = "zathura.desktop";
-    #    "application/x-bzpdf"                = "zathura.desktop";
-    #    "application/x-gzpdf"                = "zathura.desktop";
-#
-    #    # Images
-    #    "image/png"                          = "imv.desktop";
-    #    "image/jpeg"                         = "imv.desktop";
-    #    "image/jpg"                          = "imv.desktop";
-    #    "image/gif"                          = "imv.desktop";
-    #    "image/webp"                         = "imv.desktop";
-    #    "image/tiff"                         = "imv.desktop";
-    #    "image/bmp"                          = "imv.desktop";
-    #    "image/svg+xml"                      = "imv.desktop";
-    #    "image/x-portable-pixmap"            = "imv.desktop";
-    #    "image/avif"                         = "imv.desktop";
-    #    "image/heic"                         = "imv.desktop";
-#
-    #    # Video
-    #    "video/mp4"                          = "vlc.desktop";
-    #    "video/x-matroska"                   = "vlc.desktop";
-    #    "video/webm"                         = "vlc.desktop";
-    #    "video/avi"                          = "vlc.desktop";
-    #    "video/x-msvideo"                    = "vlc.desktop";
-    #    "video/quicktime"                    = "vlc.desktop";
-    #    "video/x-flv"                        = "vlc.desktop";
-    #    "video/mpeg"                         = "vlc.desktop";
-    #    "video/ogg"                          = "vlc.desktop";
-    #    "video/3gpp"                         = "vlc.desktop";
-    #    "video/x-ms-wmv"                     = "vlc.desktop";
-#
-    #    # Audio
-    #    "audio/mpeg"                         = "vlc.desktop";
-    #    "audio/ogg"                          = "vlc.desktop";
-    #    "audio/flac"                         = "vlc.desktop";
-    #    "audio/wav"                          = "vlc.desktop";
-    #    "audio/x-wav"                        = "vlc.desktop";
-    #    "audio/aac"                          = "vlc.desktop";
-    #    "audio/mp4"                          = "vlc.desktop";
-    #    "audio/x-m4a"                        = "vlc.desktop";
-    #    "audio/opus"                         = "vlc.desktop";
-    #    "audio/webm"                         = "vlc.desktop";
-#
-    #    # Text editor — using gedit, lightweight and clean
-    #    #"text/plain"                         = "org.gnome.gedit.desktop";
-    #    #"text/x-readme"                      = "org.gnome.gedit.desktop";
-    #    #"text/x-log"                         = "org.gnome.gedit.desktop";
-    #    #"text/x-makefile"                    = "org.gnome.gedit.desktop";
-    #    #"text/x-script"                      = "org.gnome.gedit.desktop";
-    #    #"application/x-shellscript"          = "org.gnome.gedit.desktop";
-    #    #"text/x-python"                      = "org.gnome.gedit.desktop";
-    #    #"text/x-csrc"                        = "org.gnome.gedit.desktop";
-    #    #"text/x-chdr"                        = "org.gnome.gedit.desktop";
-    #    #"text/xml"                           = "org.gnome.gedit.desktop";
-    #    #"text/css"                           = "org.gnome.gedit.desktop";
-    #    #"application/json"                   = "org.gnome.gedit.desktop";
-    #    #"application/x-yaml"                 = "org.gnome.gedit.desktop";
-#
-    #    # Archives — using thunar with archive plugin (you have it)
-    #    "application/zip"                    = "thunar.desktop";
-    #    "application/x-tar"                  = "thunar.desktop";
-    #    "application/x-compressed-tar"       = "thunar.desktop";
-    #    "application/x-bzip2-compressed-tar" = "thunar.desktop";
-    #    "application/x-xz-compressed-tar"    = "thunar.desktop";
-    #    "application/x-7z-compressed"        = "thunar.desktop";
-    #    "application/x-rar"                  = "thunar.desktop";
-    #    "application/x-rar-compressed"       = "thunar.desktop";
-#
-    #    # Torrents
-    #    "application/x-bittorrent"           = "vlc.desktop";
-#
-    #    # Email
-    #    "x-scheme-handler/mailto"            = "librewolf.desktop";
-    #  };
-    #};
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = {
+        # Browser
+        "text/html"                          = "librewolf.desktop";
+        "x-scheme-handler/http"              = "librewolf.desktop";
+        "x-scheme-handler/https"             = "librewolf.desktop";
+        "x-scheme-handler/ftp"               = "librewolf.desktop";
+        "application/xhtml+xml"              = "librewolf.desktop";
+        "application/x-extension-htm"        = "librewolf.desktop";
+        "application/x-extension-html"       = "librewolf.desktop";
+        "application/x-extension-xhtml"      = "librewolf.desktop";
+
+        # File manager
+        "inode/directory"                    = "thunar.desktop";
+
+        # PDF
+        "application/pdf"                    = "org.kde.okular.desktop";
+        "application/x-pdf"                  = "org.kde.okular.desktop";
+        "application/x-bzpdf"                = "org.kde.okular.desktop";
+        "application/x-gzpdf"                = "org.kde.okular.desktop";
+
+        # Images
+        "image/png"                          = "org.kde.gwenview.desktop";
+        "image/jpeg"                         = "org.kde.gwenview.desktop";
+        "image/jpg"                          = "org.kde.gwenview.desktop";
+        "image/gif"                          = "org.kde.gwenview.desktop";
+        "image/webp"                         = "org.kde.gwenview.desktop";
+        "image/tiff"                         = "org.kde.gwenview.desktop";
+        "image/bmp"                          = "org.kde.gwenview.desktop";
+        "image/svg+xml"                      = "org.kde.gwenview.desktop";
+        "image/x-portable-pixmap"            = "org.kde.gwenview.desktop";
+        "image/avif"                         = "org.kde.gwenview.desktop";
+        "image/heic"                         = "org.kde.gwenview.desktop";
+
+        # Video
+        "video/mp4"                          = "vlc.desktop";
+        "video/x-matroska"                   = "vlc.desktop";
+        "video/webm"                         = "vlc.desktop";
+        "video/avi"                          = "vlc.desktop";
+        "video/x-msvideo"                    = "vlc.desktop";
+        "video/quicktime"                    = "vlc.desktop";
+        "video/x-flv"                        = "vlc.desktop";
+        "video/mpeg"                         = "vlc.desktop";
+        "video/ogg"                          = "vlc.desktop";
+        "video/3gpp"                         = "vlc.desktop";
+        "video/x-ms-wmv"                     = "vlc.desktop";
+        # Audio
+        "audio/mpeg"                         = "vlc.desktop";
+        "audio/ogg"                          = "vlc.desktop";
+        "audio/flac"                         = "vlc.desktop";
+        "audio/wav"                          = "vlc.desktop";
+        "audio/x-wav"                        = "vlc.desktop";
+        "audio/aac"                          = "vlc.desktop";
+        "audio/mp4"                          = "vlc.desktop";
+        "audio/x-m4a"                        = "vlc.desktop";
+        "audio/opus"                         = "vlc.desktop";
+        "audio/webm"                         = "vlc.desktop";
+
+        # Text editor — using gedit, lightweight and clean
+        "text/plain"                         = "org.kde.kate.desktop";
+        "text/x-readme"                      = "org.kde.kate.desktop";
+        "text/x-log"                         = "org.kde.kate.desktop";
+        "text/x-makefile"                    = "org.kde.kate.desktop";
+        "text/x-script"                      = "org.kde.kate.desktop";
+        "application/x-shellscript"          = "org.kde.kate.desktop";
+        "text/x-python"                      = "org.kde.kate.desktop";
+        "text/x-csrc"                        = "org.kde.kate.desktop";
+        "text/x-chdr"                        = "org.kde.kate.desktop";
+        "text/xml"                           = "org.kde.kate.desktop";
+        "text/css"                           = "org.kde.kate.desktop";
+        "application/json"                   = "org.kde.kate.desktop";
+        "application/x-yaml"                 = "org.kde.kate.desktop";
+
+        # Archives — using thunar with archive plugin (you have it)
+        "application/zip"                    = "thunar.desktop";
+        "application/x-tar"                  = "thunar.desktop";
+        "application/x-compressed-tar"       = "thunar.desktop";
+        "application/x-bzip2-compressed-tar" = "thunar.desktop";
+        "application/x-xz-compressed-tar"    = "thunar.desktop";
+        "application/x-7z-compressed"        = "thunar.desktop";
+        "application/x-rar"                  = "thunar.desktop";
+        "application/x-rar-compressed"       = "thunar.desktop";
+
+        # Torrents
+        "application/x-bittorrent"           = "vlc.desktop";
+
+        # Email
+        "x-scheme-handler/mailto"            = "librewolf.desktop";
+      };
+    };
   };
 
   system.autoUpgrade = {
