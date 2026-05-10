@@ -266,6 +266,42 @@ in
   {
     home.stateVersion = "23.11";
 
+    systemd.user.services.waybar = {
+      Unit = {
+        Description = "Waybar panel";
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
+      };
+
+      Service = {
+        ExecStart = "${pkgs.waybar}/bin/waybar";
+        Restart = "always";
+        RestartSec = 1;
+      };
+
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
+
+    systemd.user.services.swaync = {
+      Unit = {
+        Description = "Sway Notification Center";
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
+      };
+
+      Service = {
+        ExecStart = "${pkgs.swaynotificationcenter}/bin/swaync";
+        Restart = "always";
+        RestartSec = 1;
+      };
+
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
+
     home.pointerCursor = {
       gtk.enable = true;
       hyprcursor.enable = true;
@@ -295,8 +331,8 @@ in
         package = pkgs.papirus-icon-theme;
       };
       theme = {
-        name = "Dracula";
-        package = pkgs.dracula-theme;
+        name = "Nordic";
+        package = pkgs.nordic;
       };
       cursorTheme = {
         name = "Adwaita";
