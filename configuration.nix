@@ -8,6 +8,7 @@ in
   [
     /etc/nixos/hardware-configuration.nix
     (import "${home-manager-src}/nixos")
+    /etc/nixos/custom.nix
   ];
 
   boot.loader.grub = {
@@ -18,8 +19,6 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = ["kvm-amd" "kvm"];
-
-  qt.style = "kvantum";
 
   hardware.graphics = {
     enable = true;
@@ -54,6 +53,13 @@ in
 
   #amdgpu modesetting nvidia
   systemd.services.NetworkManager-wait-online.enable = false;
+
+  qt = {
+    enable = true;
+    platformTheme = "gtk2";
+    style = "gtk2";
+  };
+
   services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.enable = true;
   services.displayManager.ly.enable = true;
@@ -66,6 +72,8 @@ in
   services.blueman.enable = true;
   services.playerctld.enable = true;
   services.gvfs.enable = true;
+  services.tumbler.enable = true;
+  services.fwupd.enable = true;
   services.xserver.xkb = {
     layout = "it";
     variant = "";
@@ -91,7 +99,7 @@ in
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
-      thunar-archive-plugin # Requires an Archive manager like file-roller, ark, etc
+      thunar-archive-plugin
       thunar-volman
     ];
   };
@@ -103,6 +111,7 @@ in
 
       enable = true;
       autosuggestions.enable = true;
+      autosuggestions.strategy = ["history" "completion"];
       zsh-autoenv.enable = true;
       syntaxHighlighting.enable = true;
 
@@ -166,10 +175,8 @@ in
     kdePackages.okular
     kdePackages.gwenview
     kdePackages.kate
-    kdePackages.qtstyleplugin-kvantum
     kdePackages.ark
-    kdePackages.filelight
-    gparted
+    qdirstat
     libreoffice-qt
     hyprland
     rofi
@@ -178,7 +185,6 @@ in
     networkmanagerapplet
     bluez
     blueman
-    kitty
     gnome-power-manager
     upower
     iproute2
@@ -217,7 +223,7 @@ in
     gzdoom
     styluslabs-write-bin
     vlc
-    neofetch
+    fastfetch
     prismlauncher
     python3
     gnuchess
@@ -233,10 +239,8 @@ in
     ungoogled-chromium
     discord
     spotify
-    anydesk
     gvfs
     gh
-    git
     nano
     git
     tree
@@ -361,15 +365,15 @@ in
         "application/json"                   = "org.kde.kate.desktop";
         "application/x-yaml"                 = "org.kde.kate.desktop";
 
-        # Archives — using thunar with archive plugin (you have it)
-        "application/zip"                    = "thunar.desktop";
-        "application/x-tar"                  = "thunar.desktop";
-        "application/x-compressed-tar"       = "thunar.desktop";
-        "application/x-bzip2-compressed-tar" = "thunar.desktop";
-        "application/x-xz-compressed-tar"    = "thunar.desktop";
-        "application/x-7z-compressed"        = "thunar.desktop";
-        "application/x-rar"                  = "thunar.desktop";
-        "application/x-rar-compressed"       = "thunar.desktop";
+        # Archives
+        "application/zip"                    = "org.kde.ark.desktop";
+        "application/x-tar"                  = "org.kde.ark.desktop";
+        "application/x-compressed-tar"       = "org.kde.ark.desktop";
+        "application/x-bzip2-compressed-tar" = "org.kde.ark.desktop";
+        "application/x-xz-compressed-tar"    = "org.kde.ark.desktop";
+        "application/x-7z-compressed"        = "org.kde.ark.desktop";
+        "application/x-rar"                  = "org.kde.ark.desktop";
+        "application/x-rar-compressed"       = "org.kde.ark.desktop";
 
         # Torrents
         "application/x-bittorrent"           = "vlc.desktop";
