@@ -1,0 +1,5 @@
+#!/bin/bash
+
+rofi -theme ~/.config/rofi/themes/window.rasi \
+     -show window \
+     -modi "drun,run,filebrowser" \

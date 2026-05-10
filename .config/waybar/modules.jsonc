@@ -7,8 +7,6 @@
         "cursor" : true,
         "format-icons": {
             "active": "󰮯",
-            "persistent": "",
-            "empty": ""
          }
     },
 
