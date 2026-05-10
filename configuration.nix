@@ -76,7 +76,6 @@ in
   services.playerctld.enable = true;
   services.gvfs.enable = true;
   services.tumbler.enable = true;
-  services.fwupd.enable = true;
   services.xserver.xkb = {
     layout = "it";
     variant = "";
@@ -178,7 +177,6 @@ in
     kdePackages.okular
     kdePackages.gwenview
     kdePackages.ark
-    kdePackages.kate
     micro
     qdirstat
     libreoffice-qt
@@ -254,6 +252,14 @@ in
     speedcrunch
     clang
     clang-tools
+    zip
+    unzip
+    p7zip
+    gnutar
+    gzip
+    bzip2
+    xz
+    zstd
   ];
 
   home-manager.users.fede= { pkgs, ...}:
@@ -295,6 +301,16 @@ in
       cursorTheme = {
         name = "Adwaita";
       };
+    };
+
+    xdg.desktopEntries.micro = {
+      name = "Micro";
+      exec = "alacritty -e micro %F";
+      terminal = false;
+      mimeType = [
+        "text/plain"
+      ];
+      categories = [ "Utility" "TextEditor" ];
     };
 
     xdg.mimeApps = {
@@ -357,19 +373,19 @@ in
         "audio/webm"                         = "vlc.desktop";
 
         # Text editor — using gedit, lightweight and clean
-        "text/plain"                         = "org.kde.kate.desktop";
-        "text/x-readme"                      = "org.kde.kate.desktop";
-        "text/x-log"                         = "org.kde.kate.desktop";
-        "text/x-makefile"                    = "org.kde.kate.desktop";
-        "text/x-script"                      = "org.kde.kate.desktop";
-        "application/x-shellscript"          = "org.kde.kate.desktop";
-        "text/x-python"                      = "org.kde.kate.desktop";
-        "text/x-csrc"                        = "org.kde.kate.desktop";
-        "text/x-chdr"                        = "org.kde.kate.desktop";
-        "text/xml"                           = "org.kde.kate.desktop";
-        "text/css"                           = "org.kde.kate.desktop";
-        "application/json"                   = "org.kde.kate.desktop";
-        "application/x-yaml"                 = "org.kde.kate.desktop";
+        "text/plain"                         = "micro.desktop";
+        "text/x-readme"                      = "micro.desktop";
+        "text/x-log"                         = "micro.desktop";
+        "text/x-makefile"                    = "micro.desktop";
+        "text/x-script"                      = "micro.desktop";
+        "application/x-shellscript"          = "micro.desktop";
+        "text/x-python"                      = "micro.desktop";
+        "text/x-csrc"                        = "micro.desktop";
+        "text/x-chdr"                        = "micro.desktop";
+        "text/xml"                           = "micro.desktop";
+        "text/css"                           = "micro.desktop";
+        "application/json"                   = "micro.desktop";
+        "application/x-yaml"                 = "micro.desktop";
 
         # Archives
         "application/zip"                    = "org.kde.ark.desktop";
