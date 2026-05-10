@@ -62,6 +62,9 @@ in
 
   services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.enable = true;
+  services.xserver.excludePackages = with pkgs; [
+    xterm
+  ];
   services.displayManager.ly.enable = true;
   services.printing.enable = true;
   services.libinput.enable = true;
@@ -174,8 +177,8 @@ in
     pavucontrol
     kdePackages.okular
     kdePackages.gwenview
-    kdePackages.kate
     kdePackages.ark
+    micro
     qdirstat
     libreoffice-qt
     hyprland
@@ -353,19 +356,19 @@ in
         "audio/webm"                         = "vlc.desktop";
 
         # Text editor — using gedit, lightweight and clean
-        "text/plain"                         = "org.kde.kate.desktop";
-        "text/x-readme"                      = "org.kde.kate.desktop";
-        "text/x-log"                         = "org.kde.kate.desktop";
-        "text/x-makefile"                    = "org.kde.kate.desktop";
-        "text/x-script"                      = "org.kde.kate.desktop";
-        "application/x-shellscript"          = "org.kde.kate.desktop";
-        "text/x-python"                      = "org.kde.kate.desktop";
-        "text/x-csrc"                        = "org.kde.kate.desktop";
-        "text/x-chdr"                        = "org.kde.kate.desktop";
-        "text/xml"                           = "org.kde.kate.desktop";
-        "text/css"                           = "org.kde.kate.desktop";
-        "application/json"                   = "org.kde.kate.desktop";
-        "application/x-yaml"                 = "org.kde.kate.desktop";
+        "text/plain"                         = "micro.desktop";
+        "text/x-readme"                      = "micro.desktop";
+        "text/x-log"                         = "micro.desktop";
+        "text/x-makefile"                    = "micro.desktop";
+        "text/x-script"                      = "micro.desktop";
+        "application/x-shellscript"          = "micro.desktop";
+        "text/x-python"                      = "micro.desktop";
+        "text/x-csrc"                        = "micro.desktop";
+        "text/x-chdr"                        = "micro.desktop";
+        "text/xml"                           = "micro.desktop";
+        "text/css"                           = "micro.desktop";
+        "application/json"                   = "micro.desktop";
+        "application/x-yaml"                 = "micro.desktop";
 
         # Archives
         "application/zip"                    = "org.kde.ark.desktop";
