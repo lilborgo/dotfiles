@@ -248,6 +248,8 @@ in
     btop
     libqalculate
     speedcrunch
+    clang
+    clang-tools
   ];
 
   home-manager.users.fede= { pkgs, ...}:
