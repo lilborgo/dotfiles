@@ -75,6 +75,7 @@ in
   services.blueman.enable = true;
   services.playerctld.enable = true;
   services.gvfs.enable = true;
+  services.udisks2.enable = true;
   services.tumbler.enable = true;
   services.xserver.xkb = {
     layout = "it";
@@ -90,6 +91,7 @@ in
   console.keyMap = "it2";
   security.rtkit.enable = true;
   security.sudo.wheelNeedsPassword = false;
+  security.polkit.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
   programs.gamemode.enable = true;
@@ -174,7 +176,7 @@ in
   environment.systemPackages = with pkgs; [
     waybar
     pavucontrol
-    zathura
+    kdePackages.okular
     kdePackages.gwenview
     kdePackages.ark
     micro
@@ -202,6 +204,7 @@ in
     gtk4
     swaybg
     flameshot
+    hyprpolkitagent
     hypridle
     libnotify
     htop
@@ -266,28 +269,6 @@ in
   {
     home.stateVersion = "23.11";
 
-    programs.zathura = {
-      enable = true;
-      options = {
-        font = "JetBrains Mono 12";
-        default-bg = "#1e1e2e";
-        default-fg = "#cdd6f4";
-        statusbar-bg = "#181825";
-        statusbar-fg = "#cdd6f4";
-        recolor = true;
-        recolor-keephue = true;
-        recolor-darkcolor = "#cdd6f4";
-        recolor-lightcolor = "#1e1e2e";
-        adjust-open = "best-fit";
-        scroll-step = 60;
-      };
-      mappings = {
-        "i" = "recolor";
-        "<C-p>" = "print";
-        "D" = "toggle_page_mode";
-      };
-    };
-
     systemd.user.services.waybar = {
       Unit = {
         Description = "Waybar panel";
@@ -297,6 +278,24 @@ in
 
       Service = {
         ExecStart = "${pkgs.waybar}/bin/waybar";
+        Restart = "always";
+        RestartSec = 1;
+      };
+
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
+
+    systemd.user.services.hyprpolkitagent = {
+      Unit = {
+        Description = "Hyprland Polkit Agent";
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
+      };
+
+      Service = {
+        ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
         Restart = "always";
         RestartSec = 1;
       };
@@ -388,10 +387,10 @@ in
         "inode/directory"                    = "thunar.desktop";
 
         # PDF
-        "application/pdf"                    = "org.pwmt.zathura.desktop";
-        "application/x-pdf"                  = "org.pwmt.zathura.desktop";
-        "application/x-bzpdf"                = "org.pwmt.zathura.desktop";
-        "application/x-gzpdf"                = "org.pwmt.zathura.desktop";
+        "application/pdf"                    = "org.kde.okular.desktop";
+        "application/x-pdf"                  = "org.kde.okular.desktop";
+        "application/x-bzpdf"                = "org.kde.okular.desktop";
+        "application/x-gzpdf"                = "org.kde.okular.desktop";
 
         # Images
         "image/png"                          = "org.kde.gwenview.desktop";
