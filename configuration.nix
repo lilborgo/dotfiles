@@ -244,7 +244,6 @@ in
     ungoogled-chromium
     discord
     spotify
-    gvfs
     gh
     nano
     git
