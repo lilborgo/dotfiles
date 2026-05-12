@@ -1,12 +1,3 @@
-/**
- *
- * Authors:  Aditya Shakya (github: @adi1090x),
- *           CebeM1nt      (github: @cebem1nt)
- *
- * Window switcher mode — rofi -show window
- *
- **/
-
 @import "colors/colors.rasi"
 
 

@@ -174,7 +174,7 @@ in
   environment.systemPackages = with pkgs; [
     waybar
     pavucontrol
-    kdePackages.okular
+    zathura
     kdePackages.gwenview
     kdePackages.ark
     micro
@@ -265,6 +265,28 @@ in
   home-manager.users.fede= { pkgs, ...}:
   {
     home.stateVersion = "23.11";
+
+    programs.zathura = {
+      enable = true;
+      options = {
+        font = "JetBrains Mono 12";
+        default-bg = "#1e1e2e";
+        default-fg = "#cdd6f4";
+        statusbar-bg = "#181825";
+        statusbar-fg = "#cdd6f4";
+        recolor = true;
+        recolor-keephue = true;
+        recolor-darkcolor = "#cdd6f4";
+        recolor-lightcolor = "#1e1e2e";
+        adjust-open = "best-fit";
+        scroll-step = 60;
+      };
+      mappings = {
+        "i" = "recolor";
+        "<C-p>" = "print";
+        "D" = "toggle_page_mode";
+      };
+    };
 
     systemd.user.services.waybar = {
       Unit = {
@@ -366,10 +388,10 @@ in
         "inode/directory"                    = "thunar.desktop";
 
         # PDF
-        "application/pdf"                    = "org.kde.okular.desktop";
-        "application/x-pdf"                  = "org.kde.okular.desktop";
-        "application/x-bzpdf"                = "org.kde.okular.desktop";
-        "application/x-gzpdf"                = "org.kde.okular.desktop";
+        "application/pdf"                    = "org.pwmt.zathura.desktop";
+        "application/x-pdf"                  = "org.pwmt.zathura.desktop";
+        "application/x-bzpdf"                = "org.pwmt.zathura.desktop";
+        "application/x-gzpdf"                = "org.pwmt.zathura.desktop";
 
         # Images
         "image/png"                          = "org.kde.gwenview.desktop";
