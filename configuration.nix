@@ -204,7 +204,7 @@ in
     gtk4
     swaybg
     flameshot
-    hyprpolkitagent
+    #hyprpolkitagent
     hypridle
     libnotify
     htop
@@ -286,23 +286,23 @@ in
       };
     };
 
-    systemd.user.services.hyprpolkitagent = {
-      Unit = {
-        Description = "Hyprland Polkit Agent";
-        PartOf = [ "graphical-session.target" ];
-        After = [ "graphical-session.target" ];
-      };
-
-      Service = {
-        ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
-        Restart = "always";
-        RestartSec = 1;
-      };
-
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
-    };
+    #systemd.user.services.hyprpolkitagent = {
+    #  Unit = {
+    #    Description = "Hyprland Polkit Agent";
+    #    PartOf = [ "graphical-session.target" ];
+    #    After = [ "graphical-session.target" ];
+    #  };
+    #
+    #  Service = {
+    #    ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
+    #    Restart = "always";
+    #    RestartSec = 1;
+    #  };
+    #
+    #  Install = {
+    #    WantedBy = [ "graphical-session.target" ];
+    #  };
+    #};
 
     systemd.user.services.swaync = {
       Unit = {
