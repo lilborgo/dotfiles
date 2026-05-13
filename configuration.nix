@@ -180,6 +180,7 @@ in
     waybar
     gparted
     smem
+    hyprshot
     pavucontrol
     kdePackages.okular
     kdePackages.gwenview
@@ -208,7 +209,6 @@ in
     gtk3
     gtk4
     swaybg
-    flameshot
     hypridle
     libnotify
     htop
