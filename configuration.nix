@@ -111,6 +111,7 @@ in
     zsh = {
       shellAliases = {
         switch = "nh os switch -f '<nixpkgs/nixos>' -- -I nixos-config=/etc/nixos/configuration.nix";
+        mem = "sudo smem -tk -c \"pid user name uss pss rss\"";
       };
 
       enable = true;
