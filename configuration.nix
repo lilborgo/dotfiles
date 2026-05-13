@@ -171,10 +171,14 @@ in
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    QT_SCALE_FACTOR = "1.5";
   };
 
   environment.systemPackages = with pkgs; [
     waybar
+    gparted
+    smem
     pavucontrol
     kdePackages.okular
     kdePackages.gwenview
@@ -204,7 +208,6 @@ in
     gtk4
     swaybg
     flameshot
-    #hyprpolkitagent
     hypridle
     libnotify
     htop
@@ -285,24 +288,6 @@ in
         WantedBy = [ "graphical-session.target" ];
       };
     };
-
-    #systemd.user.services.hyprpolkitagent = {
-    #  Unit = {
-    #    Description = "Hyprland Polkit Agent";
-    #    PartOf = [ "graphical-session.target" ];
-    #    After = [ "graphical-session.target" ];
-    #  };
-    #
-    #  Service = {
-    #    ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
-    #    Restart = "always";
-    #    RestartSec = 1;
-    #  };
-    #
-    #  Install = {
-    #    WantedBy = [ "graphical-session.target" ];
-    #  };
-    #};
 
     systemd.user.services.swaync = {
       Unit = {
