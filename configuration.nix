@@ -195,7 +195,6 @@ in
     networkmanagerapplet
     bluez
     blueman
-    gnome-power-manager
     upower
     iproute2
     procps
@@ -245,9 +244,6 @@ in
     gnumake
     glibc
     cmake
-    ungoogled-chromium
-    discord
-    spotify
     gh
     nano
     git
