@@ -446,6 +446,115 @@ in
         "x-scheme-handler/mailto"            = "librewolf.desktop";
       };
     };
+
+
+    home.file.".config/alacritty/alacritty.toml".text = ''
+      [window]
+      dynamic_title = false
+      padding.x = 10
+      padding.y = 10
+
+      [cursor]
+      # style.shape = "Beam"
+      style.shape = "Underline"
+      style.blinking = "On"
+
+      [selection]
+      save_to_clipboard = true
+
+      [keyboard]
+      bindings = [
+        { key = ";", mods = "Control", action = "CreateNewWindow" },
+        { key = ":", mods = "Control | Shift", command = "thunar" },
+        { key = "ArrowUp", mods = "Control", action = "ScrollLineUp" },
+        { key = "ArrowDown", mods = "Control", action = "ScrollLineDown" },
+
+        { key = "F", mods = "Control | Shift", action = "None" },
+        { key = "F", mods = "Control", action = "SearchForward" }, 
+        { key = "F", mods = "Control", mode = "~Search", action = "SearchForward" },  
+        { key = "F", mods = "Control", mode = "Search", action = "SearchCancel" }
+      ]
+
+      [colors.primary]
+      background = "#08080b"
+      foreground = "#787c99"
+
+      [colors.cursor]
+      cursor = "#787c99"
+
+      [colors.selection]
+      text = "CellForeground"
+      background = "#515c7e"
+
+      [colors.normal]
+      black = "#363b54"
+      red = "#f7768e"
+      green = "#41a6b5"
+      yellow = "#e0af68"
+      blue = "#7aa2f7"
+      magenta = "#bb9af7"
+      cyan = "#7dcfff"
+      white = "#787c99"
+
+      [colors.bright]
+      black = "#363b54"
+      red = "#f7768e"
+      green = "#41a6b5"
+      yellow = "#e0af68"
+      blue = "#7aa2f7"
+      magenta = "#bb9af7"
+      cyan = "#7dcfff"
+      white = "#acb0d0"
+    ''; 
+
+    home.file.".config/Thunar/uca.xml".text = ''
+      <?xml version="1.0" encoding="UTF-8"?>
+      <actions>
+      <action>
+        <icon>utilities-terminal</icon>
+        <name>Open Terminal Here</name>
+        <submenu></submenu>
+        <unique-id>1720621850636761-1</unique-id>
+        <command>alacritty --working-directory %f</command>
+        <description>Example for a custom action</description>
+        <range></range>
+        <patterns>*</patterns>
+        <startup-notify/>
+        <directories/>
+      </action>
+      <action>
+        <icon>clipboard</icon>
+        <name>Copy path</name>
+        <submenu></submenu>
+        <unique-id>1730572291852956-2</unique-id>
+        <command>wl-copy %f ; notify-send &quot;Copied to Clipboard&quot; %f -i clipboard</command>
+        <description>Copy current selected file&apos;s directory (with name) to the clipboard</description>
+        <range>*</range>
+        <patterns>*</patterns>
+        <directories/>
+        <audio-files/>
+        <image-files/>
+        <other-files/>
+        <text-files/>
+        <video-files/>
+      </action>
+      <action>
+        <icon>link</icon>
+        <name>Create symlink</name>
+        <submenu></submenu>
+        <unique-id>1758831930937907-1</unique-id>
+        <command>ln -s %f Link\ to\ %n</command>
+        <description>Creates new symbolic link to selected item</description>
+        <range>*</range>
+        <patterns>*</patterns>
+        <directories/>
+        <audio-files/>
+        <image-files/>
+        <other-files/>
+        <text-files/>
+        <video-files/>
+      </action>
+    '';
   };
 
   system.autoUpgrade = {
