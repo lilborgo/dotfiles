@@ -355,6 +355,22 @@ in
       categories = [ "Utility" "TextEditor" ];
     };
 
+    xdg.desktopEntries.nixwiki = {
+      name = "Nixos Wiki";
+      exec = "xdg-open https://search.nixos.org/";
+      terminal = false;
+      categories = [ "Utility"];
+      icon = "nix-snowflake";
+    };
+
+    xdg.desktopEntries.spotify = {
+      name = "Spotify";
+      exec = "xdg-open https://open.spotify.com/";
+      terminal = false;
+      categories = [ "Music"];
+      icon = "spotify";
+    };
+
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
