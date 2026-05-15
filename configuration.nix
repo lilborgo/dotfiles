@@ -355,6 +355,13 @@ in
       categories = [ "Utility" "TextEditor" ];
     };
 
+    xdg.desktopEntries.nmtui = {
+      name = "nmtui";
+      exec = "alacritty -e nmtui";
+      terminal = false;
+      categories = [ "Network" ];
+    };
+
     xdg.desktopEntries.nixwiki = {
       name = "Nixos Wiki";
       exec = "xdg-open https://search.nixos.org/";
