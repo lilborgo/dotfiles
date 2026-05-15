@@ -188,7 +188,7 @@ in
     smem
     hyprshot
     pavucontrol
-    kdePackages.okular
+    evince
     kdePackages.gwenview
     kdePackages.ark
     micro
@@ -395,10 +395,10 @@ in
         "inode/directory"                    = "thunar.desktop";
 
         # PDF
-        "application/pdf"                    = "org.kde.okular.desktop";
-        "application/x-pdf"                  = "org.kde.okular.desktop";
-        "application/x-bzpdf"                = "org.kde.okular.desktop";
-        "application/x-gzpdf"                = "org.kde.okular.desktop";
+        "application/pdf"                    = "org.gnome.Evince.desktop";
+        "application/x-pdf"                  = "org.gnome.Evince.desktop";
+        "application/x-bzpdf"                = "org.gnome.Evince.desktop";
+        "application/x-gzpdf"                = "org.gnome.Evince.desktop";
 
         # Images
         "image/png"                          = "org.kde.gwenview.desktop";
