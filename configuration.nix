@@ -18,7 +18,6 @@ in
   };
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = ["kvm-amd" "kvm"];
 
   hardware.graphics = {
     enable = true;
@@ -51,7 +50,6 @@ in
     LC_TIME = "it_IT.UTF-8";
   };
 
-  #amdgpu modesetting nvidia
   systemd.services.NetworkManager-wait-online.enable = false;
 
   qt = {
@@ -60,7 +58,6 @@ in
     style = "gtk2";
   };
 
-  services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.enable = true;
   services.xserver.excludePackages = with pkgs; [
     xterm
