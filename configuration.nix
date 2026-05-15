@@ -64,6 +64,10 @@ in
   ];
   services.displayManager.ly.enable = true;
   services.printing.enable = true;
+  services.printing.drivers = with pkgs; [
+    gutenprint
+    gutenprintBin
+  ];
   services.libinput.enable = true;
   services.pulseaudio.enable = false;
   services.spice-vdagentd.enable = true;
@@ -83,6 +87,11 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
   };
 
   console.keyMap = "it2";
@@ -141,6 +150,7 @@ in
     isNormalUser = true;
     description = "fede";
     extraGroups = [
+      "lp"
       "networkmanager"
       "wheel"
       "dialout"
@@ -255,6 +265,7 @@ in
     bzip2
     xz
     zstd
+    cups-filters
   ];
 
   home-manager.users.fede= { pkgs, ...}:
