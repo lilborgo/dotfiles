@@ -96,7 +96,6 @@ in
 
   programs.gamemode.enable = true;
   programs.virt-manager.enable = true;
-  programs.steam.enable = true;
   programs.hyprland.enable = true;
   programs.hyprlock.enable = true;
   programs.xfconf.enable = true;
@@ -228,13 +227,10 @@ in
     freefilesync
     tor-browser
     nmap
-    gzdoom
     styluslabs-write-bin
     vlc
     fastfetch
-    prismlauncher
     python3
-    gnuchess
     nh
     nom
     rustc
