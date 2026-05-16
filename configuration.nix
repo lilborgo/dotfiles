@@ -316,15 +316,6 @@ in
       size = 24;
     };
 
-    programs.git = {
-      enable = true;
-
-      settings.user = {
-        email = "federico.borgo.03@gmail.com";
-        name = "Federico Borgo";
-      };
-    };
-
     xdg.userDirs = {
       enable = true;
       createDirectories = true;

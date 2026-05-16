@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
     boot.kernelModules = ["kvm-intel" "kvm"];
@@ -16,5 +16,12 @@
         segger-jlink
         stm32cubemx
         stm32flash
+    ];
+
+    nixpkgs.config.segger-jlink.acceptLicense = true;
+    nixpkgs.config.allowInsecurePredicate = pkg:
+    builtins.elem (pkgs.lib.getName pkg) [
+      "segger-jlink-qt4"
+      "segger-jlink"
     ];
 }
