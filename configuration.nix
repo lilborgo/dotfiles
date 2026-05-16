@@ -290,6 +290,7 @@ in
     lxsession
     file
     steam-run
+    impression
   ];
 
   home-manager.users.fede= { pkgs, ...}:
