@@ -166,6 +166,11 @@ in
     libxcb
     alsa-lib
     bash
+    gcc
+    gcc.cc.lib
+    stdenv.cc.cc.lib
+    zlib
+    lttng-ust
   ];
 
   systemd.tmpfiles.rules = [
@@ -296,6 +301,7 @@ in
     steam-run
     impression
     polkit
+    unstable.vscode
   ];
 
   home-manager.users.fede= { pkgs, ...}:
@@ -394,6 +400,15 @@ in
       categories = [ "Utility" "TextEditor" ];
     };
 
+    xdg.desktopEntries.code = {
+      name = "Visual Studio Code";
+      exec = "env LD_LIBRARY_PATH=/run/current-system/sw/share/nix-ld/lib code %F";
+      icon = "vscode";
+      terminal = false;
+      categories = [ "Utility" "TextEditor" "Development" "IDE" ];
+      mimeType = [ "application/x-code-workspace" ];
+    };
+
     xdg.desktopEntries.nmtui = {
       name = "nmtui";
       exec = "alacritty -e nmtui";
@@ -490,6 +505,7 @@ in
         "text/css"                           = "micro.desktop";
         "application/json"                   = "micro.desktop";
         "application/x-yaml"                 = "micro.desktop";
+        "application/x-code-workspace" = "vscode.desktop";
 
         # Archives
         "application/zip"                    = "org.kde.ark.desktop";
