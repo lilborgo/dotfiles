@@ -220,8 +220,8 @@ in
     hyprshot
     pavucontrol
     evince
-    kdePackages.gwenview
-    kdePackages.ark
+    loupe
+    file-roller
     micro
     qdirstat
     libreoffice-qt
@@ -302,6 +302,7 @@ in
     impression
     polkit
     unstable.vscode
+    adwaita-qt
   ];
 
   home-manager.users.fede= { pkgs, ...}:
@@ -455,17 +456,17 @@ in
         "application/x-gzpdf"                = "org.gnome.Evince.desktop";
 
         # Images
-        "image/png"                          = "org.kde.gwenview.desktop";
-        "image/jpeg"                         = "org.kde.gwenview.desktop";
-        "image/jpg"                          = "org.kde.gwenview.desktop";
-        "image/gif"                          = "org.kde.gwenview.desktop";
-        "image/webp"                         = "org.kde.gwenview.desktop";
-        "image/tiff"                         = "org.kde.gwenview.desktop";
-        "image/bmp"                          = "org.kde.gwenview.desktop";
-        "image/svg+xml"                      = "org.kde.gwenview.desktop";
-        "image/x-portable-pixmap"            = "org.kde.gwenview.desktop";
-        "image/avif"                         = "org.kde.gwenview.desktop";
-        "image/heic"                         = "org.kde.gwenview.desktop";
+        "image/png"                          = "org.gnome.Loupe.desktop";
+        "image/jpeg"                         = "org.gnome.Loupe.desktop";
+        "image/jpg"                          = "org.gnome.Loupe.desktop";
+        "image/gif"                          = "org.gnome.Loupe.desktop";
+        "image/webp"                         = "org.gnome.Loupe.desktop";
+        "image/tiff"                         = "org.gnome.Loupe.desktop";
+        "image/bmp"                          = "org.gnome.Loupe.desktop";
+        "image/svg+xml"                      = "org.gnome.Loupe.desktop";
+        "image/x-portable-pixmap"            = "org.gnome.Loupe.desktop";
+        "image/avif"                         = "org.gnome.Loupe.desktop";
+        "image/heic"                         = "org.gnome.Loupe.desktop";
 
         # Video
         "video/mp4"                          = "vlc.desktop";
@@ -508,14 +509,14 @@ in
         "application/x-code-workspace" = "vscode.desktop";
 
         # Archives
-        "application/zip"                    = "org.kde.ark.desktop";
-        "application/x-tar"                  = "org.kde.ark.desktop";
-        "application/x-compressed-tar"       = "org.kde.ark.desktop";
-        "application/x-bzip2-compressed-tar" = "org.kde.ark.desktop";
-        "application/x-xz-compressed-tar"    = "org.kde.ark.desktop";
-        "application/x-7z-compressed"        = "org.kde.ark.desktop";
-        "application/x-rar"                  = "org.kde.ark.desktop";
-        "application/x-rar-compressed"       = "org.kde.ark.desktop";
+        "application/zip"                    = "org.gnome.FileRoller.desktop";
+        "application/x-tar"                  = "org.gnome.FileRoller.desktop";
+        "application/x-compressed-tar"       = "org.gnome.FileRoller.desktop";
+        "application/x-bzip2-compressed-tar" = "org.gnome.FileRoller.desktop";
+        "application/x-xz-compressed-tar"    = "org.gnome.FileRoller.desktop";
+        "application/x-7z-compressed"        = "org.gnome.FileRoller.desktop";
+        "application/x-rar"                  = "org.gnome.FileRoller.desktop";
+        "application/x-rar-compressed"       = "org.gnome.FileRoller.desktop";
 
         # Torrents
         "application/x-bittorrent"           = "vlc.desktop";
