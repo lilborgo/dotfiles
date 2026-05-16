@@ -103,12 +103,21 @@ in
   security.sudo.wheelNeedsPassword = false;
   security.polkit.enable = true;
   users.defaultUserShell = pkgs.zsh;
+  
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+    ];
+  };
 
   programs.gamemode.enable = true;
   programs.virt-manager.enable = true;
   programs.hyprland.enable = true;
   programs.hyprlock.enable = true;
   programs.xfconf.enable = true;
+  programs.dconf.enable = true;
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
