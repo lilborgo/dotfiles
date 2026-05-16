@@ -143,8 +143,30 @@ in
     libGL
     wayland
     libxkbcommon
+    libglibutil
+    glib
+    nspr
+    polkit
+    nss
+    dbus
+    atk
+    cairo
+    gtk3
+    pango
+    expat
+    libxcomposite
+    libxdamage
+    libxext
+    libxfixes
+    libgbm
+    libxcb
+    alsa-lib
+    bash
   ];
 
+  systemd.tmpfiles.rules = [
+    "L+ /bin/bash - - - - ${pkgs.bash}/bin/bash"
+  ];
 
   users.users.fede = {
     isNormalUser = true;
@@ -221,7 +243,6 @@ in
     libinput
     libwacom
     busybox
-    vscode
     android-tools
     scrcpy
     librewolf
@@ -266,6 +287,9 @@ in
     xz
     zstd
     cups-filters
+    lxsession
+    file
+    steam-run
   ];
 
   home-manager.users.fede= { pkgs, ...}:
@@ -281,6 +305,24 @@ in
 
       Service = {
         ExecStart = "${pkgs.waybar}/bin/waybar";
+        Restart = "always";
+        RestartSec = 1;
+      };
+
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
+
+    systemd.user.services.lxpolkit = {
+      Unit = {
+        Description = "lxpolkit";
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
+      };
+
+      Service = {
+        ExecStart = "${pkgs.lxsession}/bin/lxpolkit";
         Restart = "always";
         RestartSec = 1;
       };
