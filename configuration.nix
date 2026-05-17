@@ -130,6 +130,9 @@ in
       shellAliases = {
         switch = "nh os switch -f '<nixpkgs/nixos>' -- -I nixos-config=/etc/nixos/configuration.nix";
         mem = "sudo smem -tk -c \"pid user name uss pss rss\"";
+        ls = "eza --icons";
+        ll = "eza -la --icons";
+        cat = "bat";
       };
 
       enable = true;
@@ -223,6 +226,12 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    eza
+    bat
+    fd
+    ripgrep
+    fzf
+    ncdu
     waybar
     gparted
     smem
@@ -232,7 +241,6 @@ in
     loupe
     file-roller
     micro
-    qdirstat
     libreoffice-qt
     hyprland
     rofi
