@@ -58,8 +58,8 @@ in
 
   qt = {
     enable = true;
-    platformTheme = "gtk2";
-    style = "gtk2";
+    platformTheme = "qt5ct";
+    style = "adwaita-dark";
   };
 
   services.xserver.enable = true;
@@ -231,8 +231,6 @@ in
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-    QT_SCALE_FACTOR = "1.5";
   };
 
   environment.systemPackages = with pkgs; [
@@ -285,6 +283,7 @@ in
     duplicati
     filezilla
     smartmontools
+    libsForQt5.qt5ct
     localsend
     wine
     wine64
