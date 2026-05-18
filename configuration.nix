@@ -183,11 +183,20 @@ in
     stdenv.cc.cc.lib
     zlib
     lttng-ust
+    freetype
+    libsm
+    libice
+    libxrender
+    libxrandr
+    libxfixes
+    fontconfig
   ];
 
   systemd.tmpfiles.rules = [
     "L+ /bin/bash - - - - ${pkgs.bash}/bin/bash"
   ];
+
+  users.groups.plugdev = {};
 
   users.users.fede = {
     isNormalUser = true;
@@ -200,6 +209,7 @@ in
       "libvirtd"
       "kvm"
       "docker"
+      "plugdev"
     ];
     shell = pkgs.zsh;
   };
@@ -297,6 +307,7 @@ in
     gh
     nano
     git
+    virtiofsd
     tree
     wget
     btop
