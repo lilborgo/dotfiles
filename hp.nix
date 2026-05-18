@@ -16,6 +16,7 @@
         segger-jlink
         stm32cubemx
         stm32flash
+        ungoogled-chromium
     ];
 
     nixpkgs.config.segger-jlink.acceptLicense = true;
