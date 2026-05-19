@@ -331,11 +331,30 @@ in
     polkit
     unstable.vscode
     adwaita-qt
+    hyprsunset
   ];
 
   home-manager.users.fede= { pkgs, ...}:
   {
     home.stateVersion = "23.11";
+
+    systemd.user.services.hyprsunset = {
+      Unit = {
+        Description = "Hyprsunset blue light filter";
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
+      };
+
+      Service = {
+        ExecStart = "${pkgs.hyprsunset}/bin/hyprsunset";
+        Restart = "always";
+        RestartSec = 5;
+      };
+
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+    };
 
     systemd.user.services.waybar = {
       Unit = {
