@@ -75,6 +75,7 @@ in
   services.libinput.enable = true;
   services.pulseaudio.enable = false;
   services.spice-vdagentd.enable = true;
+  services.qemuGuest.enable = true;
   services.flatpak.enable = true;
   services.xserver.wacom.enable = true;
   services.blueman.enable = true;
@@ -210,11 +211,21 @@ in
       "kvm"
       "docker"
       "plugdev"
+      "input"
+      "disk"
     ];
     shell = pkgs.zsh;
   };
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+      package = pkgs.qemu_kvm;
+      runAsRoot = true;
+      swtpm.enable = true;
+    };
+  };
+  virtualisation.spiceUSBRedirection.enable = true;
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = false;
   virtualisation.waydroid.enable = true;
@@ -242,6 +253,15 @@ in
     ripgrep
     fzf
     ncdu
+    python313Packages.tkinter
+    python312Packages.tkinter
+    cifs-utils
+    samba
+    virt-manager
+    virt-viewer
+    spice
+    spice-gtk
+    usbredir
     waybar
     gparted
     smem
