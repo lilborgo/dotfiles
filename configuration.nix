@@ -213,6 +213,7 @@ in
       "plugdev"
       "input"
       "disk"
+      "gamemode"
     ];
     shell = pkgs.zsh;
   };
@@ -247,6 +248,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    vulkan-tools
     eza
     bat
     fd
