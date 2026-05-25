@@ -317,6 +317,8 @@ in
     vlc
     fastfetch
     python3
+    python3Packages.tkinter
+    python3Packages.pyserial
     nh
     nom
     rustc
