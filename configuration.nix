@@ -344,6 +344,7 @@ in
     p7zip
     gnutar
     gzip
+    exfat
     bzip2
     xz
     zstd

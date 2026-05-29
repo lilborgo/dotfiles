@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   home-manager-src = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
@@ -24,6 +24,19 @@ in
 
     services.xserver.videoDrivers = [ "nvidia" ];
 
+    services.ollama = {
+    	enable = true;
+    	loadModels = [
+    		"qwen2.5-coder:7b"
+    		"qwen2.5-coder:1.5b"
+    		"nomic-embed-text"
+    	];
+    	syncModels = true;
+    	package = pkgs.ollama-cuda;
+    };
+
+    systemd.services.ollama.wantedBy = lib.mkForce [];
+
     environment.systemPackages = with pkgs; [
         unstable.stm32cubemx
         stm32flash
@@ -31,6 +44,7 @@ in
         gcc-arm-embedded
         mqttx
         thunderbird
+        nvtopPackages.nvidia
     ];
 
     nixpkgs.config.segger-jlink.acceptLicense = true;
