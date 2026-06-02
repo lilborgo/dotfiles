@@ -335,7 +335,7 @@ in
 		tor-browser vlc
 
 		# --- Browser ---
-		librewolf firefox
+		firefox
 
 		# --- Wayland & clipboard ---
 		cliphist wev wl-clipboard
@@ -506,15 +506,15 @@ in
 			enable							= true;
 			defaultApplications	= {
 				# Browser
-				"application/x-extension-htm"				= "librewolf.desktop";
-				"application/x-extension-html"				= "librewolf.desktop";
-				"application/x-extension-xhtml"			= "librewolf.desktop";
-				"application/xhtml+xml"							= "librewolf.desktop";
-				"text/html"													= "librewolf.desktop";
-				"x-scheme-handler/ftp"								= "librewolf.desktop";
-				"x-scheme-handler/http"							= "librewolf.desktop";
-				"x-scheme-handler/https"							= "librewolf.desktop";
-				"x-scheme-handler/mailto"						= "librewolf.desktop";
+				"application/x-extension-htm"				= "firefox.desktop";
+				"application/x-extension-html"				= "firefox.desktop";
+				"application/x-extension-xhtml"			= "firefox.desktop";
+				"application/xhtml+xml"							= "firefox.desktop";
+				"text/html"													= "firefox.desktop";
+				"x-scheme-handler/ftp"								= "firefox.desktop";
+				"x-scheme-handler/http"							= "firefox.desktop";
+				"x-scheme-handler/https"							= "firefox.desktop";
+				"x-scheme-handler/mailto"						= "firefox.desktop";
 
 				# File manager
 				"inode/directory"										= "thunar.desktop";
