@@ -304,7 +304,7 @@ in
 	environment.sessionVariables	= {
 		NIXOS_OZONE_WL							= "1";
 		QT_AUTO_SCREEN_SCALE_FACTOR	= "1";
-		QT_SCALE_FACTOR							= "1.5";
+		QT_SCALE_FACTOR							= "1";
 	};
 
 	environment.systemPackages	= with pkgs; [
@@ -319,7 +319,7 @@ in
 		# --- Development ---
 		gh git micro nano nom python3
 		python312Packages.tkinter python313Packages.tkinter
-		unstable.vscode
+		unstable.vscode unstable.claude-code
 
 		# --- Nix tools ---
 		fastfetch nh nixfmt
@@ -335,7 +335,7 @@ in
 		tor-browser vlc
 
 		# --- Browser ---
-		librewolf
+		librewolf firefox
 
 		# --- Wayland & clipboard ---
 		cliphist wev wl-clipboard
@@ -473,8 +473,8 @@ in
 			};
 			micro	= {
 				name				= "Micro";
-				exec				= "alacritty -e micro %F";
-				terminal		= false;
+				exec				= "micro %F";
+				terminal		= true;
 				categories	= [ "TextEditor" "Utility" ];
 				mimeType		= [ "text/plain" ];
 			};
@@ -487,8 +487,8 @@ in
 			};
 			nmtui	= {
 				name				= "nmtui";
-				exec				= "alacritty -e nmtui";
-				terminal		= false;
+				exec				= "nmtui";
+				terminal		= true;
 				categories	= [ "Network" ];
 			};
 			spotify	= {
