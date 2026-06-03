@@ -60,6 +60,7 @@ in
 			enable					= true;
 			allowedTCPPorts	= [];
 			allowedUDPPorts	= [];
+			trustedInterfaces	= [ "virbr0" ];
 		};
 	};
 
