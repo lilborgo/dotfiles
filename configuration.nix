@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-	home-manager-src	= builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
+	home-manager-src	= builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-26.05.tar.gz";
 	unstable	= import (fetchTarball "https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz") {
 		config.allowUnfree	= true;
 	};
@@ -598,21 +598,27 @@ in
 		};
 
 
+		# --- Systemd user targets ---
+		systemd.user.targets.hyprland-session	= {
+			Unit.Description	= "Hyprland compositor session";
+		};
+
+
 		# --- Systemd user services ---
 		systemd.user.services	=
 			let
 				graphicalService	= desc: cmd: extra: {
-					Unit		= { Description	= desc; PartOf	= [ "graphical-session.target" ]; After	= [ "graphical-session.target" ]; };
+					Unit		= { Description	= desc; PartOf	= [ "hyprland-session.target" ]; After	= [ "hyprland-session.target" ]; };
 					Service	= { ExecStart	= cmd; Restart	= "always"; } // extra;
-					Install	= { WantedBy	= [ "graphical-session.target" ]; };
+					Install	= { WantedBy	= [ "hyprland-session.target" ]; };
 				};
 			in {
 				hyprsunset	= graphicalService "Hyprsunset blue light filter" "${pkgs.hyprsunset}/bin/hyprsunset"						{ RestartSec	= 5; };
 				waybar			= graphicalService "Waybar panel"								 "${pkgs.waybar}/bin/waybar"										{ RestartSec	= 1; };
 				lxpolkit		= graphicalService "lxpolkit"										 "${pkgs.lxsession}/bin/lxpolkit"							 { RestartSec	= 1; };
 				swaync			= graphicalService "Sway Notification Center"		 "${pkgs.swaynotificationcenter}/bin/swaync"		{ RestartSec	= 1; };
+				hypridle		= graphicalService "Hyprland idle"		 "${pkgs.hypridle}/bin/hypridle"		{ RestartSec	= 1; };
 			};
-
 
 		# --- Dotfiles ---
 		home.file.".config/alacritty/alacritty.toml".text	= ''
