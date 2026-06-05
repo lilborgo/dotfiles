@@ -148,7 +148,7 @@ in
 
 		thunar	= {
 			enable	= true;
-			plugins	= with pkgs.xfce; [
+			plugins	= with pkgs; [
 				thunar-archive-plugin
 				thunar-volman
 			];
@@ -184,8 +184,8 @@ in
 				libnotify libsm libxcb libxcomposite libxdamage
 				libxext libxfixes libxkbcommon libxrandr libxrender
 				lttng-ust nspr nss pango polkit stdenv.cc.cc.lib
-				wayland xorg.libX11 xorg.libXcursor xorg.libXi
-				xorg.libXrandr zlib gtk3
+				wayland libx11 libxcursor libxi
+				libxrandr zlib gtk3
 			];
 		};
 	};
@@ -452,13 +452,18 @@ in
 				name		= "Nordic";
 				package	= pkgs.nordic;
 			};
+			gtk4.theme	= {
+				name		= "Nordic";
+				package	= pkgs.nordic;
+			};
 		};
 
 
 		# --- XDG user directories ---
 		xdg.userDirs	= {
-			enable						= true;
-			createDirectories	= true;
+			enable							= true;
+			createDirectories		= true;
+			setSessionVariables	= true;
 		};
 
 
