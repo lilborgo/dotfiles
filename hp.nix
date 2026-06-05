@@ -24,20 +24,6 @@ in
 
 		services.xserver.videoDrivers = [ "nvidia" ];
 
-		services.ollama = {
-			enable = true;
-			loadModels = [
-				"qwen2.5-coder:7b"
-				"qwen2.5-coder:1.5b"
-				"nomic-embed-text"
-			];
-			syncModels = true;
-			package = pkgs.ollama-cuda;
-		};
-
-		systemd.services.ollama.wantedBy = lib.mkForce [];
-
-
 		environment.systemPackages = with pkgs; [
 				unstable.stm32cubemx
 				stm32flash
