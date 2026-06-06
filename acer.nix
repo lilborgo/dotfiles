@@ -1,18 +1,11 @@
 { pkgs, ... }:
 
 let
-	home-manager-src = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
-
 	unstable = import (fetchTarball "https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz") {
 		config.allowUnfree = true;
 	};
 in
 {
-	imports =
-	[
-		(import "${home-manager-src}/nixos")
-	];
-
 	boot.kernelModules = ["kvm-amd" "kvm"];
 	programs.steam = {
 		enable = true;
