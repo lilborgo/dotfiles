@@ -32,6 +32,7 @@ in
 				mqttx
 				thunderbird
 				nvtopPackages.nvidia
+				android-studio
 		];
 
 		nixpkgs.config.segger-jlink.acceptLicense = true;
