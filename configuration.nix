@@ -320,7 +320,7 @@ in
 		# --- Development ---
 		gh git micro nano nom python3
 		python312Packages.tkinter python313Packages.tkinter
-		unstable.vscode unstable.claude-code
+		unstable.vscode unstable.claude-code probe-rs-tools
 
 		# --- Nix tools ---
 		fastfetch nh nixfmt
