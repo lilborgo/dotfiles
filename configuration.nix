@@ -479,8 +479,8 @@ in
 			};
 			micro	= {
 				name				= "Micro";
-				exec				= "micro %F";
-				terminal		= true;
+				exec				= "alacritty -e micro %F";
+				terminal		= false;
 				categories	= [ "TextEditor" "Utility" ];
 				mimeType		= [ "text/plain" ];
 			};
@@ -570,18 +570,45 @@ in
 				"audio/x-wav"												= "vlc.desktop";
 
 				# Text editor
+				"application/javascript"							= "micro.desktop";
 				"application/json"										= "micro.desktop";
+				"application/toml"										= "micro.desktop";
+				"application/typescript"							= "micro.desktop";
+				"application/x-desktop"							= "micro.desktop";
+				"application/x-sh"										= "micro.desktop";
 				"application/x-shellscript"					= "micro.desktop";
 				"application/x-yaml"									= "micro.desktop";
+				"application/xml"										= "micro.desktop";
 				"text/css"														= "micro.desktop";
+				"text/csv"														= "micro.desktop";
+				"text/markdown"											= "micro.desktop";
 				"text/plain"													= "micro.desktop";
+				"text/x-asm"													= "micro.desktop";
+				"text/x-c"														= "micro.desktop";
+				"text/x-c++hdr"											= "micro.desktop";
+				"text/x-c++src"											= "micro.desktop";
 				"text/x-chdr"												= "micro.desktop";
 				"text/x-csrc"												= "micro.desktop";
+				"text/x-diff"												= "micro.desktop";
+				"text/x-dockerfile"									= "micro.desktop";
+				"text/x-go"													= "micro.desktop";
+				"text/x-java-source"									= "micro.desktop";
+				"text/x-javascript"									= "micro.desktop";
 				"text/x-log"													= "micro.desktop";
+				"text/x-lua"													= "micro.desktop";
 				"text/x-makefile"										= "micro.desktop";
+				"text/x-nix"													= "micro.desktop";
+				"text/x-patch"												= "micro.desktop";
+				"text/x-perl"												= "micro.desktop";
 				"text/x-python"											= "micro.desktop";
 				"text/x-readme"											= "micro.desktop";
+				"text/x-ruby"												= "micro.desktop";
+				"text/x-rust"												= "micro.desktop";
 				"text/x-script"											= "micro.desktop";
+				"text/x-sh"													= "micro.desktop";
+				"text/x-sql"													= "micro.desktop";
+				"text/x-toml"												= "micro.desktop";
+				"text/x-typescript"									= "micro.desktop";
 				"text/xml"														= "micro.desktop";
 
 				# IDE
