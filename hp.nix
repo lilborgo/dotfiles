@@ -33,6 +33,7 @@ in
 				thunderbird
 				nvtopPackages.nvidia
 				android-studio
+				jetbrains.idea
 		];
 
 		nixpkgs.config.segger-jlink.acceptLicense = true;

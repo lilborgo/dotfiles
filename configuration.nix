@@ -321,6 +321,7 @@ in
 		gh git micro nano nom python3
 		python312Packages.tkinter python313Packages.tkinter
 		unstable.vscode unstable.claude-code probe-rs-tools
+		gnirehtet
 
 		# --- Nix tools ---
 		fastfetch nh nixfmt
