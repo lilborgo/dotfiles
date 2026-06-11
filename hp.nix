@@ -22,6 +22,15 @@ in
 				SUBSYSTEM=="usb", ATTR{idVendor}=="1366", ATTR{idProduct}=="0101", MODE="0666", GROUP="plugdev"
 		'';
 
+		networking	= {
+			firewall	= {
+				interfaces."wlp0s20f3"	= {
+					allowedUDPPorts	= [ 53 67 ];
+					allowedTCPPorts	= [ 53 ];
+				};
+			};
+		};
+
 		services.xserver.videoDrivers = [ "nvidia" ];
 
 		environment.systemPackages = with pkgs; [
