@@ -13,6 +13,9 @@ in
 		/etc/nixos/custom.nix
 	];
 
+	# Pass the let-bound channels down to imported modules (e.g. custom.nix)
+	_module.args	= { inherit unstable home-manager-src; };
+
 	system.stateVersion	= "25.11";
 	nixpkgs.config.allowUnfree	= true;
 
@@ -319,9 +322,10 @@ in
 
 		# --- Development ---
 		gh git micro nano nom python3
-		python312Packages.tkinter python313Packages.tkinter
+		python3Packages.tkinter python3Packages.pyserial 
+		python3Packages.paho-mqtt python3Packages.pypdf
 		unstable.vscode unstable.claude-code probe-rs-tools
-		gnirehtet screen
+		gnirehtet screen poppler-utils
 
 		# --- Nix tools ---
 		fastfetch nh nixfmt
