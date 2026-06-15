@@ -314,7 +314,7 @@ in
 	environment.systemPackages	= with pkgs; [
 		# --- Terminal & shell utilities ---
 		bash bat btop busybox eza fd file fzf htop ncdu
-		ripgrep smem tree wget alacritty
+		ripgrep smem tree wget alacritty exfat srecord
 
 		# --- Build tools & compilers ---
 		cargo clang clang-tools cmake gcc gcc.cc.lib glibc
