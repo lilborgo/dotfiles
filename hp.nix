@@ -36,6 +36,7 @@
 			nvtopPackages.nvidia
 			android-studio
 			jetbrains.idea
+			rustdesk-flutter
 	];
 
 	nixpkgs.config.segger-jlink.acceptLicense = true;
