@@ -187,7 +187,7 @@ in
 				libnotify libsm libxcb libxcomposite libxdamage
 				libxext libxfixes libxkbcommon libxrandr libxrender
 				lttng-ust nspr nss pango polkit stdenv.cc.cc.lib
-				wayland libx11 libxcursor libxi gnupg
+				wayland libx11 libxcursor libxi gnupg libGL
 				libxrandr zlib gtk3 fribidi harfbuzz
 			];
 		};
