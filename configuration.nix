@@ -188,7 +188,7 @@ in
 				libxext libxfixes libxkbcommon libxrandr libxrender
 				lttng-ust nspr nss pango polkit stdenv.cc.cc.lib
 				wayland libx11 libxcursor libxi gnupg libGL
-				libxrandr zlib gtk3 fribidi harfbuzz
+				libxrandr zlib gtk3 fribidi harfbuzz libtorch-bin
 			];
 		};
 	};
@@ -328,7 +328,7 @@ in
 			torchvision matplotlib
 		]))
 		unstable.vscode unstable.claude-code probe-rs-tools
-		gnirehtet screen jetbrains.idea
+		gnirehtet screen jetbrains.idea libtorch-bin
 
 		# --- Nix tools ---
 		fastfetch nh nixfmt
