@@ -350,7 +350,7 @@ in
 		cliphist wev wl-clipboard
 
 		# --- Networking ---
-		iproute2 networkmanager networkmanagerapplet nmap
+		iproute2 networkmanager networkmanagerapplet nmap wireguard-tools
 
 		# --- Bluetooth ---
 		blueman bluez upower
