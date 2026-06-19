@@ -210,6 +210,7 @@ in
 	};
 	services.displayManager.ly.enable	= true;
 	services.libinput.enable					= true;
+	security.pam.services.ly.enableGnomeKeyring	= true;
 
 	# --- Audio ---
 	services.pulseaudio.enable	= false;
@@ -236,7 +237,8 @@ in
 
 	# --- Desktop utilities ---
 	services.flatpak.enable		= true;
-	services.gvfs.enable				= true;
+	services.gnome.gnome-keyring.enable	= true;
+	services.gvfs.enable		= true;
 	services.playerctld.enable	= true;
 	services.tumbler.enable		= true;
 	services.udisks2.enable		= true;
