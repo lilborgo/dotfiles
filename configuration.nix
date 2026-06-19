@@ -309,6 +309,8 @@ in
 		NIXOS_OZONE_WL							= "1";
 		QT_AUTO_SCREEN_SCALE_FACTOR	= "1";
 		QT_SCALE_FACTOR							= "1";
+		LIBTORCH = "${pkgs.libtorch-bin}";
+		LIBTORCH_INCLUDE = "${pkgs.libtorch-bin.dev}";
 	};
 
 	environment.systemPackages	= with pkgs; [
