@@ -345,7 +345,7 @@ in
 		duplicati kdePackages.okular file-roller filezilla freefilesync
 		gparted impression libqalculate libreoffice-qt localsend
 		loupe pavucontrol speedcrunch styluslabs-write-bin
-		tor-browser vlc
+		tor-browser vlc foliate
 
 		# --- Browser ---
 		firefox
@@ -542,6 +542,9 @@ in
 				"application/x-bzpdf"								= "org.kde.okular.desktop";
 				"application/x-gzpdf"								= "org.kde.okular.desktop";
 				"application/x-pdf"									= "org.kde.okular.desktop";
+
+				# E-books
+				"application/epub+zip"								= "com.github.johnfactotum.Foliate.desktop";
 
 				# Images
 				"image/avif"													= "org.gnome.Loupe.desktop";
