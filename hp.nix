@@ -35,7 +35,6 @@
 			thunderbird
 			nvtopPackages.nvidia
 			android-studio
-			jetbrains.idea
 			rustdesk-flutter
 	];
 

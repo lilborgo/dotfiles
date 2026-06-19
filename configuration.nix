@@ -315,17 +315,20 @@ in
 		# --- Terminal & shell utilities ---
 		bash bat btop busybox eza fd file fzf htop ncdu
 		ripgrep smem tree wget alacritty exfat srecord
+		poppler-utils
 
 		# --- Build tools & compilers ---
 		cargo clang clang-tools cmake gcc gcc.cc.lib glibc
 		gnumake rustc
 
 		# --- Development ---
-		gh git micro nano nom python3
-		python3Packages.tkinter python3Packages.pyserial 
-		python3Packages.paho-mqtt python3Packages.pypdf
+		gh git micro nano nom
+		(python3.withPackages (ps: with ps; [
+			tkinter pyserial paho-mqtt pypdf torch 
+			torchvision matplotlib
+		]))
 		unstable.vscode unstable.claude-code probe-rs-tools
-		gnirehtet screen poppler-utils
+		gnirehtet screen jetbrains.idea
 
 		# --- Nix tools ---
 		fastfetch nh nixfmt
