@@ -364,7 +364,7 @@ in
 		smartmontools vulkan-tools
 
 		# --- Theming ---
-		adwaita-qt gtk2 gtk3 gtk4 nordic papirus-icon-theme
+		adwaita-qt gtk2 gtk3 gtk4 gruvbox-gtk-theme gruvbox-plus-icons
 
 		# --- Virtualisation ---
 		spice spice-gtk usbredir virt-manager virt-viewer virtiofsd
@@ -457,16 +457,16 @@ in
 			enable						= true;
 			cursorTheme.name	= "Adwaita";
 			iconTheme	= {
-				name		= "Papirus-Dark";
-				package	= pkgs.papirus-icon-theme;
+				name		= "Gruvbox-Plus-Dark";
+				package	= pkgs.gruvbox-plus-icons;
 			};
 			theme	= {
-				name		= "Nordic";
-				package	= pkgs.nordic;
+				name		= "Gruvbox-Dark";
+				package	= pkgs.gruvbox-gtk-theme;
 			};
 			gtk4.theme	= {
-				name		= "Nordic";
-				package	= pkgs.nordic;
+				name		= "Gruvbox-Dark";
+				package	= pkgs.gruvbox-gtk-theme;
 			};
 		};
 
@@ -694,35 +694,35 @@ in
 			]
 
 			[colors.primary]
-			background	= "#08080b"
-			foreground	= "#787c99"
+			background	= "#0c0f10"
+			foreground	= "#d3e4df"
 
 			[colors.cursor]
-			cursor	= "#787c99"
+			cursor	= "#22c9c0"
 
 			[colors.selection]
 			text				= "CellForeground"
-			background	= "#515c7e"
+			background	= "#2a3534"
 
 			[colors.normal]
-			black		= "#363b54"
-			red			= "#f7768e"
-			green		= "#41a6b5"
-			yellow	= "#e0af68"
-			blue		= "#7aa2f7"
-			magenta	= "#bb9af7"
-			cyan		= "#7dcfff"
-			white		= "#787c99"
+			black		= "#1b2122"
+			red			= "#ec3f5d"
+			green		= "#46c08a"
+			yellow	= "#f3c44b"
+			blue		= "#22c9c0"
+			magenta	= "#e0588f"
+			cyan		= "#3fd0c6"
+			white		= "#a9bdb8"
 
 			[colors.bright]
-			black		= "#363b54"
-			red			= "#f7768e"
-			green		= "#41a6b5"
-			yellow	= "#e0af68"
-			blue		= "#7aa2f7"
-			magenta	= "#bb9af7"
-			cyan		= "#7dcfff"
-			white		= "#acb0d0"
+			black		= "#3a4644"
+			red			= "#ff5e74"
+			green		= "#5fd6a0"
+			yellow	= "#ffd76a"
+			blue		= "#3fd0c6"
+			magenta	= "#f06ea0"
+			cyan		= "#6fe0d6"
+			white		= "#d3e4df"
 		'';
 
 		home.file.".config/Thunar/uca.xml".text	= ''
