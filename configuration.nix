@@ -344,7 +344,7 @@ in
 
 		# --- Hyprland & desktop shell ---
 		hyprland hypridle hyprshot hyprsunset
-		lxsession rofi swaynotificationcenter swaybg waybar
+		lxsession rofi swaynotificationcenter hyprpaper waybar
 	
 		# --- GUI applications ---
 		duplicati kdePackages.okular file-roller filezilla freefilesync
@@ -665,11 +665,12 @@ in
 					Install	= { WantedBy	= [ "hyprland-session.target" ]; };
 				};
 			in {
-				hyprsunset	= graphicalService "Hyprsunset blue light filter" "${pkgs.hyprsunset}/bin/hyprsunset"						{ RestartSec	= 5; };
-				waybar			= graphicalService "Waybar panel"								 "${pkgs.waybar}/bin/waybar"										{ RestartSec	= 1; };
-				lxpolkit		= graphicalService "lxpolkit"										 "${pkgs.lxsession}/bin/lxpolkit"							 { RestartSec	= 1; };
-				swaync			= graphicalService "Sway Notification Center"		 "${pkgs.swaynotificationcenter}/bin/swaync"		{ RestartSec	= 1; };
-				hypridle		= graphicalService "Hyprland idle"		 "${pkgs.hypridle}/bin/hypridle"		{ RestartSec	= 1; };
+				hyprsunset		= graphicalService "Hyprsunset blue light filter" "${pkgs.hyprsunset}/bin/hyprsunset" { RestartSec	= 5; };
+				waybar			= graphicalService "Waybar panel" "${pkgs.waybar}/bin/waybar" { RestartSec	= 1; };
+				lxpolkit		= graphicalService "lxpolkit" "${pkgs.lxsession}/bin/lxpolkit" { RestartSec	= 1; };
+				swaync			= graphicalService "Sway Notification Center" "${pkgs.swaynotificationcenter}/bin/swaync" { RestartSec	= 1; };
+				hypridle		= graphicalService "Hyprland idle" "${pkgs.hypridle}/bin/hypridle" { RestartSec	= 1; };
+				hyprpaper		= graphicalService "Hyprland wallpaper" "${pkgs.hyprpaper}/bin/hyprpaper" { RestartSec	= 1; };
 			};
 
 		# --- Dotfiles ---
