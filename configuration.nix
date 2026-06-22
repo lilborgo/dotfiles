@@ -149,6 +149,11 @@ in
 		virt-manager.enable	= true;
 		xfconf.enable				= true;
 
+		java = {
+			enable = true;
+			package = pkgs.jdk21;
+		};
+
 		thunar	= {
 			enable	= true;
 			plugins	= with pkgs; [
@@ -364,7 +369,7 @@ in
 		smartmontools vulkan-tools
 
 		# --- Theming ---
-		adwaita-qt gtk2 gtk3 gtk4 gruvbox-gtk-theme gruvbox-plus-icons
+		adwaita-qt gtk2 gtk3 gtk4 tokyonight-gtk-theme candy-icons
 
 		# --- Virtualisation ---
 		spice spice-gtk usbredir virt-manager virt-viewer virtiofsd
@@ -457,16 +462,16 @@ in
 			enable						= true;
 			cursorTheme.name	= "Adwaita";
 			iconTheme	= {
-				name		= "Gruvbox-Plus-Dark";
-				package	= pkgs.gruvbox-plus-icons;
+				name		= "candy-icons";
+				package	= pkgs.candy-icons;
 			};
 			theme	= {
-				name		= "Gruvbox-Dark";
-				package	= pkgs.gruvbox-gtk-theme;
+				name		= "Tokyonight-Dark";
+				package	= pkgs.tokyonight-gtk-theme;
 			};
 			gtk4.theme	= {
-				name		= "Gruvbox-Dark";
-				package	= pkgs.gruvbox-gtk-theme;
+				name		= "Tokyonight-Dark";
+				package	= pkgs.tokyonight-gtk-theme;
 			};
 		};
 
