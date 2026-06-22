@@ -453,14 +453,14 @@ in
 		home.pointerCursor	= {
 			gtk.enable				= true;
 			hyprcursor.enable	= true;
-			name							= "Adwaita";
-			package						= pkgs.adwaita-icon-theme;
+			name							= "phinger-cursors-dark";
+			package						= pkgs.phinger-cursors;
 			size							= 24;
 		};
 
 		gtk	= {
 			enable						= true;
-			cursorTheme.name	= "Adwaita";
+			cursorTheme.name	= "phinger-cursors-dark";
 			iconTheme	= {
 				name		= "candy-icons";
 				package	= pkgs.candy-icons;
