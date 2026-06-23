@@ -337,7 +337,7 @@ in
 			torchvision matplotlib
 		]))
 		unstable.vscode unstable.claude-code probe-rs-tools
-		gnirehtet screen jetbrains.idea libtorch-bin
+		gnirehtet tio jetbrains.idea libtorch-bin
 
 		# --- Nix tools ---
 		fastfetch nh nixfmt
