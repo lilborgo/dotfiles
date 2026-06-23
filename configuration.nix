@@ -318,6 +318,7 @@ in
 		QT_SCALE_FACTOR							= "1";
 		LIBTORCH = "${pkgs.libtorch-bin}";
 		LIBTORCH_INCLUDE = "${pkgs.libtorch-bin.dev}";
+		LD_LIBRARY_PATH = "$NIX_LD_LIBRARY_PATH";
 	};
 
 	environment.systemPackages	= with pkgs; [
