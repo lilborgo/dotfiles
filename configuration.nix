@@ -681,63 +681,113 @@ in
 				hyprpaper		= graphicalService "Hyprland wallpaper" "${pkgs.hyprpaper}/bin/hyprpaper" { RestartSec	= 1; };
 			};
 
-		# --- Dotfiles ---
-		home.file.".config/alacritty/alacritty.toml".text	= ''
-			[window]
-			dynamic_title	= false
-			padding.x	= 10
-			padding.y	= 10
+		programs.alacritty = {
+			enable = true;
 
-			[cursor]
-			style.shape		= "Underline"
-			style.blinking	= "On"
+			settings = {
+				window = {
+					dynamic_title = false;
+					padding = {
+						x = 10;
+						y = 10;
+					};
+				};
 
-			[selection]
-			save_to_clipboard	= true
+				cursor = {
+					style = {
+						shape = "Underline";
+						blinking = "On";
+					};
+				};
 
-			[keyboard]
-			bindings	= [
-				{ key	= ";",			 mods	= "Control",				 action	= "CreateNewWindow" },
-				{ key	= ":",			 mods	= "Control | Shift",	command	= "thunar" },
-				{ key	= "ArrowUp", mods	= "Control",					action	= "ScrollLineUp" },
-				{ key	= "ArrowDown", mods	= "Control",				action	= "ScrollLineDown" },
-				{ key	= "F", mods	= "Control | Shift",				action	= "None" },
-				{ key	= "F", mods	= "Control",								action	= "SearchForward" },
-				{ key	= "F", mods	= "Control", mode	= "~Search", action	= "SearchForward" },
-				{ key	= "F", mods	= "Control", mode	= "Search",	action	= "SearchCancel" }
-			]
+				selection = {
+					save_to_clipboard = true;
+				};
 
-			[colors.primary]
-			background	= "#0c0f10"
-			foreground	= "#d3e4df"
+				keyboard.bindings = [
+					{
+						key = ";";
+						mods = "Control";
+						action = "CreateNewWindow";
+					}
+					{
+						key = ":";
+						mods = "Control|Shift";
+						command = "thunar";
+					}
+					{
+						key = "ArrowUp";
+						mods = "Control";
+						action = "ScrollLineUp";
+					}
+					{
+						key = "ArrowDown";
+						mods = "Control";
+						action = "ScrollLineDown";
+					}
+					{
+						key = "F";
+						mods = "Control|Shift";
+						action = "None";
+					}
+					{
+						key = "F";
+						mods = "Control";
+						action = "SearchForward";
+					}
+					{
+						key = "F";
+						mods = "Control";
+						mode = "~Search";
+						action = "SearchForward";
+					}
+					{
+						key = "F";
+						mods = "Control";
+						mode = "Search";
+						action = "SearchCancel";
+					}
+				];
 
-			[colors.cursor]
-			cursor	= "#22c9c0"
+				colors = {
+					primary = {
+						background = "#0c0f10";
+						foreground = "#d3e4df";
+					};
 
-			[colors.selection]
-			text				= "CellForeground"
-			background	= "#2a3534"
+					cursor = {
+						cursor = "#22c9c0";
+					};
 
-			[colors.normal]
-			black		= "#1b2122"
-			red			= "#ec3f5d"
-			green		= "#46c08a"
-			yellow	= "#f3c44b"
-			blue		= "#22c9c0"
-			magenta	= "#e0588f"
-			cyan		= "#3fd0c6"
-			white		= "#a9bdb8"
+					selection = {
+						text = "CellForeground";
+						background = "#2a3534";
+					};
 
-			[colors.bright]
-			black		= "#3a4644"
-			red			= "#ff5e74"
-			green		= "#5fd6a0"
-			yellow	= "#ffd76a"
-			blue		= "#3fd0c6"
-			magenta	= "#f06ea0"
-			cyan		= "#6fe0d6"
-			white		= "#d3e4df"
-		'';
+					normal = {
+						black = "#1b2122";
+						red = "#ec3f5d";
+						green = "#46c08a";
+						yellow = "#f3c44b";
+						blue = "#22c9c0";
+						magenta = "#e0588f";
+						cyan = "#3fd0c6";
+						white = "#a9bdb8";
+					};
+
+					bright = {
+						black = "#3a4644";
+						red = "#ff5e74";
+						green = "#5fd6a0";
+						yellow = "#ffd76a";
+						blue = "#3fd0c6";
+						magenta = "#f06ea0";
+						cyan = "#6fe0d6";
+						white = "#d3e4df";
+					};
+				};
+			};
+		};
 
 		home.file.".config/Thunar/uca.xml".text	= ''
 			<?xml version="1.0" encoding="UTF-8"?>
