@@ -351,7 +351,7 @@ in
 		duplicati kdePackages.okular file-roller filezilla freefilesync
 		gparted impression libqalculate libreoffice-qt localsend
 		loupe pavucontrol speedcrunch styluslabs-write-bin
-		tor-browser vlc foliate
+		tor-browser vlc foliate papirus-folders
 
 		# --- Browser ---
 		firefox
@@ -370,7 +370,7 @@ in
 		smartmontools vulkan-tools
 
 		# --- Theming ---
-		adwaita-qt gtk2 gtk3 gtk4 tokyonight-gtk-theme candy-icons
+		adwaita-qt adwaita-qt6 gtk2 gtk3 gtk4
 
 		# --- Virtualisation ---
 		spice spice-gtk usbredir virt-manager virt-viewer virtiofsd
@@ -450,7 +450,6 @@ in
 		};
 
 
-		# --- Theming ---
 		home.pointerCursor	= {
 			gtk.enable				= true;
 			hyprcursor.enable	= true;
@@ -463,16 +462,24 @@ in
 			enable						= true;
 			cursorTheme.name	= "phinger-cursors-dark";
 			iconTheme	= {
-				name		= "candy-icons";
-				package	= pkgs.candy-icons;
+				name		= "Papirus-Dark";
+    			package = pkgs.papirus-icon-theme.override { color = "red"; };
 			};
 			theme	= {
-				name		= "Tokyonight-Dark";
-				package	= pkgs.tokyonight-gtk-theme;
+				name		= "Graphite-teal-Dark";
+				package	= pkgs.graphite-gtk-theme.override {
+					themeVariants	= [ "teal" ];
+					colorVariants	= [ "dark" ];
+					tweaks				= [ "darker" ];
+				};
 			};
 			gtk4.theme	= {
-				name		= "Tokyonight-Dark";
-				package	= pkgs.tokyonight-gtk-theme;
+				name		= "Graphite-teal-Dark";
+				package	= pkgs.graphite-gtk-theme.override {
+					themeVariants	= [ "teal" ];
+					colorVariants	= [ "dark" ];
+					tweaks				= [ "darker" ];
+				};
 			};
 		};
 
