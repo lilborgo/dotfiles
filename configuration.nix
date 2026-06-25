@@ -19,6 +19,15 @@ in
 	system.stateVersion	= "25.11";
 	nixpkgs.config.allowUnfree	= true;
 
+	nixpkgs.overlays = [
+		(final: prev: {
+			openblas =
+				if prev.stdenv.hostPlatform.isi686
+				then prev.openblas.overrideAttrs (_: { doCheck = false; })
+				else prev.openblas;
+		})
+	];
+
 
 	#	============================================================
 	# BOOT

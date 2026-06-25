@@ -13,10 +13,7 @@
 	environment.systemPackages = with pkgs; [
 			prismlauncher
 			gzdoom
-			(lutris.override {
-					extraLibraries =	pkgs: [
-					];
-			})
+			lutris
 	];
 
 	home-manager.users.fede= { pkgs, ...}:
