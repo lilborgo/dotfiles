@@ -99,6 +99,10 @@
     margin-left: 7px;
 }
 
+#custom-notification {
+    padding: 0 6px;
+}
+
 #power-profiles-daemon,
 #custom-start {
     margin-right: 7px;
@@ -127,8 +131,13 @@
 }
 
 #custom-start,
-#custom-ctlcenter {
+#custom-ctlcenter,
+#custom-notification.active {
     color: @blue;
+}
+
+#custom-notification.dnd {
+    color: @inactive;
 }
 
 #workspaces button {

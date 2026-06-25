@@ -354,7 +354,7 @@ in
 
 		# --- Hyprland & desktop shell ---
 		hyprland hypridle hyprshot hyprsunset
-		lxsession rofi swaynotificationcenter hyprpaper waybar
+		lxsession rofi hyprpaper waybar
 	
 		# --- GUI applications ---
 		duplicati kdePackages.okular file-roller filezilla freefilesync
@@ -685,10 +685,113 @@ in
 				hyprsunset		= graphicalService "Hyprsunset blue light filter" "${pkgs.hyprsunset}/bin/hyprsunset" { RestartSec	= 5; };
 				waybar			= graphicalService "Waybar panel" "${pkgs.waybar}/bin/waybar" { RestartSec	= 1; };
 				lxpolkit		= graphicalService "lxpolkit" "${pkgs.lxsession}/bin/lxpolkit" { RestartSec	= 1; };
-				swaync			= graphicalService "Sway Notification Center" "${pkgs.swaynotificationcenter}/bin/swaync" { RestartSec	= 1; };
 				hypridle		= graphicalService "Hyprland idle" "${pkgs.hypridle}/bin/hypridle" { RestartSec	= 1; };
 				hyprpaper		= graphicalService "Hyprland wallpaper" "${pkgs.hyprpaper}/bin/hyprpaper" { RestartSec	= 1; };
+
+				# dunst itself is configured by the home-manager services.dunst
+				# module (below); this only binds its generated unit to the
+				# session target so it starts/stops with the others.
+				dunst			= {
+					Unit.PartOf			= [ "hyprland-session.target" ];
+					Unit.After			= [ "hyprland-session.target" ];
+					Install.WantedBy	= [ "hyprland-session.target" ];
+				};
 			};
+
+		# --- Notifications (dunst) ---
+		services.dunst	= {
+			enable	= true;
+			settings	= {
+				global	= {
+					monitor			= 0;
+					follow			= "mouse";
+					origin			= "top-right";
+					offset			= "8x10";
+					width				= 420;
+					height			= 300;
+					notification_limit	= 6;
+					gap_size		= 8;
+					indicate_hidden	= true;
+					shrink			= false;
+
+					transparency	= 10;
+					corner_radius	= 12;
+					frame_width		= 1;
+					separator_height	= 2;
+					separator_color	= "frame";
+					padding			= 12;
+					horizontal_padding	= 14;
+					text_icon_padding	= 8;
+					line_height		= 0;
+
+					progress_bar			= true;
+					progress_bar_height		= 10;
+					progress_bar_frame_width	= 1;
+					progress_bar_min_width	= 180;
+					progress_bar_max_width	= 396;
+					progress_bar_corner_radius	= 5;
+					highlight		= "#22c9c0";
+
+					font			= "JetBrainsMono Nerd Font Propo 11";
+					markup			= "full";
+					format			= "<b>%s</b>\\n%b";
+					alignment		= "left";
+					vertical_alignment	= "center";
+					word_wrap		= true;
+					ellipsize		= "middle";
+					ignore_newline	= false;
+					show_age_threshold	= 60;
+					stack_duplicates	= true;
+					hide_duplicate_count	= false;
+					show_indicators	= true;
+
+					enable_recursive_icon_lookup	= true;
+					icon_theme		= "Papirus-Dark";
+					icon_position	= "left";
+					min_icon_size	= 16;
+					max_icon_size	= 48;
+
+					sticky_history	= true;
+					history_length	= 40;
+
+					sort			= true;
+					idle_threshold	= 0;
+					title			= "Dunst";
+					class			= "Dunst";
+					ignore_dbusclose	= false;
+					force_xwayland	= false;
+					browser			= "${pkgs.xdg-utils}/bin/xdg-open";
+
+					# Action / context menu via the system's themed rofi
+					dmenu			= "rofi -dmenu -theme /home/fede/.config/rofi/themes/clipboard.rasi -p Notification";
+
+					mouse_left_click	= "do_action, close_current";
+					mouse_middle_click	= "close_all";
+					mouse_right_click	= "context, close_current";
+				};
+
+				urgency_low	= {
+					timeout		= 2;
+					background	= "#0c0f10e6";
+					foreground	= "#6f8a86";
+					frame_color	= "#22c9c0";
+				};
+
+				urgency_normal	= {
+					timeout		= 3;
+					background	= "#0c0f10e6";
+					foreground	= "#d3e4df";
+					frame_color	= "#22c9c0";
+				};
+
+				urgency_critical	= {
+					timeout		= 0;
+					background	= "#0c0f10f2";
+					foreground	= "#d3e4df";
+					frame_color	= "#ec3f5d";
+				};
+			};
+		};
 
 		programs.alacritty = {
 			enable = true;

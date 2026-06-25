@@ -54,8 +54,14 @@
     },
 
     "custom/notification": {
-        "format": "⩍ ",
-        "on-click": "hyprctl dispatch exec 'swaync-client  -t'"
+        "exec": "~/.config/waybar/scripts/dunst.sh",
+        "return-type": "json",
+        "interval": 2,
+        "signal": 8,
+        "tooltip": true,
+        "on-click": "dunstctl history-pop ; pkill -RTMIN+8 waybar",
+        "on-click-right": "dunstctl set-paused toggle ; pkill -RTMIN+8 waybar",
+        "on-click-middle": "dunstctl close-all ; pkill -RTMIN+8 waybar"
     },
 
     "pulseaudio": {
