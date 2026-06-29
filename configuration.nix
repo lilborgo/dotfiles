@@ -348,6 +348,7 @@ in
 		]))
 		unstable.vscode unstable.claude-code probe-rs-tools
 		gnirehtet tio jetbrains.idea libtorch-bin dbeaver-bin
+		nodejs
 
 		# --- Nix tools ---
 		fastfetch nh nixfmt
