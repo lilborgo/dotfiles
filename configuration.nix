@@ -334,7 +334,7 @@ in
 		# --- Terminal & shell utilities ---
 		bash bat btop busybox eza fd file fzf htop ncdu
 		ripgrep smem tree wget alacritty exfat srecord
-		poppler-utils glib
+		poppler-utils glib sshpass
 
 		# --- Build tools & compilers ---
 		cargo clang clang-tools cmake gcc gcc.cc.lib glibc
