@@ -334,21 +334,28 @@ in
 		# --- Terminal & shell utilities ---
 		bash bat btop busybox eza fd file fzf htop ncdu
 		ripgrep smem tree wget alacritty exfat srecord
-		poppler-utils glib sshpass
+		poppler-utils glib sshpass dig
+		curl duf hexyl lsof tealdeer tmux rsync
+		watch parallel mosh
 
 		# --- Build tools & compilers ---
 		cargo clang clang-tools cmake gcc gcc.cc.lib glibc
-		gnumake rustc
+		gnumake rustc binutils
 
 		# --- Development ---
 		gh git micro nano nom
 		(python3.withPackages (ps: with ps; [
-			tkinter pyserial paho-mqtt pypdf torch 
+			tkinter pyserial paho-mqtt pypdf torch
 			torchvision matplotlib
 		]))
 		unstable.vscode unstable.claude-code probe-rs-tools
 		gnirehtet tio jetbrains.idea libtorch-bin dbeaver-bin
 		nodejs
+		jq yq-go delta lazygit sqlite hyperfine tokei
+		gdb strace ltrace openssl
+
+		# --- Networking & debugging ---
+		tcpdump socat netcat pciutils usbutils
 
 		# --- Nix tools ---
 		fastfetch nh nixfmt
