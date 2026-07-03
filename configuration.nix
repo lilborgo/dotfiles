@@ -377,7 +377,7 @@ in
 		cliphist wev wl-clipboard
 
 		# --- Networking ---
-		iproute2 networkmanager networkmanagerapplet nmap wireguard-tools
+		iproute2 networkmanager networkmanagerapplet nmap wireguard-tools zenmap postman
 
 		# --- Bluetooth ---
 		blueman bluez upower
