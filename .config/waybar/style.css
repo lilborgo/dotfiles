@@ -30,17 +30,18 @@
 
 /* global paddings */
 #temperature,
-#bluetooth, 
-#battery, 
+#bluetooth,
+#battery,
 #memory,
 #mpris,
 #window,
-#cpu, 
+#upower,
+#power-profiles-daemon,
+#cpu,
 #load {
     padding: 1px 7px;
 }
 
-#network, 
 #tray {
     padding: 1px 6px;
 }
@@ -59,17 +60,19 @@
     padding: 0 7px 0 2px;
 }
 
-#workspaces, 
-#bluetooth, 
-#battery, 
-#memory, 
-#temperature, 
+#workspaces,
+#bluetooth,
+#battery,
+#memory,
+#temperature,
 #cpu,
 #mpris,
 #window,
+#upower,
+#power-profiles-daemon,
 #load {
     margin: 0 3px;
-} 
+}
 
 #right, 
 #left,
@@ -103,17 +106,38 @@
     padding: 0 6px;
 }
 
-#power-profiles-daemon,
 #custom-start {
     margin-right: 7px;
+}
+
+/* privacy: pad the active icons, not the wrapper, so it vanishes when idle */
+#privacy {
+    padding: 0;
+    margin: 0;
+}
+#privacy-item {
+    padding: 1px 7px;
+}
+
+/* keyboard-state: only the active (locked) indicator gets size/spacing */
+#keyboard-state {
+    padding: 0;
+    margin: 0;
+}
+#keyboard-state label.locked {
+    padding: 1px 7px;
+    margin: 0 3px;
+}
+#keyboard-state label.unlocked {
+    font-size: 0;
+    padding: 0;
+    margin: 0;
 }
 
 #cpu.critical,
 #memory.critical, 
 #battery.critical,
-#network.disabled,
-#temperature.critical, 
-#network.disconnected,
+#temperature.critical,
 #power-profiles-daemon.performance {
 	color: @red;
 }

@@ -17,7 +17,7 @@
 
     "group/right" : {
         "orientation": "horizontal",
-        "modules" : [ "mpris", "bluetooth", "group/group-volume", "group/group-backlight", "network", "tray"
+        "modules" : [ "mpris", "privacy", "keyboard-state", "bluetooth", "group/group-volume", "group/group-backlight", "tray"
         ]
     },
     "group/right-hidden-top" : {

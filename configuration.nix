@@ -249,6 +249,9 @@ in
 	# --- Bluetooth ---
 	services.blueman.enable	= true;
 
+	# --- Power management ---
+	services.upower.enable					= true;
+
 	# --- Desktop utilities ---
 	services.flatpak.enable		= true;
 	services.gnome.gnome-keyring.enable	= true;
@@ -686,24 +689,21 @@ in
 			let
 				graphicalService	= desc: cmd: extra: {
 					Unit		= { Description	= desc; PartOf	= [ "hyprland-session.target" ]; After	= [ "hyprland-session.target" ]; };
-					Service	= { ExecStart	= cmd; Restart	= "always"; } // extra;
+					Service	= { ExecStart	= cmd; Restart	= "always"; RestartSec	= 1; } // extra;
 					Install	= { WantedBy	= [ "hyprland-session.target" ]; };
 				};
 			in {
-				hyprsunset		= graphicalService "Hyprsunset blue light filter" "${pkgs.hyprsunset}/bin/hyprsunset" { RestartSec	= 5; };
-				waybar			= graphicalService "Waybar panel" "${pkgs.waybar}/bin/waybar" { RestartSec	= 1; };
-				lxpolkit		= graphicalService "lxpolkit" "${pkgs.lxsession}/bin/lxpolkit" { RestartSec	= 1; };
-				hypridle		= graphicalService "Hyprland idle" "${pkgs.hypridle}/bin/hypridle" { RestartSec	= 1; };
-				hyprpaper		= graphicalService "Hyprland wallpaper" "${pkgs.hyprpaper}/bin/hyprpaper" { RestartSec	= 1; };
-
-				# dunst itself is configured by the home-manager services.dunst
-				# module (below); this only binds its generated unit to the
-				# session target so it starts/stops with the others.
+				hyprsunset		= graphicalService "Hyprsunset blue light filter" "${pkgs.hyprsunset}/bin/hyprsunset" {};
+				waybar			= graphicalService "Waybar panel" "${pkgs.waybar}/bin/waybar" {};
+				lxpolkit		= graphicalService "lxpolkit" "${pkgs.lxsession}/bin/lxpolkit" {};
+				hypridle		= graphicalService "Hyprland idle" "${pkgs.hypridle}/bin/hypridle" {};
+				hyprpaper		= graphicalService "Hyprland wallpaper" "${pkgs.hyprpaper}/bin/hyprpaper" {};
+				nm-applet		= graphicalService "NetworkManager applet" "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator" {};
 				dunst			= {
 					Unit.PartOf			= [ "hyprland-session.target" ];
 					Unit.After			= [ "hyprland-session.target" ];
 					Install.WantedBy	= [ "hyprland-session.target" ];
-				};
+				};	
 			};
 
 		# --- Notifications (dunst) ---

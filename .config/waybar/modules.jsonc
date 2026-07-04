@@ -25,7 +25,7 @@
     },
 
     "tray" : {
-        "icon-size": 13,
+        "icon-size": 20,
         "spacing": 12,
         "cursor": true
     },
@@ -100,23 +100,6 @@
         "cursor": true
     },
 
-    "network": {
-        "interval": 10,
-        "format-disabled": "",
-        "format-disconnected": "",
-        "format-wifi": "",
-        "format-ethernet": "",
-        "tooltip-format": "{essid}\n\nFrequency: {frequency}GHz\nStrength: {signalStrength}%\n\n{bandwidthUpBytes}   {bandwidthDownBytes}",
-        "menu": "on-click-right",
-        "menu-file": "~/.config/waybar/context/network.xml",
-        "menu-actions": {
-  			"action-1": "nmcli radio wifi off",
-  			"action-2": "nmcli radio wifi on",
-            "action-3": "hyprctl dispatch exec '[float] alacritty -e nmtui'",
-            "action-4": "hyprctl dispatch exec nm-connection-editor"
-  		}
-    },
-
     "custom/shutdown": {
         "format": " ⏻ ",
         "on-click": "bash ~/.config/rofi/bin/logout"
@@ -150,7 +133,7 @@
     },
 
     "clock": {
-        "timezone": "Europe/Italy/Rome",
+        "timezone": "Europe/Rome",
         "tooltip-format": "<tt><small>{calendar}</small></tt>",
         "format": "{:%H:%M %d %B %Y}",
         "on-click-right": "hyprctl dispatch exec 'alacritty --class=peaclock -e peaclock'",
@@ -188,11 +171,37 @@
         }
     },
 
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+
+    "privacy": {
+        "icon-size": 16,
+        "icon-spacing": 8,
+        "transition-duration": 200,
+        "modules": [
+            { "type": "screenshare" },
+            { "type": "audio-in" }
+        ]
+    },
+
+    "upower": {
+        "icon-size": 18,
+        "hide-if-empty": true,
+        "tooltip": true,
+        "tooltip-spacing": 20
+    },
+
     "custom/start": {
         "format": "nix",
         "on-click": "bash ~/.config/rofi/bin/drun"
     },
-
 
     "group/group-volume": {
         "orientation": "horizontal",
