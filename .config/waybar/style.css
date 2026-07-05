@@ -1,6 +1,6 @@
 @define-color module-bg     rgba(12, 15, 16, 0.9);
 @define-color tooltip-bg    @module-bg;
-@define-color inactive      #5b7571;
+@define-color inactive      #929292;
 @define-color fg            #d3e4df;
 @define-color workspace-fg  @fg;
 
@@ -252,7 +252,6 @@
 }
 
 #mpris.playing {
-    color: @pink;
     animation: pulse 2s infinite alternate;
 }
 
