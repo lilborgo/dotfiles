@@ -2,7 +2,5 @@
 
 rofi -theme ~/.config/rofi/themes/launcher.rasi \
      -show drun \
-     -modi "drun,run,filebrowser" \
+     -modi "drun" \
      -display-drun "" \
-     -display-run "" \
-     -display-filebrowser "󰉋" \

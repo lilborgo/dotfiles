@@ -199,7 +199,8 @@
     },
 
     "custom/start": {
-        "format": "nix",
+        "format": "",
+        "tooltip-format": "Application Launcher",
         "on-click": "bash ~/.config/rofi/bin/drun"
     },
 
