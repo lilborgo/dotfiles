@@ -203,6 +203,7 @@ in
 				lttng-ust nspr nss pango polkit stdenv.cc.cc.lib
 				wayland libx11 libxcursor libxi gnupg libGL
 				libxrandr zlib gtk3 fribidi harfbuzz libtorch-bin
+				cups
 			];
 		};
 	};
