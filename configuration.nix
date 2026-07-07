@@ -703,6 +703,7 @@ in
 				hypridle		= graphicalService "Hyprland idle" "${pkgs.hypridle}/bin/hypridle" {};
 				hyprpaper		= graphicalService "Hyprland wallpaper" "${pkgs.hyprpaper}/bin/hyprpaper" {};
 				nm-applet		= graphicalService "NetworkManager applet" "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator" {};
+				blueman-applet	= graphicalService "Blueman applet" "${pkgs.blueman}/bin/blueman-applet" {};
 				dunst			= {
 					Unit.PartOf			= [ "hyprland-session.target" ];
 					Unit.After			= [ "hyprland-session.target" ];
