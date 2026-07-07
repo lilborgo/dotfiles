@@ -348,16 +348,15 @@ in
 		# --- Development ---
 		gh git micro nano nom
 		(python3.withPackages (ps: with ps; [
-			tkinter pyserial paho-mqtt pypdf torch
-			torchvision matplotlib west
-			pyelftools pyyaml pykwalify jsonschema canopen
+			paho-mqtt pypdf torch torchvision matplotlib 
+			west tkinter pyserial pyelftools pyyaml pykwalify 
 			packaging patool psutil pylink-square requests
 			semver tqdm reuse anytree intelhex colorama
-			cryptography cbor
+			cryptography cbor pyocd jsonschema canopen
 		]))
 		unstable.vscode unstable.claude-code probe-rs-tools
 		gnirehtet tio jetbrains.idea libtorch-bin dbeaver-bin
-		nodejs dtc wireshark
+		nodejs dtc wireshark pyocd
 		jq yq-go delta lazygit sqlite hyperfine tokei
 		gdb strace ltrace openssl
 
