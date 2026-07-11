@@ -347,10 +347,10 @@ in
 		gnumake rustc binutils
 
 		# --- Development ---
-		gh git nano nom gnome-text-editor micro
+		gh git nano nom gnome-text-editor micro zed-editor
 		(python3.withPackages (ps: with ps; [
-			paho-mqtt pypdf torch torchvision matplotlib 
-			west tkinter pyserial pyelftools pyyaml pykwalify 
+			paho-mqtt pypdf torch torchvision matplotlib
+			west tkinter pyserial pyelftools pyyaml pykwalify
 			packaging patool psutil pylink-square requests
 			semver tqdm reuse anytree intelhex colorama
 			cryptography cbor pyocd jsonschema canopen
@@ -370,7 +370,7 @@ in
 		# --- Hyprland & desktop shell ---
 		hyprland hypridle hyprshot hyprsunset
 		lxsession rofi hyprpaper waybar
-	
+
 		# --- GUI applications ---
 		duplicati kdePackages.okular file-roller filezilla freefilesync
 		gparted impression libqalculate libreoffice-qt localsend
@@ -615,46 +615,46 @@ in
 				"audio/x-wav"												= "vlc.desktop";
 
 				# Text editor
-				"application/javascript"							= "org.gnome.TextEditor.desktop";
-				"application/json"										= "org.gnome.TextEditor.desktop";
-				"application/toml"										= "org.gnome.TextEditor.desktop";
-				"application/typescript"							= "org.gnome.TextEditor.desktop";
-				"application/x-desktop"							= "org.gnome.TextEditor.desktop";
-				"application/x-sh"										= "org.gnome.TextEditor.desktop";
-				"application/x-shellscript"					= "org.gnome.TextEditor.desktop";
-				"application/x-yaml"									= "org.gnome.TextEditor.desktop";
-				"application/xml"										= "org.gnome.TextEditor.desktop";
-				"text/css"														= "org.gnome.TextEditor.desktop";
-				"text/csv"														= "org.gnome.TextEditor.desktop";
-				"text/markdown"											= "org.gnome.TextEditor.desktop";
-				"text/plain"													= "org.gnome.TextEditor.desktop";
-				"text/x-asm"													= "org.gnome.TextEditor.desktop";
-				"text/x-c"														= "org.gnome.TextEditor.desktop";
-				"text/x-c++hdr"											= "org.gnome.TextEditor.desktop";
-				"text/x-c++src"											= "org.gnome.TextEditor.desktop";
-				"text/x-chdr"												= "org.gnome.TextEditor.desktop";
-				"text/x-csrc"												= "org.gnome.TextEditor.desktop";
-				"text/x-diff"												= "org.gnome.TextEditor.desktop";
-				"text/x-dockerfile"									= "org.gnome.TextEditor.desktop";
-				"text/x-go"													= "org.gnome.TextEditor.desktop";
-				"text/x-java-source"									= "org.gnome.TextEditor.desktop";
-				"text/x-javascript"									= "org.gnome.TextEditor.desktop";
-				"text/x-log"													= "org.gnome.TextEditor.desktop";
-				"text/x-lua"													= "org.gnome.TextEditor.desktop";
-				"text/x-makefile"										= "org.gnome.TextEditor.desktop";
-				"text/x-nix"													= "org.gnome.TextEditor.desktop";
-				"text/x-patch"												= "org.gnome.TextEditor.desktop";
-				"text/x-perl"												= "org.gnome.TextEditor.desktop";
-				"text/x-python"											= "org.gnome.TextEditor.desktop";
-				"text/x-readme"											= "org.gnome.TextEditor.desktop";
-				"text/x-ruby"												= "org.gnome.TextEditor.desktop";
-				"text/x-rust"												= "org.gnome.TextEditor.desktop";
-				"text/x-script"											= "org.gnome.TextEditor.desktop";
-				"text/x-sh"													= "org.gnome.TextEditor.desktop";
-				"text/x-sql"													= "org.gnome.TextEditor.desktop";
-				"text/x-toml"												= "org.gnome.TextEditor.desktop";
-				"text/x-typescript"									= "org.gnome.TextEditor.desktop";
-				"text/xml"														= "org.gnome.TextEditor.desktop";
+				"application/javascript"							= "dev.zed.Zed.desktop";
+				"application/json"										= "dev.zed.Zed.desktop";
+				"application/toml"										= "dev.zed.Zed.desktop";
+				"application/typescript"							= "dev.zed.Zed.desktop";
+				"application/x-desktop"							= "dev.zed.Zed.desktop";
+				"application/x-sh"										= "dev.zed.Zed.desktop";
+				"application/x-shellscript"					= "dev.zed.Zed.desktop";
+				"application/x-yaml"									= "dev.zed.Zed.desktop";
+				"application/xml"										= "dev.zed.Zed.desktop";
+				"text/css"														= "dev.zed.Zed.desktop";
+				"text/csv"														= "dev.zed.Zed.desktop";
+				"text/markdown"											= "dev.zed.Zed.desktop";
+				"text/plain"													= "dev.zed.Zed.desktop";
+				"text/x-asm"													= "dev.zed.Zed.desktop";
+				"text/x-c"														= "dev.zed.Zed.desktop";
+				"text/x-c++hdr"											= "dev.zed.Zed.desktop";
+				"text/x-c++src"											= "dev.zed.Zed.desktop";
+				"text/x-chdr"												= "dev.zed.Zed.desktop";
+				"text/x-csrc"												= "dev.zed.Zed.desktop";
+				"text/x-diff"												= "dev.zed.Zed.desktop";
+				"text/x-dockerfile"									= "dev.zed.Zed.desktop";
+				"text/x-go"													= "dev.zed.Zed.desktop";
+				"text/x-java-source"									= "dev.zed.Zed.desktop";
+				"text/x-javascript"									= "dev.zed.Zed.desktop";
+				"text/x-log"													= "dev.zed.Zed.desktop";
+				"text/x-lua"													= "dev.zed.Zed.desktop";
+				"text/x-makefile"										= "dev.zed.Zed.desktop";
+				"text/x-nix"													= "dev.zed.Zed.desktop";
+				"text/x-patch"												= "dev.zed.Zed.desktop";
+				"text/x-perl"												= "dev.zed.Zed.desktop";
+				"text/x-python"											= "dev.zed.Zed.desktop";
+				"text/x-readme"											= "dev.zed.Zed.desktop";
+				"text/x-ruby"												= "dev.zed.Zed.desktop";
+				"text/x-rust"												= "dev.zed.Zed.desktop";
+				"text/x-script"											= "dev.zed.Zed.desktop";
+				"text/x-sh"													= "dev.zed.Zed.desktop";
+				"text/x-sql"													= "dev.zed.Zed.desktop";
+				"text/x-toml"												= "dev.zed.Zed.desktop";
+				"text/x-typescript"									= "dev.zed.Zed.desktop";
+				"text/xml"														= "dev.zed.Zed.desktop";
 
 				# IDE
 				"application/x-code-workspace"				= "vscode.desktop";
@@ -701,7 +701,7 @@ in
 					Unit.PartOf			= [ "hyprland-session.target" ];
 					Unit.After			= [ "hyprland-session.target" ];
 					Install.WantedBy	= [ "hyprland-session.target" ];
-				};	
+				};
 			};
 
 		# --- Notifications (dunst) ---
@@ -907,6 +907,73 @@ in
 			};
 		};
 
+		# --- Zed ---
+		programs.zed-editor = {
+			enable = true;
+
+			extensions = [
+				"devicetree" "kconfig" "linkerscript" "assembly" "probe-rs"
+				"neocmake" "make" "nix" "toml" "ini" "dockerfile" "docker-compose"
+				"latex" "comment" "file-icons" "hexpeek" "git-firefly"
+			];
+
+			extraPackages = with pkgs; [
+				rust-analyzer
+				clang-tools
+				neocmakelsp
+				basedpyright
+				ruff
+				dts-lsp
+				nixd
+			];
+
+			userSettings = {
+				base_keymap	= "VSCode";
+				vim_mode		= false;
+				ui_font_family			= "JetBrainsMono Nerd Font";
+				ui_font_size				= 14;
+				buffer_font_family	= "JetBrainsMono Nerd Font";
+				buffer_font_size		= 12;
+				load_direnv = "shell_hook";
+				node.path = "${pkgs.nodejs}/bin/node";
+				inlay_hints.enabled = true;
+				diagnostics.inline.enabled = true;
+				icon_theme = "File Icons";
+
+				theme	= {
+					mode	= "system";
+					light	= "One Light";
+					dark	= "Ayu Dark";
+				};
+
+				terminal = {
+					font_family				= "JetBrainsMono Nerd Font";
+					dock							= "right";
+					shell							= "system";
+					working_directory	= "current_project_directory";
+				};
+
+				lsp = {
+					rust-analyzer.binary.path	= "${pkgs.rust-analyzer}/bin/rust-analyzer";
+					clangd.binary.path				= "${pkgs.clang-tools}/bin/clangd";
+					cmake.binary = {
+						path			= "${pkgs.neocmakelsp}/bin/neocmakelsp";
+						arguments	= [ "stdio" ];
+					};
+					basedpyright.binary = {
+						path			= "${pkgs.basedpyright}/bin/basedpyright-langserver";
+						arguments	= [ "--stdio" ];
+					};
+					ruff.binary = {
+						path			= "${pkgs.ruff}/bin/ruff";
+						arguments	= [ "server" ];
+					};
+					nixd.binary.path = "${pkgs.nixd}/bin/nixd";
+					devicetree.binary.path = "${pkgs.dts-lsp}/bin/dts-lsp";
+				};
+			};
+		};
+
 		home.file.".config/Thunar/uca.xml".text	= ''
 			<?xml version="1.0" encoding="UTF-8"?>
 			<actions>
@@ -953,6 +1020,28 @@ in
 				<other-files/>
 				<text-files/>
 				<video-files/>
+			</action>
+			<action>
+				<icon>zed</icon>
+				<name>Open Folder with Zed</name>
+				<submenu></submenu>
+				<unique-id>1783766142256-1</unique-id>
+				<command>zeditor %f</command>
+				<description>Open this folder as a project in Zed</description>
+				<range></range>
+				<patterns>*</patterns>
+				<directories/>
+			</action>
+			<action>
+				<icon>vscode</icon>
+				<name>Open Folder with VSCode</name>
+				<submenu></submenu>
+				<unique-id>1783766142256-2</unique-id>
+				<command>env LD_LIBRARY_PATH=/run/current-system/sw/share/nix-ld/lib code %f</command>
+				<description>Open this folder as a workspace in VSCode</description>
+				<range></range>
+				<patterns>*</patterns>
+				<directories/>
 			</action>
 			</actions>
 		'';
