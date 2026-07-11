@@ -347,7 +347,7 @@ in
 		gnumake rustc binutils
 
 		# --- Development ---
-		gh git micro nano nom
+		gh git nano nom gnome-text-editor micro
 		(python3.withPackages (ps: with ps; [
 			paho-mqtt pypdf torch torchvision matplotlib 
 			west tkinter pyserial pyelftools pyyaml pykwalify 
@@ -526,13 +526,6 @@ in
 				categories	= [ "Development" "IDE" "TextEditor" "Utility" ];
 				mimeType		= [ "application/x-code-workspace" ];
 			};
-			micro	= {
-				name				= "Micro";
-				exec				= "alacritty -e micro %F";
-				terminal		= false;
-				categories	= [ "TextEditor" "Utility" ];
-				mimeType		= [ "text/plain" ];
-			};
 			nixwiki	= {
 				name				= "Nixos Wiki";
 				exec				= "xdg-open https://search.nixos.org/";
@@ -622,46 +615,46 @@ in
 				"audio/x-wav"												= "vlc.desktop";
 
 				# Text editor
-				"application/javascript"							= "micro.desktop";
-				"application/json"										= "micro.desktop";
-				"application/toml"										= "micro.desktop";
-				"application/typescript"							= "micro.desktop";
-				"application/x-desktop"							= "micro.desktop";
-				"application/x-sh"										= "micro.desktop";
-				"application/x-shellscript"					= "micro.desktop";
-				"application/x-yaml"									= "micro.desktop";
-				"application/xml"										= "micro.desktop";
-				"text/css"														= "micro.desktop";
-				"text/csv"														= "micro.desktop";
-				"text/markdown"											= "micro.desktop";
-				"text/plain"													= "micro.desktop";
-				"text/x-asm"													= "micro.desktop";
-				"text/x-c"														= "micro.desktop";
-				"text/x-c++hdr"											= "micro.desktop";
-				"text/x-c++src"											= "micro.desktop";
-				"text/x-chdr"												= "micro.desktop";
-				"text/x-csrc"												= "micro.desktop";
-				"text/x-diff"												= "micro.desktop";
-				"text/x-dockerfile"									= "micro.desktop";
-				"text/x-go"													= "micro.desktop";
-				"text/x-java-source"									= "micro.desktop";
-				"text/x-javascript"									= "micro.desktop";
-				"text/x-log"													= "micro.desktop";
-				"text/x-lua"													= "micro.desktop";
-				"text/x-makefile"										= "micro.desktop";
-				"text/x-nix"													= "micro.desktop";
-				"text/x-patch"												= "micro.desktop";
-				"text/x-perl"												= "micro.desktop";
-				"text/x-python"											= "micro.desktop";
-				"text/x-readme"											= "micro.desktop";
-				"text/x-ruby"												= "micro.desktop";
-				"text/x-rust"												= "micro.desktop";
-				"text/x-script"											= "micro.desktop";
-				"text/x-sh"													= "micro.desktop";
-				"text/x-sql"													= "micro.desktop";
-				"text/x-toml"												= "micro.desktop";
-				"text/x-typescript"									= "micro.desktop";
-				"text/xml"														= "micro.desktop";
+				"application/javascript"							= "org.gnome.TextEditor.desktop";
+				"application/json"										= "org.gnome.TextEditor.desktop";
+				"application/toml"										= "org.gnome.TextEditor.desktop";
+				"application/typescript"							= "org.gnome.TextEditor.desktop";
+				"application/x-desktop"							= "org.gnome.TextEditor.desktop";
+				"application/x-sh"										= "org.gnome.TextEditor.desktop";
+				"application/x-shellscript"					= "org.gnome.TextEditor.desktop";
+				"application/x-yaml"									= "org.gnome.TextEditor.desktop";
+				"application/xml"										= "org.gnome.TextEditor.desktop";
+				"text/css"														= "org.gnome.TextEditor.desktop";
+				"text/csv"														= "org.gnome.TextEditor.desktop";
+				"text/markdown"											= "org.gnome.TextEditor.desktop";
+				"text/plain"													= "org.gnome.TextEditor.desktop";
+				"text/x-asm"													= "org.gnome.TextEditor.desktop";
+				"text/x-c"														= "org.gnome.TextEditor.desktop";
+				"text/x-c++hdr"											= "org.gnome.TextEditor.desktop";
+				"text/x-c++src"											= "org.gnome.TextEditor.desktop";
+				"text/x-chdr"												= "org.gnome.TextEditor.desktop";
+				"text/x-csrc"												= "org.gnome.TextEditor.desktop";
+				"text/x-diff"												= "org.gnome.TextEditor.desktop";
+				"text/x-dockerfile"									= "org.gnome.TextEditor.desktop";
+				"text/x-go"													= "org.gnome.TextEditor.desktop";
+				"text/x-java-source"									= "org.gnome.TextEditor.desktop";
+				"text/x-javascript"									= "org.gnome.TextEditor.desktop";
+				"text/x-log"													= "org.gnome.TextEditor.desktop";
+				"text/x-lua"													= "org.gnome.TextEditor.desktop";
+				"text/x-makefile"										= "org.gnome.TextEditor.desktop";
+				"text/x-nix"													= "org.gnome.TextEditor.desktop";
+				"text/x-patch"												= "org.gnome.TextEditor.desktop";
+				"text/x-perl"												= "org.gnome.TextEditor.desktop";
+				"text/x-python"											= "org.gnome.TextEditor.desktop";
+				"text/x-readme"											= "org.gnome.TextEditor.desktop";
+				"text/x-ruby"												= "org.gnome.TextEditor.desktop";
+				"text/x-rust"												= "org.gnome.TextEditor.desktop";
+				"text/x-script"											= "org.gnome.TextEditor.desktop";
+				"text/x-sh"													= "org.gnome.TextEditor.desktop";
+				"text/x-sql"													= "org.gnome.TextEditor.desktop";
+				"text/x-toml"												= "org.gnome.TextEditor.desktop";
+				"text/x-typescript"									= "org.gnome.TextEditor.desktop";
+				"text/xml"														= "org.gnome.TextEditor.desktop";
 
 				# IDE
 				"application/x-code-workspace"				= "vscode.desktop";
