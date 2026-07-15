@@ -344,7 +344,7 @@ in
 
 		# --- Build tools & compilers ---
 		cargo clang clang-tools cmake gcc gcc.cc.lib glibc
-		gnumake rustc binutils
+		gnumake rustc binutils pkg-config gtk3.dev glib.dev
 
 		# --- Development ---
 		gh git nano nom gnome-text-editor micro zed-editor
