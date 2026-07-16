@@ -378,7 +378,7 @@ in
 		gnumake rustc binutils pkg-config gtk3.dev glib.dev
 
 		# --- Development ---
-		gh git nano nom gnome-text-editor micro zed-editor
+		gh git nano gnome-text-editor micro zed-editor
 		(python3.withPackages (ps: with ps; [
 			paho-mqtt pypdf torch torchvision matplotlib
 			west tkinter pyserial pyelftools pyyaml pykwalify
@@ -396,7 +396,7 @@ in
 		tcpdump socat netcat pciutils usbutils
 
 		# --- Nix tools ---
-		fastfetch nh nixfmt
+		fastfetch nh nixfmt nvd nix-output-monitor
 
 		# --- Hyprland & desktop shell ---
 		hyprland hypridle hyprshot hyprsunset
@@ -431,7 +431,7 @@ in
 		spice spice-gtk usbredir virt-manager virt-viewer virtiofsd
 
 		# --- Wine & gaming ---
-		steam-run wine wine64
+		steam-run wine64
 
 		# --- Android ---
 		android-tools scrcpy
