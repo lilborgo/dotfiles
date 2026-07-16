@@ -196,14 +196,44 @@ in
 		nix-ld	= {
 			enable		= true;
 			libraries	= with pkgs; [
-				alsa-lib atk bash cairo dbus expat fontconfig
-				freetype gcc gcc.cc.lib glib libgbm libGL libice
-				libnotify libsm libxcb libxcomposite libxdamage
-				libxext libxfixes libxkbcommon libxrandr libxrender
-				lttng-ust nspr nss pango polkit stdenv.cc.cc.lib
-				wayland libx11 libxcursor libxi gnupg libGL
-				libxrandr zlib gtk3 fribidi harfbuzz libtorch-bin
-				cups
+				# --- core / runtime ---
+				stdenv.cc.cc.lib gcc gcc.cc.lib glibc zlib bzip2 xz
+				zstd lz4 snappy libffi bash
+
+				# --- crypto / tls / auth ---
+				openssl curl libssh2 gnutls libgcrypt libgpg-error
+				krb5 cyrus_sasl p11-kit gnupg keyutils libsecret
+
+				# --- X11 / graphics stack ---
+				libx11 libxcb libice libsm libxext libxfixes libxrender
+				libxrandr libxcomposite libxdamage libxcursor libxi
+				libxtst libxinerama libxscrnsaver libxxf86vm libGL libGLU
+				libglvnd mesa vulkan-loader libdrm libgbm libepoxy
+
+				# --- wayland ---
+				wayland libxkbcommon
+
+				# --- fonts / text ---
+				fontconfig freetype harfbuzz fribidi icu
+
+				# --- gtk / theming / a11y ---
+				atk cairo pango gtk3 gtk4 gdk-pixbuf glib
+				at-spi2-core at-spi2-atk libnotify dbus polkit
+				shared-mime-info
+
+				# --- audio ---
+				alsa-lib libpulseaudio pipewire SDL2 SDL2_mixer portaudio
+
+				# --- image codecs ---
+				libpng libjpeg libtiff giflib libwebp
+
+				# --- misc data / io ---
+				sqlite libxml2 libxslt ncurses readline libuuid
+				util-linux nghttp2 libidn2 libpsl c-ares libusb1
+				pciutils libcap acl attr numactl nspr nss
+
+				# --- misc / debugging ---
+				lttng-ust libtorch-bin cups
 			];
 		};
 	};
@@ -269,6 +299,7 @@ in
 	systemd.services.NetworkManager-wait-online.enable	= false;
 	systemd.tmpfiles.rules	= [
 		"L+ /bin/bash - - - - ${pkgs.bash}/bin/bash"
+		"L+ /bin/chmod - - - - ${pkgs.coreutils}/bin/chmod"
 	];
 
 
