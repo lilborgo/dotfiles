@@ -183,7 +183,7 @@ in
 				mem		= "sudo smem -tk -c \"pid user name uss pss rss\"";
 				ls			= "eza --icons";
 				ll			= "eza -la --icons";
-				cat		= "bat";
+				nixlogs = "journalctl -u nixos-upgrade.service -b -e";
 			};
 			ohMyZsh	= {
 				enable	= true;
