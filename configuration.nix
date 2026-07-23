@@ -385,6 +385,8 @@ in
 			packaging patool psutil pylink-square requests
 			semver tqdm reuse anytree intelhex colorama
 			cryptography cbor pyocd jsonschema canopen
+			diffusers transformers accelerate safetensors
+			sentencepiece huggingface-hub pillow protobuf
 		]))
 		unstable.vscode unstable.claude-code probe-rs-tools
 		gnirehtet tio jetbrains.idea libtorch-bin dbeaver-bin
