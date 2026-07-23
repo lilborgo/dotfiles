@@ -114,7 +114,7 @@ in
 			extraGroups	= [
 				"disk" "dialout" "docker" "gamemode" "input"
 				"kvm" "libvirtd" "lp" "networkmanager"
-				"plugdev" "video" "wheel"
+				"plugdev" "video" "wheel" "wireshark"
 			];
 		};
 	};
@@ -157,6 +157,12 @@ in
 		hyprlock.enable			= true;
 		virt-manager.enable	= true;
 		xfconf.enable				= true;
+
+		wireshark = {
+			enable = true;
+			dumpcap.enable = true;
+			usbmon.enable = true;
+		};
 
 		java = {
 			enable = true;
