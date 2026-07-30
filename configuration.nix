@@ -25,6 +25,8 @@ in
 				if prev.stdenv.hostPlatform.isi686
 				then prev.openblas.overrideAttrs (_: { doCheck = false; })
 				else prev.openblas;
+			firefox = builtins.storePath /nix/store/bjqn6kvhl1p1kj0zgkhiq5sbl7xi68cq-firefox-152.0.6;
+			thunderbird = builtins.storePath /nix/store/kq5pl1xnpzmkh1x6dzy857l0929bkgx5-thunderbird-152.0.1;
 		})
 	];
 
@@ -225,7 +227,7 @@ in
 				# --- gtk / theming / a11y ---
 				atk cairo pango gtk3 gtk4 gdk-pixbuf glib
 				at-spi2-core at-spi2-atk libnotify dbus polkit
-				shared-mime-info
+				shared-mime-info glibc
 
 				# --- audio ---
 				alsa-lib libpulseaudio pipewire SDL2 SDL2_mixer portaudio

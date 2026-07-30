@@ -20,6 +20,32 @@ let
 		'';
 		meta.mainProgram = "ollama";
 	};
+
+	jlink-latest-bin = pkgs.stdenv.mkDerivation rec {
+		pname = "jlink-latest-bin";
+		version = "964"; # V9.64 -- bump manually, nixpkgs' segger-jlink lags behind upstream
+		src = pkgs.fetchurl {
+			url = "https://www.segger.com/downloads/jlink/JLink_Linux_V${version}_x86_64.tgz";
+			curlOpts = "--data accept_license_agreement=accepted";
+			sha256 = "sha256-xxk5mVgA9qRizeo7ORwY8o9EIzclXZtL/GQ0ZiMxEw0=";
+		};
+		nativeBuildInputs = [ pkgs.makeWrapper ];
+		dontUnpack = true;
+		installPhase = ''
+			runHook preInstall
+			mkdir -p $out/opt/segger-jlink $out/bin
+			tar xzf $src --strip-components=1 -C $out/opt/segger-jlink
+			for exe in $out/opt/segger-jlink/*; do
+				[ -f "$exe" ] && [ -x "$exe" ] || continue
+				name="$(basename "$exe")"
+				makeWrapper "$exe" "$out/bin/$name" \
+					--set LD_LIBRARY_PATH "/run/current-system/sw/share/nix-ld/lib:$out/opt/segger-jlink"
+			done
+			runHook postInstall
+		'';
+		meta.license = lib.licenses.unfree;
+		meta.mainProgram = "JLinkExe";
+	};
 in
 {
 	boot.kernelModules = ["kvm-intel" "kvm"];
@@ -64,12 +90,6 @@ in
 			nvtopPackages.nvidia
 			android-studio
 			rustdesk-flutter
-	];
-
-	nixpkgs.config.segger-jlink.acceptLicense = true;
-	nixpkgs.config.allowInsecurePredicate = pkg:
-	builtins.elem (pkgs.lib.getName pkg) [
-		"segger-jlink-qt4"
-		"segger-jlink"
+			jlink-latest-bin
 	];
 }
