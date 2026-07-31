@@ -386,7 +386,7 @@ in
 		gnumake rustc binutils pkg-config gtk3.dev glib.dev
 
 		# --- Development ---
-		gh git nano gnome-text-editor micro zed-editor
+		gh git nano gnome-text-editor micro
 		(python3.withPackages (ps: with ps; [
 			paho-mqtt pypdf torch torchvision matplotlib
 			west tkinter pyserial pyelftools pyyaml pykwalify
@@ -567,6 +567,13 @@ in
 				categories	= [ "Development" "IDE" "TextEditor" "Utility" ];
 				mimeType		= [ "application/x-code-workspace" ];
 			};
+			micro	= {
+				name				= "Micro";
+				exec				= "micro %F";
+				terminal		= true;
+				categories	= [ "TextEditor" "Utility" ];
+				mimeType		= [ "text/plain" ];
+			};
 			nixwiki	= {
 				name				= "Nixos Wiki";
 				exec				= "xdg-open https://search.nixos.org/";
@@ -656,46 +663,46 @@ in
 				"audio/x-wav"												= "vlc.desktop";
 
 				# Text editor
-				"application/javascript"							= "dev.zed.Zed.desktop";
-				"application/json"										= "dev.zed.Zed.desktop";
-				"application/toml"										= "dev.zed.Zed.desktop";
-				"application/typescript"							= "dev.zed.Zed.desktop";
-				"application/x-desktop"							= "dev.zed.Zed.desktop";
-				"application/x-sh"										= "dev.zed.Zed.desktop";
-				"application/x-shellscript"					= "dev.zed.Zed.desktop";
-				"application/x-yaml"									= "dev.zed.Zed.desktop";
-				"application/xml"										= "dev.zed.Zed.desktop";
-				"text/css"														= "dev.zed.Zed.desktop";
-				"text/csv"														= "dev.zed.Zed.desktop";
-				"text/markdown"											= "dev.zed.Zed.desktop";
-				"text/plain"													= "dev.zed.Zed.desktop";
-				"text/x-asm"													= "dev.zed.Zed.desktop";
-				"text/x-c"														= "dev.zed.Zed.desktop";
-				"text/x-c++hdr"											= "dev.zed.Zed.desktop";
-				"text/x-c++src"											= "dev.zed.Zed.desktop";
-				"text/x-chdr"												= "dev.zed.Zed.desktop";
-				"text/x-csrc"												= "dev.zed.Zed.desktop";
-				"text/x-diff"												= "dev.zed.Zed.desktop";
-				"text/x-dockerfile"									= "dev.zed.Zed.desktop";
-				"text/x-go"													= "dev.zed.Zed.desktop";
-				"text/x-java-source"									= "dev.zed.Zed.desktop";
-				"text/x-javascript"									= "dev.zed.Zed.desktop";
-				"text/x-log"													= "dev.zed.Zed.desktop";
-				"text/x-lua"													= "dev.zed.Zed.desktop";
-				"text/x-makefile"										= "dev.zed.Zed.desktop";
-				"text/x-nix"													= "dev.zed.Zed.desktop";
-				"text/x-patch"												= "dev.zed.Zed.desktop";
-				"text/x-perl"												= "dev.zed.Zed.desktop";
-				"text/x-python"											= "dev.zed.Zed.desktop";
-				"text/x-readme"											= "dev.zed.Zed.desktop";
-				"text/x-ruby"												= "dev.zed.Zed.desktop";
-				"text/x-rust"												= "dev.zed.Zed.desktop";
-				"text/x-script"											= "dev.zed.Zed.desktop";
-				"text/x-sh"													= "dev.zed.Zed.desktop";
-				"text/x-sql"													= "dev.zed.Zed.desktop";
-				"text/x-toml"												= "dev.zed.Zed.desktop";
-				"text/x-typescript"									= "dev.zed.Zed.desktop";
-				"text/xml"														= "dev.zed.Zed.desktop";
+				"application/javascript"							= "micro.desktop";
+				"application/json"										= "micro.desktop";
+				"application/toml"										= "micro.desktop";
+				"application/typescript"							= "micro.desktop";
+				"application/x-desktop"							= "micro.desktop";
+				"application/x-sh"										= "micro.desktop";
+				"application/x-shellscript"					= "micro.desktop";
+				"application/x-yaml"									= "micro.desktop";
+				"application/xml"										= "micro.desktop";
+				"text/css"														= "micro.desktop";
+				"text/csv"														= "micro.desktop";
+				"text/markdown"											= "micro.desktop";
+				"text/plain"													= "micro.desktop";
+				"text/x-asm"													= "micro.desktop";
+				"text/x-c"														= "micro.desktop";
+				"text/x-c++hdr"											= "micro.desktop";
+				"text/x-c++src"											= "micro.desktop";
+				"text/x-chdr"												= "micro.desktop";
+				"text/x-csrc"												= "micro.desktop";
+				"text/x-diff"												= "micro.desktop";
+				"text/x-dockerfile"									= "micro.desktop";
+				"text/x-go"													= "micro.desktop";
+				"text/x-java-source"									= "micro.desktop";
+				"text/x-javascript"									= "micro.desktop";
+				"text/x-log"													= "micro.desktop";
+				"text/x-lua"													= "micro.desktop";
+				"text/x-makefile"										= "micro.desktop";
+				"text/x-nix"													= "micro.desktop";
+				"text/x-patch"												= "micro.desktop";
+				"text/x-perl"												= "micro.desktop";
+				"text/x-python"											= "micro.desktop";
+				"text/x-readme"											= "micro.desktop";
+				"text/x-ruby"												= "micro.desktop";
+				"text/x-rust"												= "micro.desktop";
+				"text/x-script"											= "micro.desktop";
+				"text/x-sh"													= "micro.desktop";
+				"text/x-sql"													= "micro.desktop";
+				"text/x-toml"												= "micro.desktop";
+				"text/x-typescript"									= "micro.desktop";
+				"text/xml"														= "micro.desktop";
 
 				# IDE
 				"application/x-code-workspace"				= "vscode.desktop";
@@ -948,73 +955,6 @@ in
 			};
 		};
 
-		# --- Zed ---
-		programs.zed-editor = {
-			enable = true;
-
-			extensions = [
-				"devicetree" "kconfig" "linkerscript" "assembly" "probe-rs"
-				"neocmake" "make" "nix" "toml" "ini" "dockerfile" "docker-compose"
-				"latex" "comment" "file-icons" "hexpeek" "git-firefly"
-			];
-
-			extraPackages = with pkgs; [
-				rust-analyzer
-				clang-tools
-				neocmakelsp
-				basedpyright
-				ruff
-				dts-lsp
-				nixd
-			];
-
-			userSettings = {
-				base_keymap	= "VSCode";
-				vim_mode		= false;
-				ui_font_family			= "JetBrainsMono Nerd Font";
-				ui_font_size				= 14;
-				buffer_font_family	= "JetBrainsMono Nerd Font";
-				buffer_font_size		= 12;
-				load_direnv = "shell_hook";
-				node.path = "${pkgs.nodejs}/bin/node";
-				inlay_hints.enabled = true;
-				diagnostics.inline.enabled = true;
-				icon_theme = "File Icons";
-
-				theme	= {
-					mode	= "system";
-					light	= "One Light";
-					dark	= "Ayu Dark";
-				};
-
-				terminal = {
-					font_family				= "JetBrainsMono Nerd Font";
-					dock							= "right";
-					shell							= "system";
-					working_directory	= "current_project_directory";
-				};
-
-				lsp = {
-					rust-analyzer.binary.path	= "${pkgs.rust-analyzer}/bin/rust-analyzer";
-					clangd.binary.path				= "${pkgs.clang-tools}/bin/clangd";
-					cmake.binary = {
-						path			= "${pkgs.neocmakelsp}/bin/neocmakelsp";
-						arguments	= [ "stdio" ];
-					};
-					basedpyright.binary = {
-						path			= "${pkgs.basedpyright}/bin/basedpyright-langserver";
-						arguments	= [ "--stdio" ];
-					};
-					ruff.binary = {
-						path			= "${pkgs.ruff}/bin/ruff";
-						arguments	= [ "server" ];
-					};
-					nixd.binary.path = "${pkgs.nixd}/bin/nixd";
-					devicetree.binary.path = "${pkgs.dts-lsp}/bin/dts-lsp";
-				};
-			};
-		};
-
 		home.file.".config/Thunar/uca.xml".text	= ''
 			<?xml version="1.0" encoding="UTF-8"?>
 			<actions>
@@ -1061,17 +1001,6 @@ in
 				<other-files/>
 				<text-files/>
 				<video-files/>
-			</action>
-			<action>
-				<icon>zed</icon>
-				<name>Open Folder with Zed</name>
-				<submenu></submenu>
-				<unique-id>1783766142256-1</unique-id>
-				<command>zeditor %f</command>
-				<description>Open this folder as a project in Zed</description>
-				<range></range>
-				<patterns>*</patterns>
-				<directories/>
 			</action>
 			<action>
 				<icon>vscode</icon>
