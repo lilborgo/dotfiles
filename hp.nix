@@ -91,5 +91,13 @@ in
 			android-studio
 			rustdesk-flutter
 			jlink-latest-bin
+			nrfutil
+			nrf5-sdk
+			nrf-udev
+			nrfconnect
 	];
+
+
+			nixpkgs.config.allowUnfree = true;
+			nixpkgs.config.segger-jlink.acceptLicense = true;
 }
