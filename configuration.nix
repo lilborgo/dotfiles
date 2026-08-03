@@ -400,7 +400,7 @@ in
 		gnirehtet tio jetbrains.idea libtorch-bin dbeaver-bin
 		nodejs dtc wireshark pyocd
 		jq yq-go delta lazygit sqlite hyperfine tokei
-		gdb strace ltrace openssl
+		gdb strace ltrace openssl bun
 
 		# --- Networking & debugging ---
 		tcpdump socat netcat pciutils usbutils
