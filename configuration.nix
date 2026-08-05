@@ -72,7 +72,7 @@ in
 		nftables.enable				= true;
 		firewall	= {
 			enable					= true;
-			allowedTCPPorts	= [];
+			allowedTCPPorts	= [22];
 			allowedUDPPorts	= [];
 			trustedInterfaces	= [ "virbr0" ];
 		};
@@ -309,6 +309,17 @@ in
 		"L+ /bin/bash - - - - ${pkgs.bash}/bin/bash"
 		"L+ /bin/chmod - - - - ${pkgs.coreutils}/bin/chmod"
 	];
+	services.openssh = {
+		enable = true;
+		ports = [ 22 ];
+		settings = {
+			PasswordAuthentication = true;
+			AllowUsers = ["fede"];
+			UseDns = true;
+			X11Forwarding = false;
+			PermitRootLogin = "no";
+		};
+	};
 
 
 	#	============================================================

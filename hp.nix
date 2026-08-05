@@ -76,8 +76,6 @@ in
 	services.ollama = {
 		enable = true;
 		package = ollama-cuda-bin;
-		loadModels = [ "qwen2.5:7b-instruct" ];
-		syncModels = true;
 	};
 
 	environment.systemPackages = with pkgs; [
@@ -95,9 +93,10 @@ in
 			nrf5-sdk
 			nrf-udev
 			nrfconnect
+			opencode
 	];
 
 
-			nixpkgs.config.allowUnfree = true;
-			nixpkgs.config.segger-jlink.acceptLicense = true;
+	nixpkgs.config.allowUnfree = true;
+	nixpkgs.config.segger-jlink.acceptLicense = true;
 }
