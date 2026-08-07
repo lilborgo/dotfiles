@@ -58,8 +58,10 @@ in
 	};
 
 	services.udev.extraRules = ''
-			# SEGGER J-Link
-			SUBSYSTEM=="usb", ATTR{idVendor}=="1366", ATTR{idProduct}=="0101", MODE="0666", GROUP="plugdev"
+		# SEGGER J-Link
+		SUBSYSTEM=="usb", ATTR{idVendor}=="1366", ATTR{idProduct}=="0101", MODE="0666", GROUP="plugdev"
+		# ST-LINK/V3
+		SUBSYSTEM=="usb", ATTR{idVendor}=="0483", ATTR{idProduct}=="374e", MODE="0666", GROUP="plugdev"
 	'';
 
 	networking	= {
@@ -94,8 +96,8 @@ in
 			nrf-udev
 			nrfconnect
 			opencode
+			stlink
 	];
-
 
 	nixpkgs.config.allowUnfree = true;
 	nixpkgs.config.segger-jlink.acceptLicense = true;

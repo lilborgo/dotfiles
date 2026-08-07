@@ -406,6 +406,7 @@ in
 			cryptography cbor pyocd jsonschema canopen
 			diffusers transformers accelerate safetensors
 			sentencepiece huggingface-hub pillow protobuf
+			plotly
 		]))
 		unstable.vscode unstable.claude-code probe-rs-tools
 		gnirehtet tio jetbrains.idea libtorch-bin dbeaver-bin
