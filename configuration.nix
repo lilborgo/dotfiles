@@ -25,8 +25,6 @@ in
 				if prev.stdenv.hostPlatform.isi686
 				then prev.openblas.overrideAttrs (_: { doCheck = false; })
 				else prev.openblas;
-			firefox = builtins.storePath /nix/store/bjqn6kvhl1p1kj0zgkhiq5sbl7xi68cq-firefox-152.0.6;
-			thunderbird = builtins.storePath /nix/store/kq5pl1xnpzmkh1x6dzy857l0929bkgx5-thunderbird-152.0.1;
 		})
 	];
 
@@ -683,7 +681,9 @@ in
 				"application/x-sh"										= "micro.desktop";
 				"application/x-shellscript"					= "micro.desktop";
 				"application/x-yaml"									= "micro.desktop";
+				"application/yaml"										= "micro.desktop";
 				"application/xml"										= "micro.desktop";
+				"audio/vnd.dts"											= "micro.desktop";
 				"text/css"														= "micro.desktop";
 				"text/csv"														= "micro.desktop";
 				"text/markdown"											= "micro.desktop";
