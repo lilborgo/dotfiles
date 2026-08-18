@@ -3,10 +3,10 @@
 let
 	ollama-cuda-bin = pkgs.stdenv.mkDerivation rec {
 		pname = "ollama-cuda-bin";
-		version = "0.32.3";
+		version = "0.32.14";
 		src = pkgs.fetchurl {
 			url = "https://github.com/ollama/ollama/releases/download/v${version}/ollama-linux-amd64.tar.zst";
-			sha256 = "2597d74fbe654ef6a37db56f771cf37d4a85c6bde4018127874e3927d3113800";
+			sha256 = "13yy4y5vwg0wm5wq7vs4s5jlr706cvq88c49gwxanip1f5x92866";
 		};
 		nativeBuildInputs = [ pkgs.zstd pkgs.makeWrapper ];
 		dontUnpack = true;
