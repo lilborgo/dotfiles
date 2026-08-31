@@ -1,6 +1,7 @@
 { pkgs, unstable, ... }:
 
 {
+	boot.kernelPackages	= pkgs.linuxPackages_latest;
 	boot.kernelModules = ["kvm-amd" "kvm"];
 	programs.steam = {
 		enable = true;

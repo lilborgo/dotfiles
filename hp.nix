@@ -48,6 +48,7 @@ let
 	};
 in
 {
+	boot.kernelPackages	= pkgs.linuxPackages_6_12;
 	boot.kernelModules = ["kvm-intel" "kvm"];
 
 	hardware.nvidia = {
