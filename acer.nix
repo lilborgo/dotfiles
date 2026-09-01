@@ -11,14 +11,32 @@
 	};
 	services.xserver.videoDrivers = [ "amdgpu" ];
 
+	services.scx = {
+		enable		= true;
+		scheduler	= "scx_lavd";
+	};
+
+	programs.gamemode.settings = {
+		general = {
+			renice							= 15;
+			desiredgov					= "performance";
+			softrealtime				= "auto";
+			ioprio							= 0;
+			inhibit_screensaver	= 1;
+		};
+		cpu = {
+			park_cores	= "no";
+			pin_cores		= "no";
+		};
+	};
+
 	environment.systemPackages = with pkgs; [
 			prismlauncher
 			gzdoom
 			lutris
 	];
 
-	home-manager.users.fede= { pkgs, ...}:
-	{
+	home-manager.users.fede= { pkgs, ...}: {
 		home.file.".local/share/lutris/runners/proton/NIXOS_PROTON".source = pkgs.proton-ge-bin.steamcompattool;
 	};
 }
