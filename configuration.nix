@@ -924,6 +924,11 @@ in
 						mode = "Search";
 						action = "SearchCancel";
 					}
+					{
+						key = "Enter";
+						mods = "Shift";
+						chars = builtins.fromJSON ''"\u001b[13;2u"'';
+					}
 				];
 
 				colors = {
