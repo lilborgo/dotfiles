@@ -428,7 +428,7 @@ in
 		tor-browser vlc foliate papirus-folders
 
 		# --- Browser ---
-		firefox ungoogled-chromium
+		firefox chrome
 
 		# --- Wayland & clipboard ---
 		cliphist wev wl-clipboard
