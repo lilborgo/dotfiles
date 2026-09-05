@@ -84,7 +84,6 @@ in
 	environment.systemPackages = with pkgs; [
 			unstable.stm32cubemx
 			stm32flash
-			ungoogled-chromium
 			gcc-arm-embedded
 			mqttx
 			thunderbird
