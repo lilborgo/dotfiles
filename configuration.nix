@@ -34,6 +34,8 @@ in
 	#	============================================================
 
 	boot	= {
+		tmp.cleanOnBoot	= true;
+
 		loader	= {
 			efi.canTouchEfiVariables	= true;
 			grub	= {
@@ -189,6 +191,7 @@ in
 				ls			= "eza --icons";
 				ll			= "eza -la --icons";
 				nixlogs = "journalctl -u nixos-upgrade.service -b -e";
+				stress = "stress-ng --cpu 0 --vm 0 --vm-bytes 80% --hdd 2 --hdd-bytes 10G --gpu 0 --timeout 2m --metrics-brief";
 			};
 			ohMyZsh	= {
 				enable	= true;
@@ -288,6 +291,9 @@ in
 	# --- Power management ---
 	services.upower.enable					= true;
 
+	# --- Firmware ---
+	services.fwupd.enable	= true;
+
 	# --- Desktop utilities ---
 	services.flatpak.enable		= true;
 	services.gnome.gnome-keyring.enable	= true;
@@ -350,6 +356,10 @@ in
 
 	xdg.portal	= {
 		enable				= true;
+		config	= {
+			common.default		= [ "gtk" ];
+			hyprland.default	= [ "hyprland" "gtk" ];
+		};
 		extraPortals	= with pkgs; [
 			xdg-desktop-portal-gtk
 			xdg-desktop-portal-hyprland
@@ -378,7 +388,6 @@ in
 		QT_SCALE_FACTOR							= "1";
 		LIBTORCH = "${pkgs.libtorch-bin}";
 		LIBTORCH_INCLUDE = "${pkgs.libtorch-bin.dev}";
-		LD_LIBRARY_PATH = "$NIX_LD_LIBRARY_PATH";
 	};
 
 	environment.systemPackages	= with pkgs; [
@@ -387,7 +396,7 @@ in
 		ripgrep smem tree wget alacritty exfat srecord
 		poppler-utils glib sshpass dig
 		curl duf hexyl lsof tealdeer tmux rsync
-		watch parallel mosh
+		watch parallel mosh stress-ng
 
 		# --- Build tools & compilers ---
 		cargo clang clang-tools cmake gcc gcc.cc.lib glibc
@@ -496,6 +505,8 @@ in
 	#	============================================================
 	# HOME MANAGER — fede
 	#	============================================================
+
+	home-manager.useGlobalPkgs	= true;
 
 	home-manager.users.fede	= { pkgs, ... }: {
 		home.stateVersion	= "23.11";

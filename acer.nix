@@ -34,6 +34,7 @@
 			prismlauncher
 			gzdoom
 			lutris
+			nvtopPackages.amd
 	];
 
 	home-manager.users.fede= { pkgs, ...}: {

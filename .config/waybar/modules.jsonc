@@ -67,7 +67,7 @@
     "pulseaudio": {
         "format": "{icon}",
         "format-bluetooth": "{icon}",
-        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-click-right": "hyprctl dispatch exec 'pavucontrol -t 4'",
         "tooltip-format": "{volume}%",
         "format-muted": "<span size='12pt'>󰝟</span>",
