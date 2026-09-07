@@ -388,12 +388,13 @@ in
 		QT_SCALE_FACTOR							= "1";
 		LIBTORCH = "${pkgs.libtorch-bin}";
 		LIBTORCH_INCLUDE = "${pkgs.libtorch-bin.dev}";
+		LD_LIBRARY_PATH = "/run/current-system/sw/share/nix-ld/lib";
 	};
 
 	environment.systemPackages	= with pkgs; [
 		# --- Terminal & shell utilities ---
 		bash bat btop busybox eza fd file fzf htop ncdu
-		ripgrep smem tree wget alacritty exfat srecord
+		ripgrep smem tree wget kitty exfat srecord
 		poppler-utils glib sshpass dig
 		curl duf hexyl lsof tealdeer tmux rsync
 		watch parallel mosh stress-ng
@@ -869,116 +870,117 @@ in
 			};
 		};
 
-		programs.alacritty = {
+		programs.kitty = {
 			enable = true;
 
+			themeFile = null;
+
+			font = {
+				name = "JetBrainsMono Nerd Font";
+			};
+			
+			shellIntegration = {
+				enableZshIntegration = true;
+			};
+
 			settings = {
-				window = {
-					dynamic_title = false;
-					padding = {
-						x = 10;
-						y = 10;
-					};
-				};
+				enable_audio_bell = false;
+				visual_bell_duration = "0.0";
+				window_alert_on_bell = false;
+				confirm_os_window_close = 0;
+				# Window settings
+				window_padding_width = 10;
+				hide_window_decorations = false;
+				
+				# Cursor settings
+				cursor_shape = "underline";
+				cursor_blink_interval = "0.5";
 
-				cursor = {
-					style = {
-						shape = "Underline";
-						blinking = "On";
-					};
-				};
+				# Selection
+				copy_on_select = "yes";
 
-				selection = {
-					save_to_clipboard = true;
-				};
+				# --- Stile Tab (Ispirato a Konsole) ---
+				tab_bar_edge = "bottom";            # Barra in basso come Konsole
+				tab_bar_style = "separator";         # O "slant" per schede sagomate
+				tab_powerline_style = "slanted";
+				active_tab_font_style = "bold";
+				inactive_tab_font_style = "normal";
 
-				keyboard.bindings = [
-					{
-						key = ";";
-						mods = "Control";
-						action = "CreateNewWindow";
-					}
-					{
-						key = ":";
-						mods = "Control|Shift";
-						command = "thunar";
-					}
-					{
-						key = "ArrowUp";
-						mods = "Control";
-						action = "ScrollLineUp";
-					}
-					{
-						key = "ArrowDown";
-						mods = "Control";
-						action = "ScrollLineDown";
-					}
-					{
-						key = "F";
-						mods = "Control|Shift";
-						action = "None";
-					}
-					{
-						key = "F";
-						mods = "Control";
-						action = "SearchForward";
-					}
-					{
-						key = "F";
-						mods = "Control";
-						mode = "~Search";
-						action = "SearchForward";
-					}
-					{
-						key = "F";
-						mods = "Control";
-						mode = "Search";
-						action = "SearchCancel";
-					}
-					{
-						key = "Enter";
-						mods = "Shift";
-						chars = builtins.fromJSON ''"\u001b[13;2u"'';
-					}
-				];
+				# Colorazione Tab (coerente con la tua palette)
+				active_tab_foreground   = "#0c0f10";
+				active_tab_background   = "#22c9c0"; # Tab attivo in evidenza
+				inactive_tab_foreground = "#a9bdb8";
+				inactive_tab_background = "#1b2122"; # Tab inattivi scuri
+				tab_bar_background      = "#0c0f10";
 
-				colors = {
-					primary = {
-						background = "#0c0f10";
-						foreground = "#d3e4df";
-					};
+				# Colors - Primary
+				background = "#0c0f10";
+				foreground = "#d3e4df";
+				cursor = "#22c9c0";
+				selection_background = "#2a3534";
+				selection_foreground = "none";
 
-					cursor = {
-						cursor = "#22c9c0";
-					};
+				# Colors - Normal
+				color0 = "#1b2122";
+				color1 = "#ec3f5d";
+				color2 = "#46c08a";
+				color3 = "#f3c44b";
+				color4 = "#22c9c0";
+				color5 = "#e0588f";
+				color6 = "#3fd0c6";
+				color7 = "#a9bdb8";
 
-					selection = {
-						text = "CellForeground";
-						background = "#2a3534";
-					};
+				# Colors - Bright
+				color8  = "#3a4644";
+				color9  = "#ff5e74";
+				color10 = "#5fd6a0";
+				color11 = "#ffd76a";
+				color12 = "#3fd0c6";
+				color13 = "#f06ea0";
+				color14 = "#6fe0d6";
+				color15 = "#d3e4df";
+			};
 
-					normal = {
-						black = "#1b2122";
-						red = "#ec3f5d";
-						green = "#46c08a";
-						yellow = "#f3c44b";
-						blue = "#22c9c0";
-						magenta = "#e0588f";
-						cyan = "#3fd0c6";
-						white = "#a9bdb8";
-					};
+			keybindings = {
+				# Navigazione tra pannelli/split affiancati
+				"ctrl+left" = "neighboring_window left";
+				"ctrl+right" = "neighboring_window right";
 
-					bright = {
-						black = "#3a4644";
-						red = "#ff5e74";
-						green = "#5fd6a0";
-						yellow = "#ffd76a";
-						blue = "#3fd0c6";
-						magenta = "#f06ea0";
-						cyan = "#6fe0d6";
-						white = "#d3e4df";
-					};
-				};
+				# Creazione Split (Orizzontale / Verticale)
+				"ctrl+shift+e" = "launch --location=vsplit";
+				"ctrl+shift+o" = "launch --location=hsplit";
+
+				# Gestione Tab stile Browser
+				"ctrl+t" = "new_tab";
+				"ctrl+w" = "close_tab";
+				"ctrl+tab" = "next_tab";
+				"ctrl+shift+tab" = "previous_tab";
+
+				# Navigazione Tab diretta
+				"ctrl+1" = "goto_tab 1";
+				"ctrl+2" = "goto_tab 2";
+				"ctrl+3" = "goto_tab 3";
+				"ctrl+4" = "goto_tab 4";
+				"ctrl+5" = "goto_tab 5";
+				"ctrl+6" = "goto_tab 6";
+				"ctrl+7" = "goto_tab 7";
+				"ctrl+8" = "goto_tab 8";
+				"ctrl+9" = "goto_tab 9";
+
+				# Scorciatoie personalizzate
+				"ctrl+;" = "no_op";
+				"ctrl+shift+:" = "launch --type=os-window thunar";
+				
+				# Scroll
+				"ctrl+up" = "scroll_line_up";
+				"ctrl+down" = "scroll_line_down";
+
+				# Ricerca
+				"ctrl+shift+f" = "no_op";
+				"ctrl+f" = "show_scrollback";
+
+				# Shift+Enter
+				"shift+enter" = "send_text all \\x1b[13;2u";
 			};
 		};
 
@@ -990,7 +992,7 @@ in
 				<name>Open Terminal Here</name>
 				<submenu></submenu>
 				<unique-id>1720621850636761-1</unique-id>
-				<command>alacritty --working-directory %f</command>
+				<command>kitty --working-directory %f</command>
 				<description>Open terminal in current directory</description>
 				<range></range>
 				<patterns>*</patterns>

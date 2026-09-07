@@ -45,7 +45,7 @@ configuration {
 	sorting-method: "normal";
 
 	/*---------- Misc setting ----------*/
-	terminal: "alacritty";
+	terminal: "kitty";
 	sort: false;
 	threads: 0;
 
