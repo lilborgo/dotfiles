@@ -397,7 +397,7 @@ in
 		ripgrep smem tree wget kitty exfat srecord
 		poppler-utils glib sshpass dig
 		curl duf hexyl lsof tealdeer tmux rsync
-		watch parallel mosh stress-ng
+		watch parallel mosh stress-ng peaclock
 
 		# --- Build tools & compilers ---
 		cargo clang clang-tools cmake gcc gcc.cc.lib glibc
