@@ -2,6 +2,7 @@
     "layer": "top",
     "position": "top",
     "margin": "3 1",
+    "reload_style_on_change": true,
 
     "group/left" : {
         "orientation": "horizontal",
