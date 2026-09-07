@@ -415,7 +415,7 @@ in
 			sentencepiece huggingface-hub pillow protobuf
 			plotly
 		]))
-		unstable.vscode unstable.claude-code probe-rs-tools
+		vscode unstable.claude-code probe-rs-tools
 		gnirehtet tio jetbrains.idea libtorch-bin dbeaver-bin
 		nodejs dtc wireshark pyocd
 		jq yq-go delta lazygit sqlite hyperfine tokei
