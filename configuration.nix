@@ -198,6 +198,10 @@ in
 				theme		= "bira";
 				plugins	= [ "git" ];
 			};
+
+			interactiveShellInit = ''
+  			export LD_LIBRARY_PATH="/run/current-system/sw/share/nix-ld/lib:$LD_LIBRARY_PATH"
+			'';
 		};
 
 		# --- nix-ld (dynamic linker for unpatched binaries) ---
@@ -388,6 +392,9 @@ in
 		QT_SCALE_FACTOR							= "1";
 		LIBTORCH = "${pkgs.libtorch-bin}";
 		LIBTORCH_INCLUDE = "${pkgs.libtorch-bin.dev}";
+	};
+
+	environment.variables = {
 		LD_LIBRARY_PATH = "/run/current-system/sw/share/nix-ld/lib";
 	};
 
