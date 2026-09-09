@@ -192,6 +192,7 @@ in
 				ll			= "eza -la --icons";
 				nixlogs = "journalctl -u nixos-upgrade.service -b -e";
 				stress = "stress-ng --cpu 0 --vm 0 --vm-bytes 80% --hdd 2 --hdd-bytes 10G --gpu 0 --timeout 2m --metrics-brief";
+				ssh = "kitty +kitten ssh";
 			};
 			ohMyZsh	= {
 				enable	= true;
