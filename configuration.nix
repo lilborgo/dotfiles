@@ -443,7 +443,7 @@ in
 		duplicati kdePackages.okular file-roller filezilla freefilesync
 		gparted impression libqalculate libreoffice-qt localsend
 		loupe pavucontrol speedcrunch styluslabs-write-bin
-		tor-browser vlc foliate papirus-folders
+		tor-browser vlc foliate papirus-folders parted
 
 		# --- Browser ---
 		firefox google-chrome
@@ -892,6 +892,7 @@ in
 			};
 
 			settings = {
+				enabled_layouts = "tall, fat, grid, splits, stack";
 				enable_audio_bell = false;
 				visual_bell_duration = "0.0";
 				window_alert_on_bell = false;
@@ -954,9 +955,9 @@ in
 				"ctrl+left" = "neighboring_window left";
 				"ctrl+right" = "neighboring_window right";
 
-				# Creazione Split (Orizzontale / Verticale)
-				"ctrl+shift+e" = "launch --location=vsplit";
-				"ctrl+shift+o" = "launch --location=hsplit";
+				# Creazione Split
+				"ctrl+shift+enter" = "new_window";
+    			"ctrl+shift+l" = "next_layout";
 
 				# Gestione Tab stile Browser
 				"ctrl+t" = "new_tab";
@@ -978,10 +979,6 @@ in
 				# Scorciatoie personalizzate
 				"ctrl+;" = "no_op";
 				"ctrl+shift+:" = "launch --type=os-window thunar";
-				
-				# Scroll
-				"ctrl+up" = "scroll_line_up";
-				"ctrl+down" = "scroll_line_down";
 
 				# Ricerca
 				"ctrl+shift+f" = "no_op";
