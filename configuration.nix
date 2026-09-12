@@ -598,8 +598,8 @@ in
 			};
 			micro	= {
 				name				= "Micro";
-				exec				= "micro %F";
-				terminal		= true;
+				exec				= "kitty -e micro %F";
+				terminal		= false;
 				categories	= [ "TextEditor" "Utility" ];
 				mimeType		= [ "text/plain" ];
 			};
@@ -612,8 +612,8 @@ in
 			};
 			nmtui	= {
 				name				= "nmtui";
-				exec				= "nmtui";
-				terminal		= true;
+				exec				= "kitty -e nmtui";
+				terminal		= false;
 				categories	= [ "Network" ];
 			};
 			spotify	= {
