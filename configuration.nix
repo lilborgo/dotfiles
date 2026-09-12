@@ -401,10 +401,10 @@ in
 
 	environment.systemPackages	= with pkgs; [
 		# --- Terminal & shell utilities ---
-		bash bat btop busybox eza fd file fzf htop ncdu
+		bash bat btop busybox eza fd file fzf htop gdu
 		ripgrep smem tree wget kitty exfat srecord
 		poppler-utils glib sshpass dig
-		curl duf hexyl lsof tealdeer tmux rsync
+		curl duf lazyjournal hexyl lsof tealdeer tmux rsync
 		watch parallel mosh stress-ng peaclock
 
 		# --- Build tools & compilers ---
@@ -440,9 +440,9 @@ in
 		lxsession rofi hyprpaper waybar
 
 		# --- GUI applications ---
-		duplicati kdePackages.okular file-roller filezilla freefilesync
+		kdePackages.okular file-roller filezilla freefilesync
 		gparted impression libqalculate libreoffice-qt localsend
-		loupe pavucontrol speedcrunch styluslabs-write-bin
+		loupe pavucontrol styluslabs-write-bin
 		tor-browser vlc foliate papirus-folders parted
 
 		# --- Browser ---
@@ -452,7 +452,7 @@ in
 		cliphist wev wl-clipboard
 
 		# --- Networking ---
-		iproute2 networkmanager networkmanagerapplet nmap wireguard-tools zenmap postman
+		iproute2 networkmanager networkmanagerapplet nmap wireguard-tools posting
 
 		# --- Bluetooth ---
 		blueman bluez upower
