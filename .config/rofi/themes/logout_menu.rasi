@@ -5,7 +5,7 @@ configuration {
 }
 
 * {
-    font:                        "CaskaydiaCove Nerd Font, bold 14";
+    font:                        "Open Sans Semibold 14";
 }
 
 window {
@@ -90,7 +90,8 @@ error-message {
     border:                      0px solid;
     border-radius:               0px;
     border-color:                @selected;
-    background-color:            @background;
+    background-color:            transparent;
+    background-image:            @glass-panel;
     text-color:                  @foreground;
 }
 
@@ -111,7 +112,7 @@ listview {
     border:                      0px solid;
     border-radius:               100%;
     border-color:                @selected;
-    background-color:            @background;
+    background-color:            transparent;
     text-color:                  @foreground;
     cursor:                      "default";
 }
@@ -122,14 +123,16 @@ element {
     padding:                     15px 0;
     border:                      0px solid;
     border-radius:               100%;
-    border-color:                @selected;
-    background-color:            @background-alt;
+    border:                      1px;
+    border-color:                @rim;
+    background-color:            transparent;
+    background-image:            @glass-raised;
     text-color:                  @foreground;
     cursor:                      pointer;
 }
 
 element-text {
-    font: "CaskaydiaCove Nerd Font Propo, bold 19";
+    font: "Symbols Nerd Font 19";
     background-color:            transparent;
     text-color:                  inherit;
     cursor:                      inherit;
@@ -138,6 +141,8 @@ element-text {
 }
 
 element selected.normal {
-    background-color:            @foreground;
-    text-color:                  @background;
+    background-color:            transparent;
+    background-image:            @glass-selected;
+    border-color:                @rim-strong;
+    text-color:                  @selected;
 }

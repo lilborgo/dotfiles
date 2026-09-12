@@ -1,22 +1,28 @@
-@define-color module-bg     rgba(12, 15, 16, 0.9);
-@define-color tooltip-bg    @module-bg;
-@define-color inactive      #929292;
-@define-color fg            #d3e4df;
+/* Frutiger Aero - deep aqua.
+ * The palette comes from ~/.config/theme/colors.css, which home-manager
+ * generates from palette.nix. Only the role aliases live here. */
+@import url("file:///home/fede/.config/theme/colors.css");
+
+@define-color module-bg     alpha(@aero_deep, 0.90);
+@define-color tooltip-bg    alpha(@aero_deep, 0.94);
+@define-color inactive      @aero_inactive;
+@define-color fg            @aero_foam;
 @define-color workspace-fg  @fg;
 
-@define-color red           #ec3f5d;
-@define-color blue          #22c9c0;
-@define-color yellow        #f3c44b;
-@define-color green         #46c08a;
-@define-color purple        #a277ff;
-@define-color pink          #ec6a9c;
-@define-color orange        #f39c4b;
-@define-color nix-blue      #7ebae4;
-@define-color nix-deep      #5277c3;
+@define-color red           @aero_coral;
+@define-color blue          @aero_aqua;
+@define-color yellow        @aero_sun;
+@define-color green         @aero_grass;
+@define-color purple        #9d7bff;
+@define-color pink          #ff7fb0;
+@define-color orange        #ffa94b;
+@define-color nix-blue      @aero_sky;
+@define-color nix-deep      @aero_mid;
 
 
 * {
-    font-family: 'JetBrainsMono Nerd Font Propo';
+    /* humanist first, Nerd Font behind it so the glyphs still resolve */
+    font-family: 'Open Sans', 'JetBrainsMono Nerd Font Propo';
     font-size: 14px;
 	border: none;
 	border-radius: 0;
@@ -27,10 +33,11 @@
 }
 
 #waybar {
-    font-weight: 700;
+    font-weight: 600;
     background: transparent;
     font-size: 14px;
     color: @fg;
+    text-shadow: 0 1px 1px rgba(3, 8, 9, 0.9);
 }
 
 /* global paddings */
@@ -79,13 +86,27 @@
     margin: 0 3px;
 }
 
+/* Aero glass. The hard 48%/52% stop is the whole trick: a soft gradient
+ * reads as plastic, a hard mid-stop reads as glass with a light source
+ * above it. The two inset shadows are the top gloss rim and the bounce
+ * light coming back off the bottom edge. */
+/* Aero glass. The hard mid-stop is the classic trick, but it only reads as
+ * glass when both halves are tinted - with neutral greys it just looks like
+ * two stacked blocks. Hence the aqua-tinted mid/deep, plus an inner cyan
+ * glow so the pill looks lit from within rather than merely shaded. */
 #right,
 #left,
 #right-hidden-top,
 #left-hidden-top {
     padding: 2px 10px;
     border-radius: 15px;
-    background: @module-bg;
+    background-image: linear-gradient(to bottom,
+        alpha(@aero_rim,   0.16)   0%,
+        alpha(@aero_mid,   0.94)  46%,
+        alpha(@aero_deep,  0.97)  54%,
+        alpha(@aero_abyss, 0.97) 100%);
+    box-shadow: inset 0  1px 0 alpha(@aero_gloss, 0.35),
+                inset 0 -1px 0 alpha(@aero_rim,   0.10);
     transition: box-shadow 0.3s ease;
 }
 
@@ -103,11 +124,18 @@
 #right-hidden-top:hover,
 #left-hidden-top:hover,
 #clock:hover {
-    box-shadow: 0 0 12px 1px rgba(211, 228, 223, 0.15);
+    box-shadow: inset 0 1px 0 alpha(@aero_gloss, 0.55),
+                inset 0 -1px 0 alpha(@aero_rim, 0.22);
 }
 
 #clock {
-    background: @module-bg;
+    background-image: linear-gradient(to bottom,
+        alpha(@aero_rim,   0.18)   0%,
+        alpha(@aero_mid,   0.96)  46%,
+        alpha(@aero_deep,  0.98)  54%,
+        alpha(@aero_abyss, 0.97) 100%);
+    box-shadow: inset 0  1px 0 alpha(@aero_gloss, 0.38),
+                inset 0 -1px 0 alpha(@aero_rim,   0.10);
     padding: 1px 18px;
     border-radius: 15px;
     transition: box-shadow 0.3s ease;
@@ -115,11 +143,6 @@
 
 #custom-notification {
     padding: 0 6px;
-    transition: font-size 0.2s ease;
-}
-
-#custom-notification:hover {
-    font-size: 16px;
 }
 
 /* ---<==== Nix launcher ====>--- */
@@ -127,18 +150,6 @@
     margin-right: 8px;
     font-size: 17px;
     color: @nix-blue;
-    animation: nix-shimmer 5s ease-in-out infinite;
-    transition: font-size 0.2s ease, color 0.2s ease;
-}
-
-#custom-start:hover {
-    font-size: 20px;
-}
-
-@keyframes nix-shimmer {
-    0%   { color: @nix-blue; text-shadow: 0 0 6px rgba(126, 186, 228, 0.55); }
-    50%  { color: #9cc9f0;   text-shadow: 0 0 12px rgba(126, 186, 228, 0.85); }
-    100% { color: @nix-blue; text-shadow: 0 0 6px rgba(126, 186, 228, 0.55); }
 }
 
 /* privacy: pad the active icons, not the wrapper, so it vanishes when idle */
@@ -164,18 +175,11 @@
     padding: 1px 7px;
     margin: 0 3px;
     color: @yellow;
-    animation: lock-glow 2.5s ease-in-out infinite;
 }
 #keyboard-state label.unlocked {
     font-size: 0;
     padding: 0;
     margin: 0;
-}
-
-@keyframes lock-glow {
-    0%   { text-shadow: 0 0 2px rgba(243, 196, 75, 0.3); }
-    50%  { text-shadow: 0 0 8px rgba(243, 196, 75, 0.9); }
-    100% { text-shadow: 0 0 2px rgba(243, 196, 75, 0.3); }
 }
 
 #cpu.critical,
@@ -197,19 +201,12 @@
 
 #battery.charging {
     color: @green;
-    animation: charge-glow 2s ease-in-out infinite;
 }
 
 @keyframes critical-blink {
     0%   { opacity: 1; }
     50%  { opacity: 0.45; }
     100% { opacity: 1; }
-}
-
-@keyframes charge-glow {
-    0%   { text-shadow: 0 0 2px rgba(70, 192, 138, 0.3); }
-    50%  { text-shadow: 0 0 8px rgba(70, 192, 138, 0.9); }
-    100% { text-shadow: 0 0 2px rgba(70, 192, 138, 0.3); }
 }
 
 #power-profiles-daemon.power-saver {
@@ -222,13 +219,6 @@
 
 #custom-notification.active {
     color: @blue;
-    animation: bell-glow 2.2s ease-in-out infinite;
-}
-
-@keyframes bell-glow {
-    0%   { text-shadow: 0 0 2px rgba(34, 201, 192, 0.3); }
-    50%  { text-shadow: 0 0 8px rgba(34, 201, 192, 0.9); }
-    100% { text-shadow: 0 0 2px rgba(34, 201, 192, 0.3); }
 }
 
 #custom-notification.dnd {
@@ -236,15 +226,26 @@
 }
 
 #workspaces button {
-    color: @workspace-fg;
+    color: @aero_inactive;
     font-size: 14px;
     border-radius: 100%;
     padding: 0 2px;
     margin: 0 3px;
+    transition: color 0.25s ease;
+}
+
+#workspaces button.active,
+#workspaces button.focused {
+    color: @aero_gloss;
+}
+
+#workspaces button.urgent {
+    color: @aero_coral;
 }
 
 #workspaces button:hover {
     background: transparent;
+    color: @aero_foam;
 }
 
 #mpris.paused {
@@ -265,8 +266,13 @@
 }
 /* ---<==== Misc ====>--- */
 tooltip {
-    border-radius: 15px;
-    background: @tooltip-bg;
+    border-radius: 14px;
+    background-image: linear-gradient(to bottom,
+        alpha(@aero_rim,   0.16)   0%,
+        alpha(@aero_mid,   0.96)  46%,
+        alpha(@aero_deep,  0.98)  54%,
+        alpha(@aero_abyss, 0.97) 100%);
+    box-shadow: inset 0 1px 0 alpha(@aero_gloss, 0.35);
 }
 
 tooltip label {
@@ -305,17 +311,57 @@ slider {
 
 trough {
     min-width: 50px;
-    min-height: 5px;
+    min-height: 6px;
     border-radius: 8px;
-    background: @inactive;
+    background-color: alpha(@aero_abyss, 0.85);
+    box-shadow: inset 0 1px 2px rgba(3, 8, 9, 0.9);
 }
 
 trough highlight {
     border-radius: 8px;
-    background-color: @fg;
-    background-image: none;
+    background-image: linear-gradient(to bottom,
+        alpha(@aero_rim, 0.65)  0%,
+        @aero_aqua             48%,
+        @aero_sky              52%,
+        @aero_sky             100%);
 }
 
 #cpu {
     min-width: 50px;
 }
+
+
+/* ---<==== Per-module accents ====>--- */
+/* Frutiger Aero ran greens and warm tones next to the water blues; the
+ * surfaces stay near-black so these carry all of the colour. */
+#battery            { color: @aero_grass;  }
+#cpu                { color: @aero_aqua;   }
+#memory             { color: @aero_violet; }
+#temperature        { color: @aero_sun;    }
+#bluetooth          { color: @aero_sky;    }
+#pulseaudio         { color: @aero_mint;   }
+#backlight          { color: @aero_sun;    }
+#mpris              { color: @aero_violet; }
+#tray               { color: @aero_foam;   }
+#clock              { color: @aero_gloss;  }
+#custom-notification { color: @aero_aqua;  }
+#custom-shutdown    { color: @aero_coral;  }
+#upower,
+#power-profiles-daemon,
+#load               { color: @aero_mint;   }
+
+/* state colours must still win over the per-module ones above */
+#cpu.critical,
+#memory.critical,
+#battery.critical,
+#temperature.critical,
+#power-profiles-daemon.performance { color: @aero_coral; }
+
+#cpu.warning,
+#memory.warning,
+#battery.warning,
+#temperature.warning { color: @aero_sun; }
+
+#battery.charging   { color: @aero_mint;  }
+#mpris.paused       { color: @inactive;   }
+#custom-notification.dnd { color: @inactive; }

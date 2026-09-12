@@ -11,6 +11,7 @@ in
 		/etc/nixos/hardware-configuration.nix
 		(import "${home-manager-src}/nixos")
 		/etc/nixos/custom.nix
+		./frutiger.nix
 	];
 
 	# Pass the let-bound channels down to imported modules (e.g. custom.nix)

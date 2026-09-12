@@ -5,7 +5,7 @@ configuration {
 }
 
 * {
-    font:                   "CaskaydiaCove Nerd Font, bold 12";
+    font:                   "Open Sans Semibold 12";
 }
 
 window {
@@ -15,7 +15,10 @@ window {
     padding:                0px;
     y-offset:               10px;
     border-radius:          15px;
-    background-color:       @background;
+    background-color:       transparent;
+    background-image:       @glass-panel;
+    border:        1px;
+    border-color:        @rim;
 }
 
 mainbox {
@@ -30,7 +33,10 @@ inputbar {
     margin:                 0 0 10px 0;
     padding:                10px 15px;
     border-radius:          16px;
-    background-color:       @background-alt;
+    background-color:       transparent;
+    background-image:       @glass-raised;
+    border:        1px;
+    border-color:        @rim-strong;
     text-color:             @foreground;
     children:               [ "entry" ];
 }
@@ -49,7 +55,8 @@ listview {
     spacing:                5px;
     padding:                5px;
     border-radius:          16px;
-    background-color:       @background-alt;
+    background-color:       transparent;
+    background-image:       @glass-sunken;
     text-color:             @foreground;
 }
 
@@ -72,7 +79,8 @@ element {
 }
 
 element selected.normal {
-    background-color:       @highlight;
+    background-color:       transparent;
+    background-image:       @glass-selected;
 }
 
 element-icon {

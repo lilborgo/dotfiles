@@ -3,11 +3,11 @@
 
 configuration {
     show-icons:                 true;
-	drun-display-format:        "{name} \n<span size='x-small' color='grey'><i>{exec}</i></span>";
+	drun-display-format:        "{name} \n<span size='x-small' alpha='70%'><i>{exec}</i></span>";
 }
 
 * {
-    font:                       "CaskaydiaCove Nerd Font, bold 12";
+    font:                       "Open Sans Semibold 12";
 }
 
 window {
@@ -19,7 +19,10 @@ window {
     border-radius:               15px;
     width:                       450px;
     height:                      100%;
-    background-color:            @background;
+    background-color:            transparent;
+    background-image:            @glass-panel;
+    border:             1px;
+    border-color:             @rim;
 }
 
 mainbox {
@@ -36,7 +39,10 @@ inputbar {
     margin:                      0px;
     padding:                     10px 15px;
     border-radius:               16px;
-    background-color:            @background-alt;
+    background-color:            transparent;
+    background-image:            @glass-raised;
+    border:             1px;
+    border-color:             @rim-strong;
     color:                       @foreground;
     children:                    [ "entry" ];
 }
@@ -60,7 +66,8 @@ listview {
     margin:                      0px;
     padding:                     10px 8px;
     border-radius:               16px;
-    background-color:            @background-alt;
+    background-color:            transparent;
+    background-image:            @glass-sunken;
     color:                       @foreground;
 }
 
@@ -76,7 +83,9 @@ element {
 }
 
 element selected.normal {
-    background-color:            @highlight;
+    background-color:            transparent;
+    background-image:            @glass-selected;
+    text-color:                  @aero-abyss;
 }
 
 element-icon {
@@ -101,12 +110,15 @@ mode-switcher {
     margin:                      0px;
     border-radius:               16px;
     padding:                     8px 18px;
-    background-color:            @background-alt;
+    background-color:            transparent;
+    background-image:            @glass-raised;
+    border:             1px;
+    border-color:             @rim-strong;
     color:                       @foreground;
 }
 
 button {
-    font:                       "CaskaydiaCove Nerd Font Propo, bold 12";
+    font:                       "Open Sans Semibold 12";
     padding:                     10px;
     margin:                      0;
     border:                      0px solid;
@@ -122,7 +134,7 @@ button selected {
 }
 
 button hover {
-    background-color:            red;
+    background-color:            @urgent;
     color:                       @background;
 }
 
