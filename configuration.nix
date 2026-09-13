@@ -412,7 +412,7 @@ in
 		gnumake rustc binutils pkg-config gtk3.dev glib.dev
 
 		# --- Development ---
-		gh git nano gnome-text-editor micro
+		gh git nano micro
 		(python3.withPackages (ps: with ps; [
 			paho-mqtt pypdf torch torchvision matplotlib
 			west tkinter pyserial pyelftools pyyaml pykwalify
@@ -443,7 +443,7 @@ in
 		kdePackages.okular file-roller filezilla freefilesync
 		gparted impression libqalculate libreoffice-qt localsend
 		loupe pavucontrol styluslabs-write-bin
-		tor-browser vlc foliate papirus-folders parted
+		tor-browser vlc papirus-folders parted
 
 		# --- Browser ---
 		firefox google-chrome
@@ -623,6 +623,15 @@ in
 				terminal		= false;
 				categories	= [ "Music" ];
 			};
+			#	yazi ships Terminal=true, which launchers can't open reliably outside a terminal
+			yazi	= {
+				name				= "Yazi File Manager";
+				exec				= "kitty -e yazi %f";
+				icon				= "yazi";
+				terminal		= false;
+				categories	= [ "System" "FileManager" "FileTools" ];
+				mimeType		= [ "inode/directory" ];
+			};
 		};
 
 
@@ -642,7 +651,7 @@ in
 				"x-scheme-handler/mailto"						= "firefox.desktop";
 
 				# File manager
-				"inode/directory"										= "thunar.desktop";
+				"inode/directory"										= "yazi.desktop";
 
 				# PDF
 				"application/pdf"										= "org.kde.okular.desktop";
@@ -877,6 +886,171 @@ in
 				};
 			};
 		};
+
+		programs.yazi	= {
+			enable								= true;
+			enableZshIntegration	= true;
+
+			extraPackages	= with pkgs; [
+				glow
+				rich-cli
+				unar
+				mediainfo
+				imagemagick
+				ouch
+				p7zip
+				lazygit
+				dragon-drop
+				wl-clipboard
+				trash-cli
+				fd ripgrep fzf
+				gvfs
+				glib
+			];
+
+			plugins	= with pkgs.yaziPlugins; {
+				inherit git githead full-border mime-ext
+					glow rich-preview lsar mediainfo
+					smart-enter smart-filter smart-paste jump-to-char
+					chmod sudo diff compress ouch bookmarks lazygit drag
+					toggle-pane restore wl-clipboard gvfs;
+			};
+
+			settings	= {
+				mgr	= {
+					show_hidden			= true;
+					sort_by					= "natural";
+					sort_dir_first	= true;
+					linemode				= "size";
+					ratio						= [ 1 3 4 ];
+				};
+
+				preview	= {
+					max_width		= 1200;
+					max_height	= 1200;
+				};
+
+				#	micro is the editor for everything text-shaped
+				opener	= {
+					edit	= [ { run = ''micro "$@"''; block = true; desc = "micro"; } ];
+				};
+
+				plugin	= {
+					prepend_fetchers	= [
+						{ url = "*";  run = "git"; group = "git"; }
+						{ url = "*/"; run = "git"; group = "git"; }
+						#	mime type from the extension database instead of file(1) — faster
+						{ url = "local://*";  run = "mime-ext.local";  prio = "high"; group = "mime"; }
+						{ url = "remote://*"; run = "mime-ext.remote"; prio = "high"; group = "mime"; }
+					];
+
+					prepend_previewers	= [
+						{ url = "*.md";    run = "glow"; }
+						{ url = "*.csv";   run = "rich-preview"; }
+						{ url = "*.json";  run = "rich-preview"; }
+						{ url = "*.rst";   run = "rich-preview"; }
+						{ url = "*.ipynb"; run = "rich-preview"; }
+						{ mime = "application/{,g}zip";              run = "lsar"; }
+						{ mime = "application/{tar,bzip*,7z*,xz,rar}"; run = "lsar"; }
+						{ mime = "{audio,video}/*"; run = "mediainfo"; }
+					];
+				};
+			};
+
+			initLua	= ''
+				require("git"):setup()
+				require("githead"):setup()
+				require("full-border"):setup()
+				require("mime-ext.local"):setup { fallback_file1 = true }
+				require("bookmarks"):setup({ last_directory = { enable = true }, persist = "all" })
+				require("gvfs"):setup({ input_position = { "center", y = 0, w = 60 } })
+			'';
+
+			keymap	= {
+				mgr.prepend_keymap	= [
+					#	movement: w up, s down (arrows still work)
+					{ on = "w";           run = "arrow prev"; desc = "Move up"; }
+					{ on = "s";           run = "arrow next"; desc = "Move down"; }
+					{ on = "<Up>";        run = "arrow -1"; desc = "Move up"; }
+					{ on = "<Down>";      run = "arrow 1"; desc = "Move down"; }
+
+					#	open / back: d goes in or opens, a goes up
+					{ on = "d";           run = "plugin smart-enter"; desc = "Enter the child directory, or open the file"; }
+					{ on = "a";           run = "leave"; desc = "Go to the parent directory"; }
+					{ on = "<Enter>";     run = "plugin smart-enter"; desc = "Enter the child directory, or open the file"; }
+					{ on = "<Backspace>"; run = "leave"; desc = "Go to the parent directory"; }
+
+					#	clipboard: c copy, x cut, v paste
+					{ on = "c"; run = "yank"; desc = "Copy selected files"; }
+					{ on = "x"; run = "yank --cut"; desc = "Cut selected files"; }
+					{ on = "v"; run = "plugin smart-paste"; desc = "Paste into the hovered directory"; }
+
+					#	create / rename
+					{ on = "n"; run = "create"; desc = "Create a file (end with / for a folder)"; }
+					{ on = "r"; run = "rename --cursor=before_ext"; desc = "Rename selected file(s)"; }
+
+					#	delete: z to trash, Z permanently
+					{ on = "z"; run = "remove"; desc = "Move selected files to trash"; }
+					{ on = "Z"; run = "remove --permanently"; desc = "Permanently delete selected files"; }
+
+					#	search: f filters this folder, F searches subfolders by name, J jumps to a char
+					{ on = "f"; run = "plugin smart-filter"; desc = "Quick filter in this folder"; }
+					{ on = "F"; run = "search --via=fd"; desc = "Search files by name in subfolders"; }
+					{ on = "J"; run = "plugin jump-to-char"; desc = "Jump to next file starting with a char"; }
+
+					#	tabs: 1-9 switch (yazi default), t new, R rename
+					{ on = "t"; run = "tab_create --current"; desc = "New tab in the current folder"; }
+					{ on = "R"; run = "tab_rename --interactive"; desc = "Rename the current tab"; }
+
+					#	terminal & git
+					{ on = "T"; run = "shell --orphan -- kitty"; desc = "Open kitty in the current folder"; }
+					{ on = "g"; run = "plugin lazygit"; desc = "Open lazygit"; }
+
+					#	selection & tasks
+					{ on = "V"; run = "visual_mode"; desc = "Visual selection mode"; }
+					{ on = "W"; run = "tasks:show"; desc = "Show task manager"; }
+
+					#	e: file tools
+					{ on = [ "e" "c" ]; run = "plugin compress"; desc = "Compress selected files"; }
+					{ on = [ "e" "x" ]; run = "shell --block -- ouch d -y %h"; desc = "Extract hovered archive here"; }
+					{ on = [ "e" "p" ]; run = "plugin chmod"; desc = "chmod selected files"; }
+					{ on = [ "e" "u" ]; run = "plugin restore"; desc = "Restore last trashed files"; }
+
+					#	h: go to
+					{ on = [ "h" "t" ];       run = "arrow top"; desc = "Go to top"; }
+					{ on = [ "h" "h" ];       run = "cd ~"; desc = "Go home"; }
+					{ on = [ "h" "c" ];       run = "cd ~/.config"; desc = "Go ~/.config"; }
+					{ on = [ "h" "d" ];       run = "cd ~/Documents"; desc = "Go ~/Documents"; }
+					{ on = [ "h" "<Space>" ]; run = "cd --interactive"; desc = "Go to a typed path"; }
+					{ on = [ "h" "f" ];       run = "follow"; desc = "Follow hovered symlink"; }
+
+					#	y: copy path to clipboard
+					{ on = [ "y" "p" ]; run = "copy path"; desc = "Copy full path"; }
+					{ on = [ "y" "d" ]; run = "copy dirname"; desc = "Copy folder path"; }
+					{ on = [ "y" "f" ]; run = "copy filename"; desc = "Copy filename"; }
+					{ on = [ "y" "n" ]; run = "copy name_without_ext"; desc = "Copy filename without extension"; }
+
+					#	m: mounts (gvfs)
+					{ on = [ "m" "m" ]; run = "plugin gvfs -- select-then-mount --jump"; desc = "Mount a device and jump to it"; }
+					{ on = [ "m" "u" ]; run = "plugin gvfs -- select-then-unmount --eject"; desc = "Unmount / eject a device"; }
+					{ on = [ "m" "U" ]; run = "plugin gvfs -- select-then-unmount --eject --force"; desc = "Force unmount / eject a device"; }
+					{ on = [ "m" "r" ]; run = "plugin gvfs -- remount-current-cwd-device"; desc = "Remount the device under cwd"; }
+					{ on = [ "m" "j" ]; run = "plugin gvfs -- jump-to-device"; desc = "Jump to a mounted device"; }
+					{ on = [ "m" "a" ]; run = "plugin gvfs -- jump-back-prev-cwd"; desc = "Jump back to where you were"; }
+					{ on = [ "m" "n" ]; run = "plugin gvfs -- add-mount"; desc = "Add a network mount (SMB/SFTP/FTP)"; }
+					{ on = [ "m" "e" ]; run = "plugin gvfs -- edit-mount"; desc = "Edit a saved network mount"; }
+					{ on = [ "m" "z" ]; run = "plugin gvfs -- remove-mount"; desc = "Remove a saved network mount"; }
+
+					#	other plugins
+					{ on = "<Tab>"; run = "plugin toggle-pane max-preview"; desc = "Maximise the preview"; }
+					{ on = "!";     run = "plugin sudo"; desc = "Run a command as root"; }
+					{ on = "<C-d>"; run = "plugin diff"; desc = "Diff the selected file against hovered"; }
+					{ on = "<C-y>"; run = "plugin wl-clipboard"; desc = "Copy selected files to the clipboard"; }
+					{ on = "<C-n>"; run = "plugin drag"; desc = "Drag and drop selected files"; }
+				];
+			};
+		};
+
 
 		programs.kitty = {
 			enable = true;
