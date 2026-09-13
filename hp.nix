@@ -95,7 +95,6 @@ in
 			nrf5-sdk
 			nrf-udev
 			nrfconnect
-			opencode
 			stlink
 	];
 

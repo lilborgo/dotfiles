@@ -7,6 +7,7 @@
 		enable = true;
 		extraCompatPackages = with pkgs; [
 				(pkgs.proton-ge-bin.override { steamDisplayName = "NIXOS-PROTON"; })
+				(unstable.proton-ge-bin.overrideAttrs { steamDisplayName = "NIXOS-PROTON-UNSTABLE"; })
 		];
 	};
 	services.xserver.videoDrivers = [ "amdgpu" ];
