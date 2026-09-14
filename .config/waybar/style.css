@@ -1,8 +1,8 @@
 @define-color module-bg     rgba(12, 15, 16, 0.9);
 @define-color tooltip-bg    @module-bg;
-@define-color inactive      #929292;
-@define-color fg            #d3e4df;
-@define-color workspace-fg  @fg;
+@define-color inactive     #929292;
+@define-color fg           #d3e4df;
+@define-color workspace-fg @fg;
 
 @define-color red           #ec3f5d;
 @define-color blue          #22c9c0;
@@ -14,16 +14,15 @@
 @define-color nix-blue      #7ebae4;
 @define-color nix-deep      #5277c3;
 
-
 * {
     font-family: 'JetBrainsMono Nerd Font Propo';
     font-size: 14px;
-	border: none;
-	border-radius: 0;
-	min-height: 0;
-	margin: 0;
-	padding: 0;
-	text-shadow: none;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
 }
 
 #waybar {
@@ -86,7 +85,6 @@
     padding: 2px 10px;
     border-radius: 15px;
     background: @module-bg;
-    transition: box-shadow 0.3s ease;
 }
 
 #right-hidden-top,
@@ -94,32 +92,18 @@
     padding: 0 12px;
 }
 
-#right, #left  {
+#right, #left {
     margin: 0 8px;
-}
-
-#right:hover,
-#left:hover,
-#right-hidden-top:hover,
-#left-hidden-top:hover,
-#clock:hover {
-    box-shadow: 0 0 12px 1px rgba(211, 228, 223, 0.15);
 }
 
 #clock {
     background: @module-bg;
     padding: 1px 18px;
     border-radius: 15px;
-    transition: box-shadow 0.3s ease;
 }
 
 #custom-notification {
     padding: 0 6px;
-    transition: font-size 0.2s ease;
-}
-
-#custom-notification:hover {
-    font-size: 16px;
 }
 
 /* ---<==== Nix launcher ====>--- */
@@ -127,18 +111,6 @@
     margin-right: 8px;
     font-size: 17px;
     color: @nix-blue;
-    animation: nix-shimmer 5s ease-in-out infinite;
-    transition: font-size 0.2s ease, color 0.2s ease;
-}
-
-#custom-start:hover {
-    font-size: 20px;
-}
-
-@keyframes nix-shimmer {
-    0%   { color: @nix-blue; text-shadow: 0 0 6px rgba(126, 186, 228, 0.55); }
-    50%  { color: #9cc9f0;   text-shadow: 0 0 12px rgba(126, 186, 228, 0.85); }
-    100% { color: @nix-blue; text-shadow: 0 0 6px rgba(126, 186, 228, 0.55); }
 }
 
 /* privacy: pad the active icons, not the wrapper, so it vanishes when idle */
@@ -164,7 +136,6 @@
     padding: 1px 7px;
     margin: 0 3px;
     color: @yellow;
-    animation: lock-glow 2.5s ease-in-out infinite;
 }
 #keyboard-state label.unlocked {
     font-size: 0;
@@ -172,18 +143,12 @@
     margin: 0;
 }
 
-@keyframes lock-glow {
-    0%   { text-shadow: 0 0 2px rgba(243, 196, 75, 0.3); }
-    50%  { text-shadow: 0 0 8px rgba(243, 196, 75, 0.9); }
-    100% { text-shadow: 0 0 2px rgba(243, 196, 75, 0.3); }
-}
-
 #cpu.critical,
 #memory.critical,
 #battery.critical,
 #temperature.critical,
 #power-profiles-daemon.performance {
-	color: @red;
+    color: @red;
     animation: critical-blink 1s ease-in-out infinite;
 }
 
@@ -191,25 +156,18 @@
 #memory.warning,
 #battery.warning,
 #temperature.warning {
-	color: @yellow;
+    color: @yellow;
     background: unset;
 }
 
 #battery.charging {
     color: @green;
-    animation: charge-glow 2s ease-in-out infinite;
 }
 
 @keyframes critical-blink {
     0%   { opacity: 1; }
     50%  { opacity: 0.45; }
     100% { opacity: 1; }
-}
-
-@keyframes charge-glow {
-    0%   { text-shadow: 0 0 2px rgba(70, 192, 138, 0.3); }
-    50%  { text-shadow: 0 0 8px rgba(70, 192, 138, 0.9); }
-    100% { text-shadow: 0 0 2px rgba(70, 192, 138, 0.3); }
 }
 
 #power-profiles-daemon.power-saver {
@@ -222,13 +180,6 @@
 
 #custom-notification.active {
     color: @blue;
-    animation: bell-glow 2.2s ease-in-out infinite;
-}
-
-@keyframes bell-glow {
-    0%   { text-shadow: 0 0 2px rgba(34, 201, 192, 0.3); }
-    50%  { text-shadow: 0 0 8px rgba(34, 201, 192, 0.9); }
-    100% { text-shadow: 0 0 2px rgba(34, 201, 192, 0.3); }
 }
 
 #custom-notification.dnd {
@@ -263,6 +214,7 @@
         opacity: 1;
     }
 }
+
 /* ---<==== Misc ====>--- */
 tooltip {
     border-radius: 15px;
@@ -272,7 +224,7 @@ tooltip {
 tooltip label {
     padding: 3px 10px;
     color: @fg;
-	font-weight: 700;
+    font-weight: 700;
 }
 
 .popup * {
@@ -291,7 +243,7 @@ menu > *, menu > * {
     padding: 3px 0px;
 }
 
-menu > *:hover, menu > *:hover{
+menu > *:hover, menu > *:hover {
     border-radius: 10px;
     background-color: @inactive;
 }
