@@ -440,7 +440,7 @@ in
 		lxsession rofi hyprpaper waybar
 
 		# --- GUI applications ---
-		kdePackages.okular file-roller filezilla freefilesync
+		file-roller filezilla freefilesync
 		gparted impression libqalculate libreoffice-qt localsend
 		loupe pavucontrol styluslabs-write-bin
 		tor-browser vlc papirus-folders parted
@@ -654,10 +654,10 @@ in
 				"inode/directory"										= "yazi.desktop";
 
 				# PDF
-				"application/pdf"										= "org.kde.okular.desktop";
-				"application/x-bzpdf"								= "org.kde.okular.desktop";
-				"application/x-gzpdf"								= "org.kde.okular.desktop";
-				"application/x-pdf"									= "org.kde.okular.desktop";
+				"application/pdf"										= "firefox.desktop";
+				"application/x-bzpdf"								= "firefox.desktop";
+				"application/x-gzpdf"								= "firefox.desktop";
+				"application/x-pdf"									= "firefox.desktop";
 
 				# E-books
 				"application/epub+zip"								= "com.github.johnfactotum.Foliate.desktop";
