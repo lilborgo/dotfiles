@@ -199,10 +199,6 @@ in
 				theme		= "bira";
 				plugins	= [ "git" ];
 			};
-
-			interactiveShellInit = ''
-  			export LD_LIBRARY_PATH="/run/current-system/sw/share/nix-ld/lib:$LD_LIBRARY_PATH"
-			'';
 		};
 
 		# --- nix-ld (dynamic linker for unpatched binaries) ---
@@ -293,18 +289,11 @@ in
 	# --- Bluetooth ---
 	services.blueman.enable	= true;
 
-	# --- Power management ---
-	services.upower.enable					= true;
-
-	# --- Firmware ---
-	services.fwupd.enable	= true;
-
 	# --- Desktop utilities ---
 	services.flatpak.enable		= true;
 	services.gnome.gnome-keyring.enable	= true;
 	services.gvfs.enable		= true;
 	services.playerctld.enable	= true;
-	services.tumbler.enable		= true;
 	services.udisks2.enable		= true;
 
 	# --- Virtualisation guests ---
@@ -348,10 +337,6 @@ in
 			};
 		};
 		spiceUSBRedirection.enable	= true;
-		waydroid	= {
-			enable	= true;
-			package	= pkgs.waydroid-nftables;
-		};
 	};
 
 
@@ -393,10 +378,6 @@ in
 		QT_SCALE_FACTOR							= "1";
 		LIBTORCH = "${pkgs.libtorch-bin}";
 		LIBTORCH_INCLUDE = "${pkgs.libtorch-bin.dev}";
-	};
-
-	environment.variables = {
-		LD_LIBRARY_PATH = "/run/current-system/sw/share/nix-ld/lib";
 	};
 
 	environment.systemPackages	= with pkgs; [
@@ -455,7 +436,7 @@ in
 		iproute2 networkmanager networkmanagerapplet nmap wireguard-tools posting
 
 		# --- Bluetooth ---
-		blueman bluez upower
+		blueman bluez
 
 		# --- Hardware & system ---
 		brightnessctl libinput libnotify libwacom procps
@@ -658,9 +639,6 @@ in
 				"application/x-bzpdf"								= "firefox.desktop";
 				"application/x-gzpdf"								= "firefox.desktop";
 				"application/x-pdf"									= "firefox.desktop";
-
-				# E-books
-				"application/epub+zip"								= "com.github.johnfactotum.Foliate.desktop";
 
 				# Images
 				"image/avif"													= "org.gnome.Loupe.desktop";
@@ -906,6 +884,8 @@ in
 				fd ripgrep fzf
 				gvfs
 				glib
+				udisks
+				util-linux
 			];
 
 			plugins	= with pkgs.yaziPlugins; {
@@ -913,7 +893,7 @@ in
 					glow rich-preview lsar mediainfo
 					smart-enter smart-filter smart-paste jump-to-char
 					chmod sudo diff compress ouch bookmarks lazygit drag
-					toggle-pane restore wl-clipboard gvfs;
+					toggle-pane restore wl-clipboard gvfs mount;
 			};
 
 			settings	= {
@@ -967,7 +947,7 @@ in
 			'';
 
 			keymap	= {
-				mgr.prepend_keymap	= [
+				mgr.keymap	= [
 					#	movement: w up, s down (arrows still work)
 					{ on = "w";           run = "arrow prev"; desc = "Move up"; }
 					{ on = "s";           run = "arrow next"; desc = "Move down"; }
@@ -1035,7 +1015,8 @@ in
 					{ on = [ "m" "u" ]; run = "plugin gvfs -- select-then-unmount --eject"; desc = "Unmount / eject a device"; }
 					{ on = [ "m" "U" ]; run = "plugin gvfs -- select-then-unmount --eject --force"; desc = "Force unmount / eject a device"; }
 					{ on = [ "m" "r" ]; run = "plugin gvfs -- remount-current-cwd-device"; desc = "Remount the device under cwd"; }
-					{ on = [ "m" "j" ]; run = "plugin gvfs -- jump-to-device"; desc = "Jump to a mounted device"; }
+					{ on = [ "m" "j" ]; run = "plugin mount"; desc = "Disk manager: all drives, mounted or not"; }
+					{ on = [ "m" "J" ]; run = "plugin gvfs -- jump-to-device"; desc = "Jump to a mounted phone / network share"; }
 					{ on = [ "m" "a" ]; run = "plugin gvfs -- jump-back-prev-cwd"; desc = "Jump back to where you were"; }
 					{ on = [ "m" "n" ]; run = "plugin gvfs -- add-mount"; desc = "Add a network mount (SMB/SFTP/FTP)"; }
 					{ on = [ "m" "e" ]; run = "plugin gvfs -- edit-mount"; desc = "Edit a saved network mount"; }
@@ -1047,6 +1028,89 @@ in
 					{ on = "<C-d>"; run = "plugin diff"; desc = "Diff the selected file against hovered"; }
 					{ on = "<C-y>"; run = "plugin wl-clipboard"; desc = "Copy selected files to the clipboard"; }
 					{ on = "<C-n>"; run = "plugin drag"; desc = "Drag and drop selected files"; }
+
+					#	l: linemode (moved off the m menu)
+					{ on = [ "l" "s" ]; run = "linemode size"; desc = "Linemode: size"; }
+					{ on = [ "l" "p" ]; run = "linemode permissions"; desc = "Linemode: permissions"; }
+					{ on = [ "l" "b" ]; run = "linemode btime"; desc = "Linemode: btime"; }
+					{ on = [ "l" "m" ]; run = "linemode mtime"; desc = "Linemode: mtime"; }
+					{ on = [ "l" "o" ]; run = "linemode owner"; desc = "Linemode: owner"; }
+					{ on = [ "l" "n" ]; run = "linemode none"; desc = "Linemode: none"; }
+
+					#	--- yazi 26.5.6 defaults ---
+					#	this is a full `keymap`, not `prepend_keymap`: presets are replaced,
+					#	so unwanted default chords (linemode on m, goto on g, ...) no longer appear
+					{ on = "<Esc>"; run = "escape"; desc = "Exit visual mode, clear selection, or cancel search"; }
+					{ on = "<C-[>"; run = "escape"; desc = "Exit visual mode, clear selection, or cancel search"; }
+					{ on = "q"; run = "quit"; desc = "Quit the process"; }
+					{ on = "Q"; run = "quit --no-cwd-file"; desc = "Quit without outputting cwd-file"; }
+					{ on = "<C-c>"; run = "close"; desc = "Close the current tab, or quit if it's last"; }
+					{ on = "<C-z>"; run = "suspend"; desc = "Suspend the process"; }
+					{ on = "k"; run = "arrow prev"; desc = "Previous file"; }
+					{ on = "j"; run = "arrow next"; desc = "Next file"; }
+					{ on = "<C-u>"; run = "arrow -50%"; desc = "Move cursor up half page"; }
+					{ on = "<C-b>"; run = "arrow -100%"; desc = "Move cursor up one page"; }
+					{ on = "<C-f>"; run = "arrow 100%"; desc = "Move cursor down one page"; }
+					{ on = "<S-PageUp>"; run = "arrow -50%"; desc = "Move cursor up half page"; }
+					{ on = "<S-PageDown>"; run = "arrow 50%"; desc = "Move cursor down half page"; }
+					{ on = "<PageUp>"; run = "arrow -100%"; desc = "Move cursor up one page"; }
+					{ on = "<PageDown>"; run = "arrow 100%"; desc = "Move cursor down one page"; }
+					{ on = "G"; run = "arrow bot"; desc = "Go to bottom"; }
+					{ on = "<Left>"; run = "leave"; desc = "Back to the parent directory"; }
+					{ on = "<Right>"; run = "enter"; desc = "Enter the child directory"; }
+					{ on = "H"; run = "back"; desc = "Back to previous directory"; }
+					{ on = "L"; run = "forward"; desc = "Forward to next directory"; }
+					{ on = "<Space>"; run = [ "toggle" "arrow 1" ]; desc = "Toggle the current selection state"; }
+					{ on = "<C-a>"; run = "toggle_all --state=on"; desc = "Select all files"; }
+					{ on = "<C-r>"; run = "toggle_all"; desc = "Invert selection of all files"; }
+					{ on = "K"; run = "seek -5"; desc = "Seek up 5 units in the preview"; }
+					{ on = "o"; run = "open"; desc = "Open selected files"; }
+					{ on = "O"; run = "open --interactive"; desc = "Open selected files interactively"; }
+					{ on = "<S-Enter>"; run = "open --interactive"; desc = "Open selected files interactively"; }
+					{ on = "p"; run = "paste"; desc = "Paste yanked files"; }
+					{ on = "P"; run = "paste --force"; desc = "Paste yanked files (overwrite if the destination exists)"; }
+					{ on = "-"; run = "link"; desc = "Symlink the absolute path of yanked files"; }
+					{ on = "_"; run = "link --relative"; desc = "Symlink the relative path of yanked files"; }
+					{ on = "<C-->"; run = "hardlink"; desc = "Hardlink yanked files"; }
+					{ on = "Y"; run = "unyank"; desc = "Cancel the yank status"; }
+					{ on = "X"; run = "unyank"; desc = "Cancel the yank status"; }
+					{ on = "D"; run = "remove --permanently"; desc = "Permanently delete selected files"; }
+					{ on = ";"; run = "shell --interactive"; desc = "Run a shell command"; }
+					{ on = ":"; run = "shell --block --interactive"; desc = "Run a shell command (block until finishes)"; }
+					{ on = "."; run = "hidden toggle"; desc = "Toggle the visibility of hidden files"; }
+					{ on = "S"; run = "search --via=rg"; desc = "Search files by content via ripgrep"; }
+					{ on = "<C-s>"; run = "escape --search"; desc = "Cancel the ongoing search"; }
+					{ on = "/"; run = "find --smart"; desc = "Find next file"; }
+					{ on = "?"; run = "find --previous --smart"; desc = "Find previous file"; }
+					{ on = "N"; run = "find_arrow --previous"; desc = "Previous found"; }
+					{ on = [ "," "m" ]; run = [ "sort mtime --reverse=no" "linemode mtime" ]; desc = "Sort by modified time"; }
+					{ on = [ "," "M" ]; run = [ "sort mtime --reverse=yes" "linemode mtime" ]; desc = "Sort by modified time (reverse)"; }
+					{ on = [ "," "b" ]; run = [ "sort btime --reverse=no" "linemode btime" ]; desc = "Sort by birth time"; }
+					{ on = [ "," "B" ]; run = [ "sort btime --reverse=yes" "linemode btime" ]; desc = "Sort by birth time (reverse)"; }
+					{ on = [ "," "e" ]; run = "sort extension --reverse=no"; desc = "Sort by extension"; }
+					{ on = [ "," "E" ]; run = "sort extension --reverse=yes"; desc = "Sort by extension (reverse)"; }
+					{ on = [ "," "a" ]; run = "sort alphabetical --reverse=no"; desc = "Sort alphabetically"; }
+					{ on = [ "," "A" ]; run = "sort alphabetical --reverse=yes"; desc = "Sort alphabetically (reverse)"; }
+					{ on = [ "," "n" ]; run = "sort natural --reverse=no"; desc = "Sort naturally"; }
+					{ on = [ "," "N" ]; run = "sort natural --reverse=yes"; desc = "Sort naturally (reverse)"; }
+					{ on = [ "," "s" ]; run = [ "sort size --reverse=no" "linemode size" ]; desc = "Sort by size"; }
+					{ on = [ "," "S" ]; run = [ "sort size --reverse=yes" "linemode size" ]; desc = "Sort by size (reverse)"; }
+					{ on = [ "," "r" ]; run = "sort random --reverse=no"; desc = "Sort randomly"; }
+					{ on = "1"; run = "tab_switch 0"; desc = "Switch to first tab"; }
+					{ on = "2"; run = "tab_switch 1"; desc = "Switch to second tab"; }
+					{ on = "3"; run = "tab_switch 2"; desc = "Switch to third tab"; }
+					{ on = "4"; run = "tab_switch 3"; desc = "Switch to fourth tab"; }
+					{ on = "5"; run = "tab_switch 4"; desc = "Switch to fifth tab"; }
+					{ on = "6"; run = "tab_switch 5"; desc = "Switch to sixth tab"; }
+					{ on = "7"; run = "tab_switch 6"; desc = "Switch to seventh tab"; }
+					{ on = "8"; run = "tab_switch 7"; desc = "Switch to eighth tab"; }
+					{ on = "9"; run = "tab_switch 8"; desc = "Switch to ninth tab"; }
+					{ on = "["; run = "tab_switch -1 --relative"; desc = "Switch to previous tab"; }
+					{ on = "]"; run = "tab_switch 1 --relative"; desc = "Switch to next tab"; }
+					{ on = "{"; run = "tab_swap -1"; desc = "Swap current tab with previous tab"; }
+					{ on = "}"; run = "tab_swap 1"; desc = "Swap current tab with next tab"; }
+					{ on = "~"; run = "help"; desc = "Open help"; }
+					{ on = "<F1>"; run = "help"; desc = "Open help"; }
 				];
 			};
 		};
