@@ -1,25 +1,25 @@
 { config, pkgs, lib, unstable, home-manager-src, ... }:
 
 let
-	ollama-cuda-bin = pkgs.stdenv.mkDerivation rec {
-		pname = "ollama-cuda-bin";
-		version = "0.32.14";
-		src = pkgs.fetchurl {
-			url = "https://github.com/ollama/ollama/releases/download/v${version}/ollama-linux-amd64.tar.zst";
-			sha256 = "13yy4y5vwg0wm5wq7vs4s5jlr706cvq88c49gwxanip1f5x92866";
-		};
-		nativeBuildInputs = [ pkgs.zstd pkgs.makeWrapper ];
-		dontUnpack = true;
-		installPhase = ''
-			runHook preInstall
-			mkdir -p $out
-			tar --use-compress-program=unzstd -xf $src -C $out
-			wrapProgram $out/bin/ollama \
-				--set LD_LIBRARY_PATH "/run/current-system/sw/share/nix-ld/lib:/run/opengl-driver/lib:$out/lib/ollama:$out/lib/ollama/cuda_v13:$out/lib/ollama/cuda_v12"
-			runHook postInstall
-		'';
-		meta.mainProgram = "ollama";
-	};
+	#ollama-cuda-bin = pkgs.stdenv.mkDerivation rec {
+	#	pname = "ollama-cuda-bin";
+	#	version = "0.32.14";
+	#	src = pkgs.fetchurl {
+	#		url = "https://github.com/ollama/ollama/releases/download/v${version}/ollama-linux-amd64.tar.zst";
+	#		sha256 = "13yy4y5vwg0wm5wq7vs4s5jlr706cvq88c49gwxanip1f5x92866";
+	#	};
+	#	nativeBuildInputs = [ pkgs.zstd pkgs.makeWrapper ];
+	#	dontUnpack = true;
+	#	installPhase = ''
+	#		runHook preInstall
+	#		mkdir -p $out
+	#		tar --use-compress-program=unzstd -xf $src -C $out
+	#		wrapProgram $out/bin/ollama \
+	#			--set LD_LIBRARY_PATH "/run/current-system/sw/share/nix-ld/lib:/run/opengl-driver/lib:$out/lib/ollama:$out/lib/ollama/cuda_v13:$out/lib/ollama/cuda_v12"
+	#		runHook postInstall
+	#	'';
+	#	meta.mainProgram = "ollama";
+	#};
 
 	jlink-latest-bin = pkgs.stdenv.mkDerivation rec {
 		pname = "jlink-latest-bin";
@@ -76,10 +76,10 @@ in
 
 	services.xserver.videoDrivers = [ "nvidia" ];
 
-	services.ollama = {
-		enable = true;
-		package = ollama-cuda-bin;
-	};
+	#services.ollama = {
+	#	enable = true;
+	#	package = ollama-cuda-bin;
+	#};
 
 	environment.systemPackages = with pkgs; [
 			unstable.stm32cubemx
@@ -90,6 +90,7 @@ in
 			nvtopPackages.nvidia
 			android-studio
 			rustdesk-flutter
+			anydesk
 			jlink-latest-bin
 			nrfutil
 			nrf5-sdk
