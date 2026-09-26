@@ -423,7 +423,7 @@ in
 		# --- GUI applications ---
 		file-roller filezilla freefilesync
 		gparted impression libqalculate libreoffice-qt localsend
-		loupe pavucontrol styluslabs-write-bin
+		gthumb pavucontrol styluslabs-write-bin
 		tor-browser vlc papirus-folders parted
 
 		# --- Browser ---
@@ -641,17 +641,17 @@ in
 				"application/x-pdf"									= "firefox.desktop";
 
 				# Images
-				"image/avif"													= "org.gnome.Loupe.desktop";
-				"image/bmp"													= "org.gnome.Loupe.desktop";
-				"image/gif"													= "org.gnome.Loupe.desktop";
-				"image/heic"													= "org.gnome.Loupe.desktop";
-				"image/jpeg"													= "org.gnome.Loupe.desktop";
-				"image/jpg"													= "org.gnome.Loupe.desktop";
-				"image/png"													= "org.gnome.Loupe.desktop";
-				"image/svg+xml"											= "org.gnome.Loupe.desktop";
-				"image/tiff"													= "org.gnome.Loupe.desktop";
-				"image/webp"													= "org.gnome.Loupe.desktop";
-				"image/x-portable-pixmap"						= "org.gnome.Loupe.desktop";
+				"image/avif"													= "org.gnome.gThumb.desktop";
+				"image/bmp"													= "org.gnome.gThumb.desktop";
+				"image/gif"													= "org.gnome.gThumb.desktop";
+				"image/heic"													= "org.gnome.gThumb.desktop";
+				"image/jpeg"													= "org.gnome.gThumb.desktop";
+				"image/jpg"													= "org.gnome.gThumb.desktop";
+				"image/png"													= "org.gnome.gThumb.desktop";
+				"image/svg+xml"											= "org.gnome.gThumb.desktop";
+				"image/tiff"													= "org.gnome.gThumb.desktop";
+				"image/webp"													= "org.gnome.gThumb.desktop";
+				"image/x-portable-pixmap"						= "org.gnome.gThumb.desktop";
 
 				# Video
 				"video/3gpp"													= "vlc.desktop";
