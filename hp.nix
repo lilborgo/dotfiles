@@ -116,6 +116,11 @@ in
 		};
 	};
 
+	programs.zsh.shellAliases	= {
+		hotspot		= "sudo nmcli radio wifi on; for i in {1..5}; do sudo nmcli device wifi hotspot ifname wlp0s20f3 con-name hotspot ssid NixOS-Hotspot band a password nixosnixos && break; sleep 2; done";
+		hotspot-off	= "sudo nmcli connection down hotspot && sudo nmcli connection delete hotspot";
+	};
+
 	services.xserver.videoDrivers = [ "nvidia" ];
 
 	#services.ollama = {
