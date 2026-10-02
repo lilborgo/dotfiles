@@ -31,11 +31,39 @@
 		};
 	};
 
+	#services.restic.backups.acer = {
+	#	package = pkgs.writeShellScriptBin "restic" ''
+	#		exec ${pkgs.restic}/bin/restic --insecure-tls "$@"
+	#	'';
+#
+	#	# RESTIC_REPOSITORY lives here (not in `repository`) so the rest-server's
+	#	# basic-auth password isn't baked into the Nix store / git in plaintext
+	#	environmentFile	= "/etc/nixos/secrets/restic-acer-environment";
+	#	passwordFile		= "/etc/nixos/secrets/restic-acer-password";
+	#	initialize			= true;
+#
+	#	paths		= [ "/home/fede/Documents" ];
+	#	exclude	= [
+	#	];
+#
+	#	timerConfig = {
+	#		OnCalendar	= "daily";
+	#		Persistent	= true;
+	#	};
+#
+	#	pruneOpts = [
+	#		"--keep-daily 7"
+	#		"--keep-weekly 4"
+	#		"--keep-monthly 6"
+	#	];
+	#};
+
 	environment.systemPackages = with pkgs; [
 			prismlauncher
 			gzdoom
 			lutris
 			nvtopPackages.amd
+			restic
 	];
 
 	home-manager.users.fede= { pkgs, ...}: {

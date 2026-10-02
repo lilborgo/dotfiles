@@ -295,6 +295,7 @@ in
 	services.gvfs.enable		= true;
 	services.playerctld.enable	= true;
 	services.udisks2.enable		= true;
+	services.usbmuxd.enable = true;
 
 	# --- Virtualisation guests ---
 	services.qemuGuest.enable			= true;
@@ -386,7 +387,8 @@ in
 		ripgrep smem tree wget kitty exfat srecord
 		poppler-utils glib sshpass dig
 		curl duf lazyjournal hexyl lsof tealdeer tmux rsync
-		watch parallel mosh stress-ng peaclock
+		watch parallel mosh stress-ng peaclock libimobiledevice
+		ifuse ntfs3g
 
 		# --- Build tools & compilers ---
 		cargo clang clang-tools cmake gcc gcc.cc.lib glibc
